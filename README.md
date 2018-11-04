@@ -29,8 +29,6 @@ expo start
 The program will load up and you will be presented with a QR code.
 Navigate to the url through the provided code to view your app.
 
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Built With
 
 * [Expo](https://expo.io/) - The web framework used
