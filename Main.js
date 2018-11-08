@@ -4,8 +4,9 @@ import RootApp from './App';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
+// Not able to be used with localhost
 const client = new ApolloClient({
-    uri: "http://localhost:4000"
+    uri: "http://192.168.0.11:4000/graphql"
 })
 
 class App extends React.Component {
