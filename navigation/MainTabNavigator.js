@@ -4,7 +4,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import HabitScreen from '../screens/HabitScreen';
+import LeaderboardScreen from '../screens/LeaderboardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
@@ -18,23 +19,37 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const HabitStack = createStackNavigator({
+  Links: HabitScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+HabitStack.navigationOptions = {
+  tabBarLabel: 'Habits',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-list-box${focused ? '' : '-outline'}` : 'md-list-box'}
+    />
+  ),
+};
+
+const LeaderboardStack = createStackNavigator({
+  Links: LeaderboardScreen,
+});
+
+LeaderboardStack.navigationOptions = {
+  tabBarLabel: 'Leaderboard',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-podium${focused ? '' : '-outline'}` : 'md-podium'}
     />
   ),
 };
@@ -55,6 +70,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  HabitStack,
+  LeaderboardStack,
   SettingsStack,
 });
