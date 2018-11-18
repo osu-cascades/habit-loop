@@ -1,9 +1,11 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import HabitScreen from '../screens/HabitScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -18,9 +20,23 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
+    />
+  ),
+};
+
+const HabitStack = createStackNavigator({
+  Links: HabitScreen,
+});
+
+HabitStack.navigationOptions = {
+  tabBarLabel: 'Habits',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-list-box${focused ? '' : '-outline'}` : 'md-list-box'}
     />
   ),
 };
@@ -34,7 +50,7 @@ LeaderboardStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-podium${focused ? '' : '-outline'}` : 'md-podium'}
     />
   ),
 };
@@ -55,6 +71,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
+  HabitStack,
   LeaderboardStack,
   SettingsStack,
 });
