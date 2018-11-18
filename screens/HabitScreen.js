@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import HabitList from '../components/HabitList';
 
 export default class HabitScreen extends React.Component {
   static navigationOptions = {
@@ -9,7 +10,7 @@ export default class HabitScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-
+        <HabitList />
       </ScrollView>
     );
   }
