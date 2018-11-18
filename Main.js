@@ -1,8 +1,8 @@
 import Expo from 'expo';
 import React from 'react';
-import RootApp from './App';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import AppNavigator from './navigation/AppNavigator';
 
 // Not able to be used with localhost
 const client = new ApolloClient({
@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
         <ApolloProvider client={client}>
-            <RootApp />
+            <AppNavigator />
         </ApolloProvider>
     );
   }
