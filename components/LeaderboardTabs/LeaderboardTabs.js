@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import Top25 from './Top25';
-import Achievements from './Achievements';
-import MostConsistent from './MostConsistent';
-import { Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import LeaderboardList from './LeaderboardList';
 
 export default class LeaderboardTabs extends Component {
   render() {
     return (
-      <Container>
-        <Header hasTabs />
         <Tabs>
           <Tab heading="Top 25">
-            <Top25 />
+            <LeaderboardList type="top25"/>
           </Tab>
           <Tab heading="Achievements">
-            <Achievements />
+            <LeaderboardList type="achievements" />
           </Tab>
-          <Tab heading="Most consistent">
-            <MostConsistent />
+          <Tab heading="Most Consistent">
+            <LeaderboardList type="consistent" />
           </Tab>
         </Tabs>
-      </Container>
     );
   }
 }
