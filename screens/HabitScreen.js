@@ -1,6 +1,10 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { Container } from 'native-base';
+
 import HabitList from '../components/HabitList';
+import MainCard from '../components/MainCard';
+import GoalsList from '../components/GoalsList';
 
 export default class HabitScreen extends React.Component {
   static navigationOptions = {
@@ -9,17 +13,17 @@ export default class HabitScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <Container style={styles.container}>
         <HabitList />
-      </ScrollView>
+        <Container>
+          <MainCard text="Goals for this week"/>
+          <GoalsList />
+        </Container>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
+
 });

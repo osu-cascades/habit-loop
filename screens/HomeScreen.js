@@ -4,8 +4,13 @@ import {
   Text,
   View,
 } from 'react-native';
+import {
+  Container
+} from 'native-base';
 import { Constants } from 'expo';
 import { People } from '../components/People';
+import LoginForm from '../components/LoginForm';
+import LoginButton from '../components/LoginButton';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -14,23 +19,13 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-       <Text style={styles.heading}>
-        CBT Habit Loop
+      <Container>
+        <Text style={styles.heading}>
+          CBT Habit Loop
         </Text>
-        <Text style={styles.paragraph}>
-          [Insert Logo here]
-        </Text>
-        <View style={styles.login}>
-          <Text style={styles.login.text}>
-          Username:
-          </Text>
-          <Text style={styles.login.text}>
-          Password:
-          </Text>
-        </View>
-        <People/>
-      </View>
+        <LoginForm />
+        <LoginButton />
+      </Container>
     );
   }
 }

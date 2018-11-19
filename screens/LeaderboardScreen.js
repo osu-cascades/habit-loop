@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Container } from "native-base";
-import LeaderboardCard from '../components/LeaderboardCard';
 import LeaderboardTabs from '../components/LeaderboardTabs/LeaderboardTabs';
 
 

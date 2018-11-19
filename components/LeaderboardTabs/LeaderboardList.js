@@ -11,12 +11,13 @@ export default class LeaderboardList extends Component {
       'Mama Sakho',
       'Emre Can'
     ];
+    
     return (
       <Container>
         <Content>
           <List dataArray={items}
             renderRow={(item, sectionID, rowID) =>
-              <ListItem>
+              <ListItem style={styles.listItem}>
                 <Text>{item}</Text>
                 <Badge style={styles.badge}><Text>{rowID}</Text></Badge>
               </ListItem>
@@ -29,7 +30,9 @@ export default class LeaderboardList extends Component {
 }
 
 const styles = StyleSheet.create({
-    badge: {
-    },
+    listItem: {
+        display: 'flex',
+        justifyContent: 'space-between' 
+    }
   });
   
