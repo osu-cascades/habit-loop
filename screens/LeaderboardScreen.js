@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { Container } from "native-base";
+import LeaderboardTabs from '../components/LeaderboardTabs/LeaderboardTabs';
+
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -8,9 +11,9 @@ export default class LinksScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-
-      </ScrollView>
+      <Container>
+        <LeaderboardTabs />
+      </Container>
     );
   }
 }
