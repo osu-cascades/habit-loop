@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import LeaderboardCard from '../components/LeaderboardCard';
+import LeaderboardTabs from '../components/LeaderboardTabs/LeaderboardTabs';
 
 
 export default class LinksScreen extends React.Component {
@@ -10,9 +11,10 @@ export default class LinksScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <Fragment>
         <LeaderboardCard />
-      </ScrollView>
+        <LeaderboardTabs />
+      </Fragment>
     );
   }
 }
