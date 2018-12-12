@@ -7,10 +7,6 @@ import MainCard from '../components/MainCard';
 import GoalsList from '../components/GoalsList';
 
 export default class HabitScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Habits',
-  };
-
   render() {
     return (
       <Container style={styles.container}>
