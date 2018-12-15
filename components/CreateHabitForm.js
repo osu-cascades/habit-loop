@@ -1,41 +1,29 @@
 import React, { Component } from 'react';
-import { Container, Form, Item, Input, Button } from 'native-base';
+import { Container, Form, Item, Input, Button, Label, Header } from 'native-base';
 import {
     Text,
 } from 'react-native';
-import { Mutation } from 'react-apollo';
+import { Mutation, compose } from 'react-apollo';
 import gql from "graphql-tag";
 import _ from 'lodash';
 import uuidv4 from 'uuid/v4';
 import { withNavigation } from 'react-navigation';
-
-const CREATE_HABIT = gql`
-    mutation createHabit($user_id: String!, $input: HabitInput){
-        createHabit(user_id: $user_id, input: $input){
-            name
-        }       
-    }
-`;
+import { CreateHabit } from '../data/';
+import MultiSelect from './MultiSelect';
 
 export class CreateHabitForm extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            user_id: 123,
-            name: 'Apollo',
-            types: ['React.js'],
+            user_id: "123",
+            name: '',
+            types: [],
         }
     }
 
-    // Send request to lambda and go back
-    createHabit = async () => {
-
-
-    }
-
-    submitNewHabit = createHabit => {
-        console.log(createHabit)
+    submitNewHabit = () => {
+        const refetch = this.props.navigation.getParam('refetch', () => console.log('wtf'));
         const newHabit = {
             variables: {
                 user_id: this.state.user_id,
@@ -44,37 +32,52 @@ export class CreateHabitForm extends Component {
                     user_id: this.state.user_id,
                     created_at: new Date(),
                     name: this.state.name,
-                    type: this.state.type,
+                    types: this.state.types,
                 }
             }
         }
-        createHabit(newHabit);
+        this.props.mutate(newHabit);
+        refetch();
         this.props.navigation.goBack();
-
     }
+
+    
+    onSelectedItemsChange = types => {
+        this.setState({ types });
+    };
 
     render() {
         return (
-                <Mutation mutation={CREATE_HABIT}>
-                    {(createHabit, { data }) => (
-                    <Container>
-                        <Form>
-                            <Item>
-                                <Input placeholder="Name" />
-                            </Item>
-                            <Item last>
-                                <Input placeholder="Type"/>
-                            </Item>
-                            <Button onPress={() => this.submitNewHabit(createHabit)}>
-                                <Text>Add New Habit</Text>
-                            </Button>
-                        </Form>
-                    </Container>
-                    )}
-                </Mutation>
-               
+            <Container>
+                <Form>
+                    <Item>
+                        <Input
+                            placeholder="Name" 
+                            onChangeText={name => this.setState({name})}
+                        />
+                    </Item>
+                    <Item last>
+                        <MultiSelect 
+                            onSelectedItemsChange={this.onSelectedItemsChange}
+                            selectedItems={this.state.types}
+                        />
+                    </Item>
+                    <Button
+                        block
+                        onPress={this.submitNewHabit}
+                    >
+                        <Text>
+                            Create New Habit
+                        </Text>
+                    </Button>
+                </Form>
+            </Container>
         );
   }
 }
 
-export default withNavigation(CreateHabitForm);
+export default compose(
+    withNavigation,
+    CreateHabit,
+)(CreateHabitForm)
+

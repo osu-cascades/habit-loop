@@ -10,7 +10,7 @@ export default class HabitScreen extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
-        <HabitList />
+        <HabitList user_id={"123"}/>
         <Container>
           <MainCard text="Goals for this week"/>
           <GoalsList />

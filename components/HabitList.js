@@ -1,59 +1,46 @@
 import React, { Component } from "react";
 import {
   Text,
+  ScrollView,
+  RefreshControl
 } from 'react-native';
-import { Container, Header, Content, Accordion } from "native-base";
+import { Svg } from 'expo';
+import { Content, Accordion } from "native-base";
 import CreateHabitButton from '../components/CreateHabitButton';
-import { Query } from 'react-apollo';
-import gql from "graphql-tag";
+import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
+import { GetAllHabits } from '../data';
 
-const GET_ALL_HABITS = gql`
-  query getAllHabits($user_id: String!) {
-    getAllHabits(user_id: $user_id) {
-      habit_id
-      name
-      type
-      created_at
-      user_id
+// Skeleton loading
+const Loading = () => (
+  <SvgAnimatedLinearGradient height={300}>
+    <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
+    <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
+    <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
+  </SvgAnimatedLinearGradient>
+)
+
+const HabitCards = props => {
+  if (props.data.loading){
+    return <Loading/>
+  } else if (props.data.error) {
+      return <Text>Error Loading Data!!</Text>
+  }
+  
+  console.log(props.data)
+
+  const dataArray = props.data.getAllHabits.map(item => {
+    return { 
+      title: item.name,
+      content: 'WIAUGIUAW'
     }
-  }
-`;
+   })
 
-export const Habits = () => (
-    <Query query={GET_ALL_HABITS} variables={{ user_id: "123" }}>
-        {({ loading, error, data }) => {
-        if (loading) return <Text>"Loading..."</Text>
-        if (error) return (<Text>`Error! ${error.message}`</Text>)
-
-        console.log(data.getAllHabits)
-        const dataArray = data.getAllHabits.map(item => {
-          return { 
-            title: item.name,
-            content: 'WIAUGIUAW'
-          }
-         })
-        console.log(dataArray)
-        return (
-          <Content padder>
-            <Accordion dataArray={ dataArray } expanded={0}/>
-            <CreateHabitButton />
-          </Content>
-        );
-        }}
-    </Query>
-);
-
-
-
-const dataArray = [
-  { title: "React Native", content: "Lorem ipsum dolor sit amet" },
-  { title: "GraphQL", content: "Lorem ipsum dolor sit amet" },
-  { title: "Apollo", content: "Lorem ipsum dolor sit amet" }
-];
-export default class HabitList extends Component {
-  render() {
-    return (
-        <Habits />
-    );
-  }
+  return (
+      <Content padder>
+        <Accordion dataArray={ dataArray } expanded={0}/>
+        <CreateHabitButton refetch={() => props.data.refetch()}/>
+      </Content>
+  );
 }
+
+export default GetAllHabits(HabitCards);

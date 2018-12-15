@@ -8,6 +8,7 @@ import { Font, AppLoading } from "expo";
 // Not able to be used with localhost
 const client = new ApolloClient({
     uri: "https://o6b8ejudj2.execute-api.us-east-1.amazonaws.com/dev/graphql"
+    
 })
 
 class App extends React.Component {
@@ -29,7 +30,7 @@ class App extends React.Component {
             return (
                 <AppLoading />
             );
-        }
+        } 
         return (
             <ApolloProvider client={client}>
                 <AppNavigator />

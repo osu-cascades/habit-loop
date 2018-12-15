@@ -21,8 +21,10 @@
     "react": "16.3.1",
     "react-apollo": "^2.2.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-multiple-select": "^0.4.4",
     "react-native-paper": "^2.2.3",
     "react-native-sectioned-multi-select": "^0.6.3",
+    "react-native-svg-animated-linear-gradient": "^0.1.9",
     "react-navigation": "^2.16.0"
   },
   "devDependencies": {

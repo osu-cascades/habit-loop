@@ -8,7 +8,6 @@ import {
   Container
 } from 'native-base';
 import { Constants } from 'expo';
-import { People } from '../components/People';
 import LoginForm from '../components/LoginForm';
 import LoginButton from '../components/LoginButton';
 
