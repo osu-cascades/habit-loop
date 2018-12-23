@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
-  Text,
   ScrollView,
   RefreshControl
 } from 'react-native';
 import { Svg } from 'expo';
-import { Content, Accordion } from "native-base";
+import { Container, Header, Content, Card, CardItem, Text, Body, Accordion } from "native-base";
+import _ from 'lodash';
 import CreateHabitButton from '../components/CreateHabitButton';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import { GetAllHabits } from '../data';
@@ -19,6 +19,27 @@ const Loading = () => (
   </SvgAnimatedLinearGradient>
 )
 
+
+const HabitCard = ({habit, refetch}) => {
+  return (
+        <Card>
+          <CardItem header bordered>
+            <Text>{habit.title}</Text>
+          </CardItem>
+          <CardItem bordered>
+              <Text>
+                {habit.content}
+              </Text>
+          </CardItem>
+          <CardItem footer bordered button
+            onPress={() => alert(`this habit is called ${habit.title}`)}
+          >
+            <Text>View Habit</Text>
+          </CardItem>
+        </Card>
+  ) 
+}
+
 const HabitCards = props => {
   if (props.data.loading){
     return <Loading/>
@@ -26,18 +47,19 @@ const HabitCards = props => {
       return <Text>Error Loading Data!!</Text>
   }
   
-  console.log(props.data)
 
-  const dataArray = props.data.getAllHabits.map(item => {
+  const habits = props.data.getAllHabits.map(item => {
+    console.log(item)
     return { 
       title: item.name,
-      content: 'WIAUGIUAW'
+      content: 'WIAUGIUAW',
+      types: item.types,
     }
    })
 
-  return (
+   return (
       <Content padder>
-        <Accordion dataArray={ dataArray } expanded={0}/>
+        {_.map(habits, (habit, idx) => <HabitCard habit={habit} refetch={props.data.refetch} key={idx}/>)}
         <CreateHabitButton refetch={() => props.data.refetch()}/>
       </Content>
   );

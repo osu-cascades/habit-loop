@@ -13,15 +13,12 @@ import LoginButton from '../components/LoginButton';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'CBT Habit Loop',
   };
 
   render() {
     return (
       <Container>
-        <Text style={styles.heading}>
-          CBT Habit Loop
-        </Text>
         <LoginForm />
         <LoginButton />
       </Container>
