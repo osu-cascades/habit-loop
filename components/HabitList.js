@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from "react";
-import {
-  ScrollView,
-  RefreshControl
-} from 'react-native';
 import { Svg } from 'expo';
-import { Container, Header, Content, Card, CardItem, Text, Body, Accordion } from "native-base";
+import {  Content, Card, CardItem, Text } from "native-base";
 import _ from 'lodash';
-import CreateHabitButton from '../components/CreateHabitButton';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
+import { compose } from 'react-apollo';
 import { GetAllHabits } from '../data';
+import { withNavigation } from 'react-navigation';
+
+import CreateHabitButton from '../components/CreateHabitButton';
 
 // Skeleton loading
 const Loading = () => (
@@ -20,21 +19,24 @@ const Loading = () => (
 )
 
 
-const HabitCard = ({habit, refetch}) => {
+const HabitCard = ({habit, navigate}) => {
   return (
-        <Card>
-          <CardItem header bordered>
+        <Card >
+          <CardItem header button
+            onPress={() => navigate('UserHabit', {
+              habit,
+            })}
+          >
             <Text>{habit.title}</Text>
           </CardItem>
-          <CardItem bordered>
+          <CardItem button
+            onPress={() => navigate('UserHabit', {
+              habit,
+            })}
+          >
               <Text>
                 {habit.content}
               </Text>
-          </CardItem>
-          <CardItem footer bordered button
-            onPress={() => alert(`this habit is called ${habit.title}`)}
-          >
-            <Text>View Habit</Text>
           </CardItem>
         </Card>
   ) 
@@ -49,20 +51,25 @@ const HabitCards = props => {
   
 
   const habits = props.data.getAllHabits.map(item => {
-    console.log(item)
     return { 
       title: item.name,
       content: 'WIAUGIUAW',
       types: item.types,
     }
-   })
+   });
 
    return (
       <Content padder>
-        {_.map(habits, (habit, idx) => <HabitCard habit={habit} refetch={props.data.refetch} key={idx}/>)}
-        <CreateHabitButton refetch={() => props.data.refetch()}/>
+        {_.map(habits, (habit, idx) => 
+          <HabitCard 
+            habit={habit} 
+            navigate={props.navigation.navigate} 
+            key={idx}/>)}
       </Content>
   );
 }
 
-export default GetAllHabits(HabitCards);
+export default compose(
+  withNavigation,
+  GetAllHabits,
+)(HabitCards);
