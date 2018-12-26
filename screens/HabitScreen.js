@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 
 import HabitList from '../components/HabitList';
-import CreateHabitFAB from '../components/CreateHabitFAB';
 
 export default class HabitScreen extends React.Component {
   static navigationOptions = {
@@ -14,7 +13,6 @@ export default class HabitScreen extends React.Component {
     return (
       <Container style={styles.container}>
         <HabitList user_id={"123"}/>
-        <CreateHabitFAB refetch={() => props.data.refetch()}/>
       </Container>
     );
   }

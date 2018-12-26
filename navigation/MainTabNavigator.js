@@ -10,7 +10,6 @@ import SettingsScreen from '../screens/SettingsScreen';
 import CreateHabitScreen from '../screens/CreateHabitScreen';
 import UserHabitScreen from '../screens/UserHabitScreen';
 
-
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });

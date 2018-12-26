@@ -8,8 +8,7 @@ import {
   Container
 } from 'native-base';
 import { Constants } from 'expo';
-import LoginForm from '../components/LoginForm';
-import LoginButton from '../components/LoginButton';
+import SignoutButton from '../components/SignoutButton';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,8 +18,8 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <Container>
-        <LoginForm />
-        <LoginButton />
+        <Text>You are logged in.</Text>
+        <SignoutButton />
       </Container>
     );
   }

@@ -6,8 +6,7 @@ import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient
 import { compose } from 'react-apollo';
 import { GetAllHabits } from '../data';
 import { withNavigation } from 'react-navigation';
-
-import CreateHabitButton from '../components/CreateHabitButton';
+import CreateHabitFAB from '../components/CreateHabitFAB';
 
 // Skeleton loading
 const Loading = () => (
@@ -59,13 +58,16 @@ const HabitCards = props => {
    });
 
    return (
-      <Content padder>
-        {_.map(habits, (habit, idx) => 
-          <HabitCard 
-            habit={habit} 
-            navigate={props.navigation.navigate} 
-            key={idx}/>)}
-      </Content>
+      <Fragment>
+        <Content padder>
+          {_.map(habits, (habit, idx) => 
+            <HabitCard 
+              habit={habit} 
+              navigate={props.navigation.navigate} 
+              key={idx}/>)}
+        </Content>
+          <CreateHabitFAB refetch={() => props.data.refetch()}/>
+      </Fragment>
   );
 }
 
