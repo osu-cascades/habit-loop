@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import HabitScreen from '../screens/HabitScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import CreateHabitScreen from '../screens/CreateHabitScreen';
+import UserHabitScreen from '../screens/UserHabitScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -27,7 +29,15 @@ HomeStack.navigationOptions = {
 };
 
 const HabitStack = createStackNavigator({
-  Links: HabitScreen,
+  Links: {
+   screen: HabitScreen,
+  }, 
+  CreateHabit: {
+    screen: CreateHabitScreen,
+  },
+  UserHabit: {
+    screen: UserHabitScreen,
+  }
 });
 
 HabitStack.navigationOptions = {

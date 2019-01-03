@@ -8,23 +8,18 @@ import {
   Container
 } from 'native-base';
 import { Constants } from 'expo';
-import { People } from '../components/People';
-import LoginForm from '../components/LoginForm';
-import LoginButton from '../components/LoginButton';
+import SignoutButton from '../components/SignoutButton';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'CBT Habit Loop',
   };
 
   render() {
     return (
       <Container>
-        <Text style={styles.heading}>
-          CBT Habit Loop
-        </Text>
-        <LoginForm />
-        <LoginButton />
+        <Text>You are logged in.</Text>
+        <SignoutButton />
       </Container>
     );
   }
