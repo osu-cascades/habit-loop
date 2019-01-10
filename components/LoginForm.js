@@ -43,13 +43,13 @@ export class LoginForm extends Component {
         <Form>
           <Item>
             <Input 
-              placeholder="email" 
+              placeholder="sik.email@sik.com" 
               onChangeText={email => this.setState({ email })}
             />
           </Item>
           <Item last>
             <Input 
-              placeholder="Password" 
+              placeholder="123" 
               onChangeText={password => this.setState({ password })}
             />
           </Item>
