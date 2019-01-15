@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Svg } from 'expo';
 import {  Content, Card, CardItem, Text } from "native-base";
 import _ from 'lodash';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import { compose } from 'react-apollo';
-import { GetAllHabits } from '../data';
+import { GetHabits } from '../data';
 import { withNavigation } from 'react-navigation';
 import CreateHabitFAB from '../components/CreateHabitFAB';
 
 // Skeleton loading
 const Loading = () => (
-  <SvgAnimatedLinearGradient height={300}>
+  <SvgAnimatedLinearGradient height={ 300 }>
     <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
     <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
     <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
@@ -18,7 +18,7 @@ const Loading = () => (
 )
 
 
-const HabitCard = ({habit, navigate}) => {
+const HabitCard = ({ habit, navigate }) => {
   return (
         <Card >
           <CardItem header button
@@ -45,14 +45,14 @@ const HabitCards = props => {
   if (props.data.loading){
     return <Loading/>
   } else if (props.data.error) {
+    console.log(props.data)
       return <Text>Error Loading Data!!</Text>
   }
-  
 
-  const habits = props.data.getAllHabits.map(item => {
+  const habits = props.data.getHabits.map(item => {
     return { 
       title: item.name,
-      content: 'WIAUGIUAW',
+      content: 'noice',
       types: item.types,
     }
    });
@@ -73,5 +73,5 @@ const HabitCards = props => {
 
 export default compose(
   withNavigation,
-  GetAllHabits,
+  GetHabits,
 )(HabitCards);

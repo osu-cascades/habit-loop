@@ -70,13 +70,12 @@ const HabitForm = props => (
 
 export class CreateHabitForm extends Component {
     submitNewHabit = async (values) => {
-        const refetch = this.props.navigation.getParam('refetch', () => console.log('wtf'));
+        const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const newHabit = {
             variables: {
                 user_id: values.user_id,
                 input: {
                     habit_id: uuidv4(),
-                    user_id: values.user_id,
                     created_at: new Date(),
                     name: values.name,
                     type: values.type,
@@ -87,19 +86,22 @@ export class CreateHabitForm extends Component {
         // Wait for server to return result before refetching and going back
         try {
             await this.props.mutate(newHabit);
+
+            // refetch then go back only if the mutation was successful
+            refetch();
+            this.props.navigation.goBack();
         } catch (err) {
             // we can handle the state of an error here if submit fails
             console.log(err);
         }
-        refetch();
-        this.props.navigation.goBack();
+        
     }
 
     render() {
         return (
             <Formik
                 initialValues={{
-                    user_id: '123',
+                    user_id: '321',
                     name: '',
                     type: [],
                 }}
