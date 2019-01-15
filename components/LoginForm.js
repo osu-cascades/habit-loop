@@ -30,11 +30,12 @@ export class LoginForm extends Component {
     try {
       const result = await this.props.mutate(loginData);
       const token = result.data.login;
-      
-      await AsyncStorage.setItem(token, 'userToken');
+
+      await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main')
     } catch (err) {
-        this.setState({ error: true })
+      console.log('Error logging in:', JSON.stringify(err))
+      this.setState({ error: true })
     }
   }
 
@@ -43,13 +44,13 @@ export class LoginForm extends Component {
         <Form>
           <Item>
             <Input 
-              placeholder="email" 
+              placeholder="sik.email@sik.com" 
               onChangeText={email => this.setState({ email })}
             />
           </Item>
           <Item last>
             <Input 
-              placeholder="Password" 
+              placeholder="123" 
               onChangeText={password => this.setState({ password })}
             />
           </Item>
