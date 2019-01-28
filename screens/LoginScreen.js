@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
-import {
-  Container
-} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container } from 'native-base';
 import LoginForm from '../components/LoginForm';
 
 export default class LoginScreen extends React.Component {
@@ -15,12 +11,12 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <Container>
-        <LoginForm />
+      <LoginForm />
       </Container>
-    );
+      );
+    }
   }
-}
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     
-});
+  });

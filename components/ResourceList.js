@@ -9,7 +9,7 @@ export default class ResourceList extends Component {
           <ListItem>
             <CheckBox checked={true} />
             <Body>
-              <Text>Get shit done.</Text>
+              <Text>Get crap done.</Text>
             </Body>
           </ListItem>
           <ListItem>

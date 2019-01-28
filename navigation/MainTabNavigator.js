@@ -18,21 +18,21 @@ HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
-          : 'md-home'
-      }
+    focused={focused}
+    name={
+      Platform.OS === 'ios'
+      ? `ios-home${focused ? '' : '-outline'}`
+      : 'md-home'
+    }
     />
-  ),
-};
+    ),
+  };
 
-const HabitStack = createStackNavigator({
-  Links: {
-   screen: HabitScreen,
-  }, 
-  CreateHabit: {
+  const HabitStack = createStackNavigator({
+    Links: {
+     screen: HabitScreen,
+   }, 
+   CreateHabit: {
     screen: CreateHabitScreen,
   },
   UserHabit: {
@@ -43,10 +43,10 @@ const HabitStack = createStackNavigator({
 HabitStack.navigationOptions = {
   tabBarLabel: 'Habits',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-list-box${focused ? '' : '-outline'}` : 'md-list-box'}
-    />
+  <TabBarIcon
+  focused={focused}
+  name={Platform.OS === 'ios' ? `ios-list-box${focused ? '' : '-outline'}` : 'md-list-box'}
+  />
   ),
 };
 
@@ -57,10 +57,10 @@ const LeaderboardStack = createStackNavigator({
 LeaderboardStack.navigationOptions = {
   tabBarLabel: 'Leaderboard',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-podium${focused ? '' : '-outline'}` : 'md-podium'}
-    />
+  <TabBarIcon
+  focused={focused}
+  name={Platform.OS === 'ios' ? `ios-podium${focused ? '' : '-outline'}` : 'md-podium'}
+  />
   ),
 };
 
@@ -71,10 +71,10 @@ const SettingsStack = createStackNavigator({
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
+  <TabBarIcon
+  focused={focused}
+  name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+  />
   ),
 };
 
