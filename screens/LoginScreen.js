@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container } from 'native-base';
+import { StyleSheet, Text } from 'react-native';
+import { Container, Button } from 'native-base';
 import LoginForm from '../components/LoginForm';
+import SignupButton from '../components/SignupButton';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -11,7 +12,8 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <Container>
-      <LoginForm />
+        <LoginForm />
+        <SignupButton />
       </Container>
       );
     }

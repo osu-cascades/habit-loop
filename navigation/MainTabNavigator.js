@@ -28,11 +28,11 @@ HomeStack.navigationOptions = {
     ),
   };
 
-  const HabitStack = createStackNavigator({
-    Links: {
+const HabitStack = createStackNavigator({
+  Links: {
      screen: HabitScreen,
-   }, 
-   CreateHabit: {
+  }, 
+  CreateHabit: {
     screen: CreateHabitScreen,
   },
   UserHabit: {
