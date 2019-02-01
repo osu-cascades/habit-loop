@@ -12,7 +12,7 @@ export default class HabitScreen extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
-        <HabitList user_id={"123"}/>
+        <HabitList/>
       </Container>
     );
   }

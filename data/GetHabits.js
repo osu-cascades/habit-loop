@@ -13,4 +13,9 @@ const GET_HABITS = gql`
   }
 `;
 
-export default graphql(GET_HABITS)
+export default graphql(GET_HABITS,
+  {
+    options: {
+      notifyOnNetworkStatusChange: true,
+  },
+})

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Svg } from 'expo';
-import {  Content, Card, CardItem, Text } from "native-base";
+import { FlatList } from 'react-native';
+import {  Card, CardItem, Text, SwipeRow, Button, Icon } from "native-base";
 import _ from 'lodash';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import { compose } from 'react-apollo';
@@ -26,7 +27,7 @@ const HabitCard = ({ habit, navigate }) => {
               habit,
             })}
           >
-            <Text>{habit.title}</Text>
+            <Text>{habit.name}</Text>
           </CardItem>
           <CardItem button
             onPress={() => navigate('UserHabit', {
@@ -35,43 +36,77 @@ const HabitCard = ({ habit, navigate }) => {
           >
               <Text>
                 {habit.content}
+                {console.log(habit)}
               </Text>
           </CardItem>
         </Card>
   ) 
 }
 
-const HabitCards = props => {
-  if (props.data.loading){
-    return <Loading/>
-  } else if (props.data.error) {
-    console.log(props.data)
-      return <Text>Error Loading Data!!</Text>
-  }
+class HabitList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const habits = props.data.getHabits.map(item => {
-    return { 
-      title: item.name,
-      content: 'noice',
-      types: item.types,
+    this.state = {
+      
     }
-   });
+  }
+ 
 
-   return (
-      <Fragment>
-        <Content padder>
-          {_.map(habits, (habit, idx) => 
-            <HabitCard 
-              habit={habit} 
-              navigate={props.navigation.navigate} 
-              key={idx}/>)}
-        </Content>
-          <CreateHabitFAB refetch={() => props.data.refetch()}/>
-      </Fragment>
-  );
+  render() {
+    if (this.props.data.loading){
+      return <Loading/>
+    } else if (this.props.data.error) {
+      console.log(this.props.data)
+      return <Text>Error Loading Data!!</Text>
+    }
+    
+    const habits = this.props.data.getHabits.map(item => {
+      return { 
+        name: item.name,
+        created_at: item.created_at,
+        habit_id: item.habit_id,
+        key: item.habit_id,
+      }
+    });
+
+    return (
+        <Fragment>
+            <FlatList 
+              data={habits}
+              renderItem={({ item }) => (
+                <SwipeRow
+                  leftOpenValue={75}
+                  rightOpenValue={-75}
+                  left={
+                    <Button success onPress={() => alert('Add')}>
+                      <Icon active name="add" />
+                    </Button>
+                  }
+                  body={
+                    <HabitCard 
+                      habit={item} 
+                      navigate={this.props.navigation.navigate} 
+                    />
+                  }
+                  right={
+                    <Button danger onPress={() => alert('Trash')}>
+                      <Icon active name="trash" />
+                    </Button>
+                  }
+                />
+              )}
+
+              onRefresh={() => this.props.data.refetch()}
+              refreshing={this.props.data.networkStatus === 4}
+            />
+          <CreateHabitFAB refetch={() => this.props.data.refetch()}/>
+        </Fragment>
+    );
+  }
 }
 
 export default compose(
   withNavigation,
   GetHabits,
-)(HabitCards);
+)(HabitList);
