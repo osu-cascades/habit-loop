@@ -15,7 +15,7 @@ export class SignoutButton extends Component {
         
   render() {
     return (
-        <Button onPress={this._signOutAsync} >
+        <Button block onPress={this._signOutAsync} >
             <Text>Actually, sign me out :)</Text>
         </Button>
     );

@@ -18,7 +18,7 @@ export class LoginForm extends Component {
   }
 
   // test user --> email: sik.email@sik.com password: 123
-  LoginUser = async () => {
+  loginUser = async () => {
     const loginData = {
       variables: {
         email: this.state.email,
@@ -46,16 +46,20 @@ export class LoginForm extends Component {
             <Input 
               placeholder="sik.email@sik.com" 
               onChangeText={email => this.setState({ email })}
+              keyboardType='email-address'
+              autoCapitalize='none'
             />
           </Item>
           <Item last>
             <Input 
               placeholder="123" 
               onChangeText={password => this.setState({ password })}
+              textContentType="password"
+              secureTextEntry
             />
           </Item>
           <Button block primary
-            onPress={this.LoginUser}
+            onPress={this.loginUser}
           > 
             <Text>Log in</Text>
           </Button>

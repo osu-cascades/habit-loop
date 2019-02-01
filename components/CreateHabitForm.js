@@ -5,11 +5,11 @@ import {
 } from 'react-native';
 import { compose } from 'react-apollo';
 import _ from 'lodash';
-import uuidv4 from 'uuid/v4';
 import { Formik } from 'formik';
 import { withNavigation } from 'react-navigation';
 import { CreateHabit } from '../data/';
 import * as yup from 'yup'
+
 const types = [
     {
         id: 1,
@@ -69,14 +69,11 @@ const HabitForm = props => (
 )
 
 export class CreateHabitForm extends Component {
-    submitNewHabit = async (values) => {
+    submitNewHabit = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const newHabit = {
             variables: {
-                user_id: values.user_id,
                 input: {
-                    habit_id: uuidv4(),
-                    created_at: new Date(),
                     name: values.name,
                     type: values.type,
                 }
@@ -87,7 +84,7 @@ export class CreateHabitForm extends Component {
         try {
             await this.props.mutate(newHabit);
 
-            // refetch then go back only if the mutation was successful
+            // refetch then go back if the mutation was successful
             refetch();
             this.props.navigation.goBack();
         } catch (err) {
@@ -107,13 +104,14 @@ export class CreateHabitForm extends Component {
                 }}
                 onSubmit={this.submitNewHabit}
                 render={props => <HabitForm {...props}/>}
-                validationSchema={yup.object().shape({
-                    name: yup
-                        .string()
-                        .required(),
-                    type: yup
-                        .string()
-                        .required()
+                validationSchema={
+                    yup.object().shape({
+                        name: yup
+                            .string()
+                            .required(),
+                        type: yup
+                            .string()
+                            .required()
                 })}
             />
         );
