@@ -8,6 +8,7 @@ import { compose } from 'react-apollo';
 import { GetHabits } from '../data';
 import { withNavigation } from 'react-navigation';
 import CreateHabitFAB from '../components/CreateHabitFAB';
+import DeleteButton from '../components/DeleteButton';
 
 // Skeleton loading
 const Loading = () => (
@@ -21,7 +22,7 @@ const Loading = () => (
 
 const HabitCard = ({ habit, navigate }) => {
   return (
-        <Card >
+        <Card style={{ width: '100%' }}>
           <CardItem header button
             onPress={() => navigate('UserHabit', {
               habit,
@@ -34,10 +35,6 @@ const HabitCard = ({ habit, navigate }) => {
               habit,
             })}
           >
-              <Text>
-                {habit.content}
-                {console.log(habit)}
-              </Text>
           </CardItem>
         </Card>
   ) 
@@ -89,11 +86,7 @@ class HabitList extends React.Component {
                       navigate={this.props.navigation.navigate} 
                     />
                   }
-                  right={
-                    <Button danger onPress={() => alert('Trash')}>
-                      <Icon active name="trash" />
-                    </Button>
-                  }
+                  right={<DeleteButton />}
                 />
               )}
 

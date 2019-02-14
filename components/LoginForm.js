@@ -3,7 +3,7 @@ import {
   AsyncStorage,
   Text
 } from 'react-native';
-import { Form, Item, Input, Button  } from 'native-base';
+import { Form, Item, Input, Button } from 'native-base';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import { Login } from '../data/';
