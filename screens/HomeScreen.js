@@ -9,6 +9,7 @@ import {
 } from 'native-base';
 import { Constants } from 'expo';
 import SignoutButton from '../components/SignoutButton';
+import { PushNotifications } from '../components';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -20,6 +21,7 @@ export default class HomeScreen extends React.Component {
       <Container>
         <Text>You are logged in.</Text>
         <SignoutButton />
+        <PushNotifications />
       </Container>
     );
   }

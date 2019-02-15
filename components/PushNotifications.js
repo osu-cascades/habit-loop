@@ -1,15 +1,11 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
-import {
-  Container
-} from 'native-base';
 import { Permissions, Notifications } from 'expo';
 import { compose } from 'react-apollo';
-import { RegisterPushNotification } from '../data/';
+import { RegisterPushNotifications } from '../data';
 
 async function registerForPushNotificationsAsync(props) {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -34,14 +30,13 @@ async function registerForPushNotificationsAsync(props) {
   
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(token, 'HELLO')
-      const registerToken = {
+    const registerToken = {
         variables: {
             token: `${token}`,
         }
       }
   
-      return props.mutate(registerToken);
+    return registerToken;
 }
 
 class PushNotification extends React.Component {
@@ -53,8 +48,16 @@ class PushNotification extends React.Component {
       }
     }
 
-    componentDidMount() {
-        registerForPushNotificationsAsync(this.props);
+    async componentDidMount() {
+        const token = await registerForPushNotificationsAsync(this.props);
+        if (token) {
+          try{
+            await this.props.mutate(token);
+            console.log(`Successfully submitted new token ${token}`);
+          } catch (err) {
+            console.log(`Error submitting new token: ${err}`);
+          }
+        }
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
     }
 
@@ -63,7 +66,6 @@ class PushNotification extends React.Component {
     }
 
     render() {
-      console.log(this.state.notification, 'notification');
       return (
         <View>
           <Text>Origin: {this.state.notification.origin}</Text>
@@ -74,5 +76,5 @@ class PushNotification extends React.Component {
 }
 
 export default compose (
-  RegisterPushNotification
+  RegisterPushNotifications
 )(PushNotification);
