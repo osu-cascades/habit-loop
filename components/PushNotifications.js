@@ -30,14 +30,13 @@ async function registerForPushNotificationsAsync(props) {
   
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(token, 'HELLO')
-      const registerToken = {
+    const registerToken = {
         variables: {
             token: `${token}`,
         }
       }
   
-      return registerToken;
+    return registerToken;
 }
 
 class PushNotification extends React.Component {
@@ -50,7 +49,7 @@ class PushNotification extends React.Component {
     }
 
     async componentDidMount() {
-        const token = registerForPushNotificationsAsync(this.props);
+        const token = await registerForPushNotificationsAsync(this.props);
         if (token) {
           try{
             await this.props.mutate(token);
@@ -69,10 +68,7 @@ class PushNotification extends React.Component {
     render() {
       console.log(this.state.notification, 'notification');
       return (
-        <View>
-          <Text>Origin: {this.state.notification.origin}</Text>
-          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
-        </View>
+        <View/>
       )
     }
 }
