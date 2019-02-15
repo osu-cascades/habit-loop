@@ -10,7 +10,7 @@ export default class UserHabitScreen extends React.Component {
         const habit = navigation.getParam('habit', {});
 
         return {
-            title: habit.title,
+            title: habit.name,
         }
     };
 
