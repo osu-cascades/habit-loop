@@ -1,15 +1,11 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
-import {
-  Container
-} from 'native-base';
 import { Permissions, Notifications } from 'expo';
 import { compose } from 'react-apollo';
-import { RegisterPushNotification } from '../data/';
+import { RegisterPushNotifications } from '../data';
 
 async function registerForPushNotificationsAsync(props) {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -41,7 +37,7 @@ async function registerForPushNotificationsAsync(props) {
         }
       }
   
-      return props.mutate(registerToken);
+      return registerToken;
 }
 
 class PushNotification extends React.Component {
@@ -53,8 +49,16 @@ class PushNotification extends React.Component {
       }
     }
 
-    componentDidMount() {
-        registerForPushNotificationsAsync(this.props);
+    async componentDidMount() {
+        const token = registerForPushNotificationsAsync(this.props);
+        if (token) {
+          try{
+            await this.props.mutate(token);
+            console.log('Successfully submitted new token');
+          } catch (err) {
+            console.log(`Error submitting new token: ${err}`);
+          }
+        }
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
     }
 
@@ -74,5 +78,5 @@ class PushNotification extends React.Component {
 }
 
 export default compose (
-  RegisterPushNotification
+  RegisterPushNotifications
 )(PushNotification);

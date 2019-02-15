@@ -1,6 +1,6 @@
 {
   "name": "my-new-project",
-  "main": "Main.js",
+  "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
     "start": "expo start",
@@ -15,14 +15,14 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "apollo-boost": "^0.1.20",
-    "expo": "^30.0.1",
+    "expo": "^32.0.0",
     "formik": "^1.4.2",
     "graphql": "^14.0.2",
     "lodash": "^4.17.11",
     "native-base": "^2.8.1",
-    "react": "16.3.1",
+    "react": "16.5.0",
     "react-apollo": "^2.2.4",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-paper": "^2.2.3",
     "react-native-svg-animated-linear-gradient": "^0.1.9",
     "react-navigation": "^2.16.0",
