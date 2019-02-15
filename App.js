@@ -33,10 +33,9 @@ class App extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return (
-                <AppLoading />
-            );
+            return <AppLoading />;
         } 
+        
         return (
             <ApolloProvider client={client}>
                 <AppNavigator />

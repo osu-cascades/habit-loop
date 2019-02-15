@@ -53,7 +53,7 @@ class PushNotification extends React.Component {
         if (token) {
           try{
             await this.props.mutate(token);
-            console.log('Successfully submitted new token');
+            console.log(`Successfully submitted new token ${token}`);
           } catch (err) {
             console.log(`Error submitting new token: ${err}`);
           }
@@ -66,9 +66,11 @@ class PushNotification extends React.Component {
     }
 
     render() {
-      console.log(this.state.notification, 'notification');
       return (
-        <View/>
+        <View>
+          <Text>Origin: {this.state.notification.origin}</Text>
+          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
+        </View>
       )
     }
 }
