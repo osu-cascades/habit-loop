@@ -85,7 +85,7 @@ export class CreateHabitForm extends Component {
             await this.props.mutate(newHabit);
 
             // refetch then go back if the mutation was successful
-            // refetch();
+            refetch();
             this.props.navigation.goBack();
         } catch (err) {
             // we can handle the state of an error here if submit fails
