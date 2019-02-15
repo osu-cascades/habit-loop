@@ -21,7 +21,7 @@ HomeStack.navigationOptions = {
     focused={focused}
     name={
       Platform.OS === 'ios'
-      ? `ios-home${focused ? '' : '-outline'}`
+      ? `ios-home`
       : 'md-home'
     }
     />
@@ -45,7 +45,7 @@ HabitStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
   <TabBarIcon
   focused={focused}
-  name={Platform.OS === 'ios' ? `ios-list-box${focused ? '' : '-outline'}` : 'md-list-box'}
+  name={Platform.OS === 'ios' ? `ios-list-box` : 'md-list-box'}
   />
   ),
 };
@@ -59,7 +59,7 @@ LeaderboardStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
   <TabBarIcon
   focused={focused}
-  name={Platform.OS === 'ios' ? `ios-podium${focused ? '' : '-outline'}` : 'md-podium'}
+  name={Platform.OS === 'ios' ? `ios-podium` : 'md-podium'}
   />
   ),
 };
@@ -73,7 +73,7 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
   <TabBarIcon
   focused={focused}
-  name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+  name={Platform.OS === 'ios' ? `ios-options` : 'md-options'}
   />
   ),
 };
