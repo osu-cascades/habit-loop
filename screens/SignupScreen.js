@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container } from 'native-base';
-import SignupForm from '../components/SignupForm';
+import { SignupForm } from '../components';
 
 export default class SignupScreen extends React.Component {
   static navigationOptions = {
