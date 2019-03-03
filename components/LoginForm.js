@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
   AsyncStorage,
-  Text
+  TouchableOpacity,
 } from 'react-native';
-import { Form, Item, Input, Button } from 'native-base';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
+import _ from 'lodash';
+
+import { SignupButton } from './';
 import { Login } from '../data/';
 
 export class LoginForm extends Component {
@@ -29,7 +35,7 @@ export class LoginForm extends Component {
 
     try {
       const result = await this.props.mutate(loginData);
-      const token = result.data.login;
+      const token = _.get(result.data, 'login', '');
 
       await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main')
@@ -41,33 +47,59 @@ export class LoginForm extends Component {
 
   render() {
     return (
-        <Form>
-          <Item>
-            <Input 
-              placeholder="sik.email@sik.com" 
+        <View style={styles.container}>
+            <TextInput 
+              placeholder="username or email" 
+              placeholderTextColor='#666'
               onChangeText={email => this.setState({ email })}
               keyboardType='email-address'
               autoCapitalize='none'
+              style={styles.input}
             />
-          </Item>
-          <Item last>
-            <Input 
-              placeholder="123" 
+            <TextInput 
+              placeholder="password" 
+              placeholderTextColor='#666'
               onChangeText={password => this.setState({ password })}
               textContentType="password"
               secureTextEntry
+              style={styles.input}
             />
-          </Item>
-          <Button block primary
+          <TouchableOpacity 
             onPress={this.loginUser}
+            style={styles.buttonContainer}
           > 
-            <Text>Log in</Text>
-          </Button>
+            <Text style={styles.buttonText}>LOGIN</Text>
+          </TouchableOpacity>
+          <SignupButton />
           {this.state.error && <Text>There was an error.</Text>}
-        </Form>
+        </View>
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    fontFamily: 'Avenir Next'
+  },
+  buttonContainer: {
+    backgroundColor: '#999999',
+    paddingVertical: 15
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontFamily: 'Avenir Next',
+    color: '#FFFFFF',
+    fontWeight: '700',
+  }
+});
 
 export default compose(
   withNavigation,

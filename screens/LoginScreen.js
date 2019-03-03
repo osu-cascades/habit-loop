@@ -1,24 +1,49 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { Container, Button } from 'native-base';
-import LoginForm from '../components/LoginForm';
-import SignupButton from '../components/SignupButton';
+import {
+  View, 
+  Image,
+  StyleSheet,
+  KeyboardAvoidingView
+} from 'react-native';
+
+import {
+  LoginForm,
+} from '../components';
 
 export default class LoginScreen extends React.Component {
-  static navigationOptions = {
-    title: 'CBT Habit Loop',
-  };
-
   render() {
     return (
-      <Container>
-        <LoginForm />
-        <SignupButton />
-      </Container>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logo}
+            source={require('../assets/images/lt.png')}
+          />
+        </View>
+        <View style={styles.formContainer}>
+          <LoginForm />
+        </View>
+      </KeyboardAvoidingView>
       );
     }
   }
 
-  const styles = StyleSheet.create({
-    
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#E9E9E9',
+  },
+  logoContainer: {
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  formContainer: {
+  },
+  logo: {
+    width: `100%`,
+    height: 100,
+    resizeMode: 'contain'
+  }
+});

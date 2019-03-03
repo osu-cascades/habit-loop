@@ -2,7 +2,7 @@ import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import AppNavigator from './navigation/AppNavigator';
-import { AppLoading } from "expo";
+import { Font, AppLoading, Asset } from "expo";
 import { AsyncStorage } from "react-native";
 
 // http://10.0.2.2:3000/graphql -> for android emulator
@@ -19,7 +19,7 @@ const client = new ApolloClient({
             });
         }
       },
-})
+});
 
 class App extends React.Component {
     constructor(props) {
@@ -31,9 +31,23 @@ class App extends React.Component {
         this.setState({ loading: false });
     }
 
+    _loadResourcesAsync = async () => {
+        return Promise.all([
+          Asset.loadAsync([
+            require('./assets/images/lt.png'),
+          ])
+        ]);
+      };
+
     render() {
         if (this.state.loading) {
-            return <AppLoading />;
+            return (
+                <AppLoading 
+                    startAsync={this._loadResourcesAsync}
+                    onFinish={() => this.setState({ loading: false })}
+                    onError={console.warn}
+                />
+            );
         } 
 
         return (

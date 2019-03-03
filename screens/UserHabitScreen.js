@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import { Container, Text } from 'native-base';
 
 import GoalsList from '../components/GoalsList';
-// import ResourceList from '../component/ResourceList';
 
 export default class UserHabitScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
