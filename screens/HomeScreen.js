@@ -1,15 +1,16 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 import {
   Container
 } from 'native-base';
 import { Constants } from 'expo';
-import SignoutButton from '../components/SignoutButton';
-import { PushNotifications } from '../components';
+import { 
+  PushNotifications,
+  SignoutButton,
+  PriorityHabit
+} from '../components';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,7 +20,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <Container>
-        <Text>You are logged in.</Text>
+        <PriorityHabit />
         <SignoutButton />
         <PushNotifications />
       </Container>
