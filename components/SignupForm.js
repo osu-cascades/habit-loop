@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
-import { Text, Form, Item, Input, Button  } from 'native-base';
+import { 
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  AsyncStorage,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import { Signup } from '../data';
@@ -9,40 +16,48 @@ import * as yup from 'yup'
 
 const SignupComponent = props => {
   return (
-    <Form>
-        <Item>
-          <Input
+    <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        <View>
+          <Text style={styles.signupText}>Sign up for a new CBT Habit Tracker Account!</Text>
+        </View>
+        <View>
+          <TextInput
             placeholder="username" 
             value={props.values.username}
             onChangeText={props.handleChange('username')}
+            style={styles.input}
           />
-        </Item>
-        <Item>
-          <Input
+        </View>
+        <View>
+          <TextInput
             placeholder="email" 
             value={props.values.email}
             onChangeText={props.handleChange('email')}
             keyboardType='email-address'
             autoCapitalize='none'
+            style={styles.input}
           />
-        </Item>
-        <Item last>
-          <Input
+        </View>
+        <View>
+          <TextInput
             placeholder="password"
             value={props.values.password}
             onChangeText={props.handleChange('password')}
             textContentType="password"
             secureTextEntry
+            style={styles.input}
           />
           {props.touched.password && props.errors.password && <Text>{props.errors.password}</Text>}
-        </Item>
-          <Button 
-            block
+        </View>
+        <View>
+          <TouchableOpacity 
             onPress={props.handleSubmit}
+            style={styles.buttonContainer}
           >
-            <Text>Sign Up!</Text>
-          </Button>
-    </Form>
+            <Text style={styles.buttonText}>SIGNUP</Text>
+          </TouchableOpacity>
+        </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -99,6 +114,37 @@ class SignupForm extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#E9E9E9',
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    fontFamily: 'Avenir Next',
+  },
+  buttonContainer: {
+    backgroundColor: '#999999',
+    paddingVertical: 15
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontFamily: 'Avenir Next',
+    color: '#FFFFFF',
+    fontWeight: '700',
+  },
+  signupText: {
+    marginBottom: 10,
+    textAlign: 'center',
+    fontFamily: 'Avenir Next',
+  }
+});
 
 export default compose(
   Signup,

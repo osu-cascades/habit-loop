@@ -24,9 +24,9 @@ export default class LoginScreen extends React.Component {
           <LoginForm />
         </View>
       </KeyboardAvoidingView>
-      );
-    }
+    );
   }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -39,10 +39,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
-  formContainer: {
-  },
   logo: {
-    width: `100%`,
+    width: '100%',
     height: 100,
     resizeMode: 'contain'
   }

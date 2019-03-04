@@ -53,16 +53,21 @@ export class LoginForm extends Component {
               placeholderTextColor='#666'
               onChangeText={email => this.setState({ email })}
               keyboardType='email-address'
+              returnKeyType="next"
               autoCapitalize='none'
+              autoCorrect={false}
               style={styles.input}
+              onSubmitEditing={() => this.passwordInput.focus()}
             />
             <TextInput 
               placeholder="password" 
               placeholderTextColor='#666'
               onChangeText={password => this.setState({ password })}
               textContentType="password"
+              returnKeyType="go"
               secureTextEntry
               style={styles.input}
+              ref={input => this.passwordInput = input}
             />
           <TouchableOpacity 
             onPress={this.loginUser}
