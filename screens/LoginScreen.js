@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   View, 
-  Image,
   StyleSheet,
   KeyboardAvoidingView
 } from 'react-native';
+import { LocalAuthentication } from 'expo';
 
 import {
   LoginForm,
@@ -12,14 +12,21 @@ import {
 import {
   Logo
 } from '../components/basic';
+
 export default class LoginScreen extends React.Component {
+  async componentDidMount() {
+    // const hasTouchId = await LocalAuthentication.hasHardwareAsync();
+    
+    // if (hasTouchId) {
+    //   await LocalAuthentication.authenticateAsync();
+    // }
+  }
+
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View>
-          <Logo
-            source={require('../assets/images/lt.png')}
-          />
+          <Logo source={require('../assets/images/lt.png')}/>
         </View>
         <View style={styles.formContainer}>
           <LoginForm />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { SwipeRow, Button, Icon } from "native-base";
-import DeleteButton from '../DeleteButton';
+import DeleteHabitButton from './DeleteHabitButton';
 import HabitCard from './HabitCard';
 
 class HabitList extends React.Component {
@@ -47,7 +47,7 @@ class HabitList extends React.Component {
                     />
                   }
                   right={
-                    <DeleteButton 
+                    <DeleteHabitButton 
                       habit={item}
                       error={this.state.error}
                       handleDeletion={this.handleDeletion}

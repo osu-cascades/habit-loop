@@ -38,9 +38,8 @@ export class CreateHabitForm extends Component {
         return (
             <Formik
                 initialValues={{
-                    user_id: '321',
                     name: '',
-                    type: [],
+                    type: '',
                 }}
                 onSubmit={this.submitNewHabit}
                 render={props => <HabitForm {...props}/>}
@@ -51,8 +50,9 @@ export class CreateHabitForm extends Component {
                             .required(),
                         type: yup
                             .string()
-                            .required()
-                })}
+                            .required(),
+                    })
+                }
             />
         );
   }

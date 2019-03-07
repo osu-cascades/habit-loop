@@ -32,11 +32,15 @@ class App extends React.Component {
         const images = [
             require('./assets/images/lt.png'),
         ];
+
+        const font = Font.loadAsync({
+            'Avenir Next': require('./assets/fonts/AvenirNext-Regular.ttf'),
+        });
     
         const cacheImages = images.map((image) => {
           return Asset.fromModule(image).downloadAsync();
         });
-        return Promise.all(cacheImages)
+        return Promise.all([...cacheImages, font])
     
     }
 

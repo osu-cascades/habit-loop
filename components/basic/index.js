@@ -1,5 +1,5 @@
 import { Button, ButtonText } from './button.js';
-import { Input } from './input';
+import Input from './input';
 import { Container } from './container';
 import { Logo } from './logo';
 

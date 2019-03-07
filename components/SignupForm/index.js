@@ -31,7 +31,6 @@ class SignupForm extends Component {
 
     } catch (err) {
       console.log('Error signing up:', JSON.stringify(err))
-      this.setState({ error: true })
     }
   }
   render() {
