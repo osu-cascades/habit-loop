@@ -8,7 +8,7 @@ export default class SignupScreen extends React.Component {
 
   render() {
     return (
-        <SignupForm />
+          <SignupForm />
       );
   }
 }

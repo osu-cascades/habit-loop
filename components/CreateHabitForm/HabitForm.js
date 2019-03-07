@@ -6,7 +6,7 @@ const Container = styled.View`
     padding: 20px;
 `;
 
-export const HabitForm = props => (
+export default HabitForm = props => (
     <Container>
         <Input
             placeholder="Name" 
@@ -18,6 +18,8 @@ export const HabitForm = props => (
         {props.touched.name && props.errors.name && <Text>Name needs a value.</Text>}
         <Input
             placeholder="Type"
+            placeholderTextColor='#666'
+            value={props.values.type}
             onChangeText={props.handleChange('type')}
         />
         <Button

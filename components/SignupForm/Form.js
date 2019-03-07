@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Button, ButtonText, Input } from '../basic';
+import { Button, ButtonText, Input, Logo } from '../basic';
 import styled from 'styled-components/native';
 
 const SignupContainer = styled.KeyboardAvoidingView`
@@ -18,6 +18,7 @@ const SignupText = styled.Text`
 
 export default SignupComponent = props => (
     <SignupContainer behavior='padding'>
+        <Logo source={require('../../assets/images/lt.png')} />
         <SignupText>Sign up for a new CBT Habit Tracker Account!</SignupText>
         <Input
             placeholder="username" 

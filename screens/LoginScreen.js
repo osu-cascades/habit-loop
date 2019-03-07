@@ -9,14 +9,15 @@ import {
 import {
   LoginForm,
 } from '../components';
-
+import {
+  Logo
+} from '../components/basic';
 export default class LoginScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View>
-          <Image
-            style={styles.logo}
+          <Logo
             source={require('../assets/images/lt.png')}
           />
         </View>
