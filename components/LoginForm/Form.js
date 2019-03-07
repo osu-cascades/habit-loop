@@ -15,6 +15,7 @@ export default LoginForm = props => (
             onBlur={() => props.setFieldTouched('email')}
             keyboardType='email-address'
             returnKeyType="next"
+            value={props.values.email}
             autoCapitalize='none'
             autoCorrect={false}
             onSubmitEditing={() => this.passwordInput.focus()}
@@ -25,6 +26,7 @@ export default LoginForm = props => (
             placeholderTextColor='#666'
             onChangeText={props.handleChange('password')}
             onBlur={() => props.setFieldTouched('password')}
+            value={props.values.password}
             textContentType="password"
             returnKeyType="done"
             secureTextEntry
@@ -32,9 +34,10 @@ export default LoginForm = props => (
             error={props.touched.password && props.errors.password}
         />
         <Button 
-        onPress={this.loginUser}
+            onPress={props.handleSubmit}
+            // disabled={!props.isValid}
         > 
-        <ButtonText>LOGIN</ButtonText>
+            <ButtonText>LOGIN</ButtonText>
         </Button>
         <SignupButton />
     </View>

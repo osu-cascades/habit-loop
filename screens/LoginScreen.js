@@ -25,12 +25,8 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View>
           <Logo source={require('../assets/images/lt.png')}/>
-        </View>
-        <View style={styles.formContainer}>
           <LoginForm />
-        </View>
       </KeyboardAvoidingView>
     );
   }
