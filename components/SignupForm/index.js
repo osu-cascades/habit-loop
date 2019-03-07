@@ -13,6 +13,13 @@ import { Signup } from '../../data';
 import Form from './Form';
 
 class SignupForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: false,
+    }
+  }
   signupUser = async values => {
     const signupData = {
       variables: {
@@ -32,7 +39,8 @@ class SignupForm extends Component {
       this.props.navigation.navigate('Main')
 
     } catch (err) {
-      console.log('Error signing up:', JSON.stringify(err))
+      console.log('Error signing up:', JSON.stringify(err));
+      this.setState({ error: true })
     }
   }
   render() {
