@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { 
   Text,
-  View,
   AsyncStorage,
 } from 'react-native';
 import { compose } from 'react-apollo';
@@ -45,7 +44,7 @@ class SignupForm extends Component {
   }
   render() {
       return (
-      <View>
+      <>
         <Formik
             initialValues={{
                 username: '',
@@ -70,7 +69,7 @@ class SignupForm extends Component {
             })}
         />
         <Text>{this.state.error && 'Could not log in.'}</Text>
-      </View>
+      </>
     );
   }
 }
