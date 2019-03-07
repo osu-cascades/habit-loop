@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  Text,
+  View,
   AsyncStorage,
 } from 'react-native';
 import { compose } from 'react-apollo';
@@ -12,12 +14,19 @@ import { Login } from '../../data';
 import Form from './Form';
 
 export class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      error: false, 
+    };
+  }
   // test user --> email: sik.email@sik.com password: 123
-  loginUser = async () => {
+  loginUser = async values => {
     const loginData = {
       variables: {
-        email: this.state.email,
-        password: this.state.password,
+        email: values.email,
+        password: values.password,
       }
     }
 
@@ -34,24 +43,27 @@ export class LoginForm extends Component {
 
   render() {
     return (
-      <Formik
-          initialValues={{
-              email: '',
-              password: '',
-          }}
-          onSubmit={this.loginUser}
-          render={props => <Form {...props}/>}
-          validationSchema={
-            yup.object().shape({
-              email: yup
-                  .string()
-                  .email()
-                  .required(),
-              password: yup
-                  .string()
-                  .required(),
-          })}
-      />
+      <View>
+        <Formik
+            initialValues={{
+                email: 'sik.email@sik.com',
+                password: '123',
+            }}
+            onSubmit={this.loginUser}
+            render={props => <Form {...props}/>}
+            validationSchema={
+              yup.object().shape({
+                email: yup
+                    .string()
+                    .email()
+                    .required(),
+                password: yup
+                    .string()
+                    .required(),
+            })}
+        />
+        <Text>{this.state.error && 'Could not log in.'}</Text>
+      </View>
     );
   }
 }
