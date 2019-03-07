@@ -1,6 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container } from 'native-base';
 import { SignupForm } from '../components';
 
 export default class SignupScreen extends React.Component {
@@ -10,13 +8,7 @@ export default class SignupScreen extends React.Component {
 
   render() {
     return (
-      <Container>
-        <SignupForm />
-      </Container>
+          <SignupForm />
       );
-    }
   }
-
-  const styles = StyleSheet.create({
-    
-  });
+}

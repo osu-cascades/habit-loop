@@ -1,51 +1,14 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
-import { Text, Form, Item, Input, Button  } from 'native-base';
+import { 
+  AsyncStorage,
+} from 'react-native';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
-import { Signup } from '../data';
 import { Formik } from 'formik';
 import * as yup from 'yup'
 
-const SignupComponent = props => {
-  return (
-    <Form>
-        <Item>
-          <Input
-            placeholder="username" 
-            value={props.values.username}
-            onChangeText={props.handleChange('username')}
-          />
-        </Item>
-        <Item>
-          <Input
-            placeholder="email" 
-            value={props.values.email}
-            onChangeText={props.handleChange('email')}
-            keyboardType='email-address'
-            autoCapitalize='none'
-          />
-        </Item>
-        <Item last>
-          <Input
-            placeholder="password"
-            value={props.values.password}
-            onChangeText={props.handleChange('password')}
-            textContentType="password"
-            secureTextEntry
-          />
-          {props.touched.password && props.errors.password && <Text>{props.errors.password}</Text>}
-        </Item>
-          <Button 
-            block
-            onPress={props.handleSubmit}
-          >
-            <Text>Sign Up!</Text>
-          </Button>
-    </Form>
-  );
-}
-
+import { Signup } from '../../data';
+import Form from './Form';
 
 class SignupForm extends Component {
   signupUser = async values => {
@@ -68,7 +31,6 @@ class SignupForm extends Component {
 
     } catch (err) {
       console.log('Error signing up:', JSON.stringify(err))
-      this.setState({ error: true })
     }
   }
   render() {
@@ -80,7 +42,7 @@ class SignupForm extends Component {
                 password: '',
             }}
             onSubmit={this.signupUser}
-            render={props => <SignupComponent {...props}/>}
+            render={props => <Form {...props}/>}
             validationSchema={
               yup.object().shape({
                 username: yup

@@ -24,28 +24,32 @@ const client = new ApolloClient({
 class App extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = { loading: true };
     }
 
-    async componentWillMount() {
-        this.setState({ loading: false });
-    }
-
-    _loadResourcesAsync = async () => {
-        return Promise.all([
-          Asset.loadAsync([
+    async _cacheResourcesAsync() {
+        const images = [
             require('./assets/images/lt.png'),
-          ])
-        ]);
-      };
+        ];
+
+        const font = Font.loadAsync({
+            'Avenir Next': require('./assets/fonts/AvenirNext-Regular.ttf'),
+        });
+    
+        const cacheImages = images.map((image) => {
+          return Asset.fromModule(image).downloadAsync();
+        });
+        return Promise.all([...cacheImages, font])
+    
+    }
 
     render() {
         if (this.state.loading) {
             return (
                 <AppLoading 
-                    startAsync={this._loadResourcesAsync}
+                    startAsync={this._cacheResourcesAsync}
                     onFinish={() => this.setState({ loading: false })}
-                    onError={console.warn}
                 />
             );
         } 

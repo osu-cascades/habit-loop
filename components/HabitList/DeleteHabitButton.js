@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { compose } from 'react-apollo';
 import { Button, Icon } from 'native-base';
-import { DeleteHabit } from '../data';
+import { DeleteHabit } from '../../data';
 
 class DeleteButton extends React.Component {
     constructor(props) {

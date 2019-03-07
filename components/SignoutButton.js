@@ -3,9 +3,9 @@ import {
   AsyncStorage,
   Text
 } from 'react-native';
-import { Button  } from 'native-base';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
+import { Button, ButtonText } from './basic';
 
 export class SignoutButton extends Component {
     _signOutAsync = async () => {
@@ -16,7 +16,7 @@ export class SignoutButton extends Component {
   render() {
     return (
         <Button block onPress={this._signOutAsync} >
-            <Text>Actually, sign me out :)</Text>
+            <ButtonText>Actually, sign me out :)</ButtonText>
         </Button>
     );
   }
