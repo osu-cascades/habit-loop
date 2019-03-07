@@ -1,72 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Form, Item, Input, Button, Picker } from 'native-base';
-import {
-    Text,
-} from 'react-native';
 import { compose } from 'react-apollo';
-import _ from 'lodash';
 import { Formik } from 'formik';
 import { withNavigation } from 'react-navigation';
-import { CreateHabit } from '../data/';
+import _ from 'lodash';
 import * as yup from 'yup'
 
-const types = [
-    {
-        id: 1,
-        name: "React.js"
-    },
-    {
-        id: 2,
-        name: "Graphql"
-    },
-    {
-        id: 3,
-        name: "Apollo"
-    },
-    {
-        id: 4,
-        name: "Node.js"
-    }
-]
-
-const HabitForm = props => (
-    <Container>
-        <Form>
-            <Item>
-                <Input
-                    placeholder="Name" 
-                    value={props.values.name}
-                    onBlur={() => props.setFieldTouched('name')}
-                    onChangeText={props.handleChange('name')}
-                />
-                {props.touched.name && props.errors.name && <Text>WTF BRO</Text>}
-            </Item>
-            <Item picker>
-                <Picker
-                    mode="dropdown"
-                    style={{ width: undefined }}
-                    placeholder="Type"
-                    placeholderStyle={{ color: "#bfc6ea" }}
-                    placeholderIconColor="#007aff"
-                    selectedValue={props.values.type}
-                    onValueChange={props.handleChange('type')}
-                >
-                    {types.map(type => <Picker.Item label={type.name} value={type.name} key={type.id} />)}
-                </Picker>
-            </Item>
-            <Button
-                warning
-                block
-                onPress={props.handleSubmit}
-                disabled={!props.isValid}
-            >
-                <Text>
-                    Create New Habit
-                </Text>
-            </Button>
-        </Form>
-    </Container>
-)
+import { CreateHabit } from '../../data';
+import HabitForm from './HabitForm';
 
 export class CreateHabitForm extends Component {
     submitNewHabit = async values => {

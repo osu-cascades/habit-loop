@@ -14,7 +14,7 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View style={styles.logoContainer}>
+        <View>
           <Image
             style={styles.logo}
             source={require('../assets/images/lt.png')}
@@ -31,13 +31,10 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#E9E9E9',
-  },
-  logoContainer: {
-    marginLeft: 15,
-    marginRight: 15,
   },
   logo: {
     width: '100%',

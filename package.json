@@ -26,6 +26,7 @@
     "react-native-paper": "^2.2.3",
     "react-native-svg-animated-linear-gradient": "^0.1.9",
     "react-navigation": "^2.16.0",
+    "styled-components": "^4.1.3",
     "yup": "^0.26.6"
   },
   "devDependencies": {

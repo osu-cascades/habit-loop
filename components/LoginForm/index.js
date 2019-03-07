@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import {
-  View,
   Text,
-  TextInput,
-  StyleSheet,
+  View,
   AsyncStorage,
-  TouchableOpacity,
 } from 'react-native';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 
-import { SignupButton } from './';
-import { Login } from '../data/';
+import { SignupButton } from '../';
+import { Login } from '../../data';
+import { Button, ButtonText, Input } from '../basic';
 
 export class LoginForm extends Component {
   constructor(props){
@@ -47,8 +45,8 @@ export class LoginForm extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
-            <TextInput 
+        <View>
+            <Input 
               placeholder="username or email" 
               placeholderTextColor='#666'
               onChangeText={email => this.setState({ email })}
@@ -56,55 +54,28 @@ export class LoginForm extends Component {
               returnKeyType="next"
               autoCapitalize='none'
               autoCorrect={false}
-              style={styles.input}
               onSubmitEditing={() => this.passwordInput.focus()}
             />
-            <TextInput 
+            <Input 
               placeholder="password" 
               placeholderTextColor='#666'
               onChangeText={password => this.setState({ password })}
               textContentType="password"
               returnKeyType="go"
               secureTextEntry
-              style={styles.input}
               ref={input => this.passwordInput = input}
             />
-          <TouchableOpacity 
+          <Button 
             onPress={this.loginUser}
-            style={styles.buttonContainer}
           > 
-            <Text style={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
+            <ButtonText>LOGIN</ButtonText>
+          </Button>
           <SignupButton />
           {this.state.error && <Text>There was an error.</Text>}
         </View>
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    fontFamily: 'Avenir Next'
-  },
-  buttonContainer: {
-    backgroundColor: '#999999',
-    paddingVertical: 15
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontFamily: 'Avenir Next',
-    color: '#FFFFFF',
-    fontWeight: '700',
-  }
-});
 
 export default compose(
   withNavigation,
