@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  Text
 } from 'react-native';
 import {
   Container
@@ -11,6 +12,9 @@ import {
   SignoutButton,
   PriorityHabit
 } from '../components';
+import {
+  Logo
+} from '../components/basic';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,10 +23,12 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
+        <Logo source={require('../assets/images/lt.png')}/>
+        <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
         <PriorityHabit />
-        <SignoutButton />
         <PushNotifications />
+        <SignoutButton/>
       </Container>
     );
   }
@@ -31,10 +37,15 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    height: '100%',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
+  },
+  intro: {
+    textAlign: 'center',
+    fontSize: 30,
+    marginBottom: 30
   },
   heading: {
     fontSize: 30,

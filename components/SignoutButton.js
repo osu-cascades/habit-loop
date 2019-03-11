@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  StyleSheet,
   AsyncStorage,
   Text
 } from 'react-native';
@@ -15,12 +16,22 @@ export class SignoutButton extends Component {
         
   render() {
     return (
-        <Button block onPress={this._signOutAsync} >
-            <ButtonText>Actually, sign me out :)</ButtonText>
+        <Button block onPress={this._signOutAsync} style={styles.signOut}>
+            <ButtonText>Sign out</ButtonText>
         </Button>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  signOut: {
+    backgroundColor: '#F78E2A',
+    width: '90%',
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 20
+  }
+})
 
 export default compose(
   withNavigation,
