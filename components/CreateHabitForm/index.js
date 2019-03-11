@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'react-apollo';
 import { Formik } from 'formik';
+import { StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup'
@@ -37,6 +38,7 @@ export class CreateHabitForm extends Component {
     render() {
         return (
             <Formik
+                style={styles.addHabitForm}
                 initialValues={{
                     name: '',
                     type: '',
@@ -55,8 +57,14 @@ export class CreateHabitForm extends Component {
                 }
             />
         );
-  }
+    }
 }
+
+const styles = StyleSheet.create({
+    addHabitForm: {
+        backgroundColor: '#ffffff'
+    }
+})
 
 export default compose(
     withNavigation,

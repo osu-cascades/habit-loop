@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, ButtonText, Input } from '../basic';
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 const Container = styled.KeyboardAvoidingView`
     padding: 20px;
+    background-color: #ffffff;
 `;
 
 export default HabitForm = props => (
@@ -29,6 +31,7 @@ export default HabitForm = props => (
             error={props.touched.type && props.errors.type}
         />
         <Button
+            style={styles.addBtn}
             onPress={props.handleSubmit}
             disabled={!props.isValid}
         >
@@ -38,3 +41,9 @@ export default HabitForm = props => (
         </Button>
     </Container>
 );
+
+const styles = StyleSheet.create({
+    addBtn: {
+        backgroundColor: '#F78E2A'
+    }
+})

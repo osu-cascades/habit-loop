@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Icon, Fab } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import { Platform } from 'react-native';
+import { 
+  Platform, 
+  StyleSheet 
+} from 'react-native';
 
 class CreateButtonFAB extends Component {
   constructor(props) {
-      super(props)
+    super(props)
     this.state = {
       active: 'true'
     };
@@ -16,8 +19,7 @@ class CreateButtonFAB extends Component {
         <Fab
           active={this.state.active}
           direction="up"
-          containerStyle={{ }}
-          style={{ backgroundColor: '#5067FF' }}
+          style={styles.fab}
           position="bottomRight"
           onPress={() => this.props.navigation.navigate('CreateHabit', {
               refetch: this.props.refetch
@@ -31,5 +33,11 @@ class CreateButtonFAB extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  fab: {
+    backgroundColor: '#5067FF',
+  }
+})
 
 export default withNavigation(CreateButtonFAB)
