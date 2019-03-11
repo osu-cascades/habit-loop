@@ -9,7 +9,8 @@ export default class LeaderboardList extends Component {
       'Nathaniel Clyne',
       'Dejan Lovren',
       'Mama Sakho',
-      'Emre Can'
+      'Emre Can',
+      'Nathan Hil'
     ];
     
     return (
@@ -18,8 +19,8 @@ export default class LeaderboardList extends Component {
           <List dataArray={items}
             renderRow={(item, sectionID, rowID) =>
               <ListItem style={styles.listItem}>
-                <Text>{item}</Text>
                 <Badge style={styles.badge}><Text>{rowID}</Text></Badge>
+                <Text style={styles.listItemText}>{item}</Text>
               </ListItem>
             }>
           </List>
@@ -30,9 +31,23 @@ export default class LeaderboardList extends Component {
 }
 
 const styles = StyleSheet.create({
+    items: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      width: '100%'
+    },
     listItem: {
-        display: 'flex',
-        justifyContent: 'space-between' 
+      width: '100%',
+      justifyContent: 'flex-start',
+      borderRightColor: '#222222',
+      borderRightWidth: 5
+    },
+    badge: {
+      backgroundColor: '#F78E2A',
+      marginRight: '5%'
+    },
+    listItemText: {
+      alignSelf: 'flex-start',
     }
   });
   
