@@ -44,6 +44,7 @@ class HabitList extends React.Component {
                     <HabitCard 
                       habit={item} 
                       navigate={this.props.navigate} 
+                      refetch={this.props.refetch}
                     />
                   }
                   right={

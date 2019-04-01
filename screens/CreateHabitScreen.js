@@ -9,7 +9,7 @@ export default class CreateHabitScreen extends React.Component {
 
   render() {
     return (
-        <CreateHabitForm />
+      <CreateHabitForm />
     );
   }
 }

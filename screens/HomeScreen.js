@@ -26,8 +26,8 @@ export default class HomeScreen extends React.Component {
       <Container style={styles.container}>
         <Logo source={require('../assets/images/lt.png')}/>
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <PriorityHabit />
-        <PushNotifications />
+        {/* <PriorityHabit /> */}
+        {/* <PushNotifications /> */}
         <SignoutButton/>
       </Container>
     );

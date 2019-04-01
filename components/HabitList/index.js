@@ -43,6 +43,7 @@ class HabitListContainer extends React.Component {
             habits={habits}
             data={this.props.data}
             navigate={this.props.navigation.navigate}
+            refetch={() => this.props.data.refetch()}
           />
           <CreateHabitFAB refetch={() => this.props.data.refetch()}/>
         </Fragment>
