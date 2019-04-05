@@ -7,9 +7,9 @@ import { AsyncStorage } from "react-native";
 
 // http://10.0.2.2:3000/graphql -> for android emulator
 const client = new ApolloClient({
-    // uri: "https://o6b8ejudj2.execute-api.us-east-1.amazonaws.com/dev/graphql",
+    uri: "https://o6b8ejudj2.execute-api.us-east-1.amazonaws.com/dev/graphql",
     // uri: "http://10.0.2.2:3000/graphql",
-    uri: "http://localhost:3000/graphql",
+    // uri: "http://localhost:3000/graphql",
     request: async operation => {
         const token = await AsyncStorage.getItem('userToken');
         if (token) {
