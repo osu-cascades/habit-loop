@@ -27,13 +27,17 @@ class EditHabit extends Component {
                 input: {
                     name: values.name,
                     type: values.type,
+                    created_at: this.props.habit.created_at,
+                    habit_id: this.props.habit.habit_id,
+                    user_id: this.props.habit.user_id,
                 }
             }
         }
-        
+
         try {
             await this.props.mutate(updatedHabit);
-            
+            const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
+
             refetch();
             this.props.navigation.goBack();
         } catch (err) {
