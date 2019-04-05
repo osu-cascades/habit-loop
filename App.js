@@ -5,10 +5,11 @@ import AppNavigator from './navigation/AppNavigator';
 import { Font, AppLoading, Asset } from "expo";
 import { AsyncStorage } from "react-native";
 
-// http://10.0.2.2:3000/graphql -> for android emulator
+// http://10.0.2.2:3000/graphql -> for android emulator (or something similar)
+// http://localhost:3000/graphql -> what works most of the time with the local server
+
 const client = new ApolloClient({
-    uri: "https://o6b8ejudj2.execute-api.us-east-1.amazonaws.com/dev/graphql",
-    // uri: "http://10.0.2.2:3000/graphql",
+    uri: "https://klr9esc4a5.execute-api.us-east-1.amazonaws.com/dev/graphql",
     // uri: "http://localhost:3000/graphql",
     request: async operation => {
         const token = await AsyncStorage.getItem('userToken');

@@ -21,7 +21,7 @@ export class LoginForm extends Component {
       error: false, 
     };
   }
-  // test user --> email: sik.email@sik.com password: 123
+  // test user --> email: sik.email@sik.com password: 12345678
   loginUser = async values => {
     const loginData = {
       variables: {
@@ -46,8 +46,8 @@ export class LoginForm extends Component {
       <View>
         <Formik
             initialValues={{
-                email: 'sik.email@sik.com',
-                password: '123',
+                email: 'email@email.com',
+                password: '12345678',
             }}
             onSubmit={this.loginUser}
             render={props => <Form {...props}/>}
