@@ -1,23 +1,34 @@
 import React from 'react';
 import { Card, CardItem, Text } from "native-base";
+import styled from 'styled-components/native';
 
-const HabitCard = ({ habit, navigate }) => {
+const Container = styled.View`
+  width: 100%;
+`;
+
+const HabitHeader = styled.TouchableOpacity`
+
+`;
+
+const HabitText = styled.Text`
+  align-self: center;
+  font-size: 20px;
+  font-family: Avenir Next;
+  
+`;
+
+const HabitCard = ({ habit, navigate, refetch }) => {
     return (
-          <Card style={{ width: '100%' }}>
-            <CardItem header button
+          <Container>
+            <HabitHeader
               onPress={() => navigate('UserHabit', {
                 habit,
+                refetch
               })}
             >
-              <Text>{habit.name}</Text>
-            </CardItem>
-            <CardItem button
-              onPress={() => navigate('UserHabit', {
-                habit,
-              })}
-            >
-            </CardItem>
-          </Card>
+              <HabitText>{habit.name}</HabitText>
+            </HabitHeader>
+          </Container>
     ) 
 }
 

@@ -28,14 +28,13 @@ class HabitListContainer extends React.Component {
       return <Text>Error Loading Data!!</Text>
     }
     
-    const habits = this.props.data.getHabits.map(item => {
-      return { 
+    const habits = this.props.data.getHabits.map(item => ({
         name: item.name,
         created_at: item.created_at,
         habit_id: item.habit_id,
         key: item.habit_id,
-      }
-    });
+        type: item.type,
+    }));
 
     return (
         <Fragment>
@@ -43,6 +42,7 @@ class HabitListContainer extends React.Component {
             habits={habits}
             data={this.props.data}
             navigate={this.props.navigation.navigate}
+            refetch={() => this.props.data.refetch()}
           />
           <CreateHabitFAB refetch={() => this.props.data.refetch()}/>
         </Fragment>

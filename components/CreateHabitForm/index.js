@@ -26,6 +26,9 @@ export class CreateHabitForm extends Component {
             await this.props.mutate(newHabit);
 
             // refetch then go back if the mutation was successful
+            // for future reference we don't even need to refetch
+            // it could just update in the app itself without making any requests
+            // since we know it is successful at this point.
             refetch();
             this.props.navigation.goBack();
         } catch (err) {

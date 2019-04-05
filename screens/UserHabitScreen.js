@@ -1,29 +1,22 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Text } from 'native-base';
-
-import GoalsList from '../components/GoalsList';
+import EditHabitForm from '../components/EditHabit';
 
 export default class UserHabitScreen extends React.Component {
-    static navigationOptions = ({ navigation }) => {
-        const habit = navigation.getParam('habit', {});
+  static navigationOptions = ({ navigation }) => {
+      const habit = navigation.getParam('habit', {});
 
-        return {
-            title: habit.name,
-        }
-    };
+      return {
+          title: habit.name,
+      }
+  };
 
   
   render() {
     return (
-      <Container style={styles.container}>
-        {/* <ResourceList /> */}
-        <GoalsList />
-      </Container>
+      <EditHabitForm 
+        habit={this.props.navigation.getParam('habit', {})}
+        refetch={this.props.navigation.getParam('refetch', null)}
+      />
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
