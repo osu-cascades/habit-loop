@@ -14,11 +14,11 @@ const RightActionButton = styled.TouchableOpacity`
 `;
 
 const RightActionText = styled.Text`
-  align-self: center;
-  font-size: 35px;
-  font-family: Avenir Next;
-  color: white;
-  margin-right: 50px
+    align-self: center;
+    font-size: 35px;
+    font-family: Avenir Next;
+    color: white;
+    margin-right: 45px
 `;
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
@@ -44,7 +44,7 @@ class DeleteButton extends React.Component {
         try {
             await this.props.mutate(deleteHabit);
             this.props.handleDeletion(habit_id);
-            alert(`Successfully deleted the habit ${habit_id}`)
+            alert(`Successfully deleted the habit: ${this.props.habit.name}`)
         } catch (err) {
             console.log(err);
             this.props.handleDeletionError();
@@ -61,21 +61,19 @@ class DeleteButton extends React.Component {
                     name="delete-forever"
                     size={30}
                     color="#fff"
-                    style={[styles.actionIcon, { transform: [{ scale }] }]}
+                    style={{ 
+                        transform: [{ scale }],
+                        width: 30,
+                        marginHorizontal: 10,
+                        alignSelf: 'center',
+                        marginRight: 20,                  
+                    }}
                 />
                 {error && alert('Error deleting habit.')}
             </RightActionButton>
         );
     }
 }
-const styles = StyleSheet.create({
-
-actionIcon: {
-    width: 30,
-    marginHorizontal: 10,
-    alignSelf: 'center',
-  }
-});
 
 export default compose(
     DeleteHabit

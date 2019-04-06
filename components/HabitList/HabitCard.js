@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { Text, TouchableHighlight } from 'react-native';
 
-const Container = styled.View`
+const HabitHeader = styled.TouchableHighlight`
   flex: 1;
   height: 80;
   padding-vertical: 10;
@@ -9,10 +10,6 @@ const Container = styled.View`
   justify-content: space-between;
   flex-direction: column;
   background-color: white;
-`;
-
-const HabitHeader = styled.TouchableOpacity`
-
 `;
 
 const HabitText = styled.Text`
@@ -24,16 +21,29 @@ const HabitText = styled.Text`
 
 const HabitCard = ({ habit, navigate, refetch }) => {
     return (
-          <Container>
-            <HabitHeader
-              onPress={() => navigate('UserHabit', {
-                habit,
-                refetch
-              })}
-            >
-              <HabitText>{habit.name}</HabitText>
-            </HabitHeader>
-          </Container>
+      <TouchableHighlight 
+          style={{
+              flex: 1,
+              height: 80,
+              paddingVertical: 10,
+              paddingHorizontal: 20,
+              justifyContent: "space-between",
+              flexDirection: "column",
+              backgroundColor: "white",
+          }}
+          onPress={() => navigate('UserHabit', {
+              habit: habit,
+              navigate: navigate,
+              refetch: refetch
+          })}
+      >
+          <Text style={{
+            alignSelf: `center`,
+            fontSize: 20,
+            fontFamily: `Avenir Next`,
+            marginTop: 15,
+          }}>{habit.name}</Text>
+      </TouchableHighlight>
     ) 
 }
 
