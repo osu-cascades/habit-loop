@@ -1,9 +1,14 @@
 import React from 'react';
-import { Card, CardItem, Text } from "native-base";
 import styled from 'styled-components/native';
 
 const Container = styled.View`
-  width: 100%;
+  flex: 1;
+  height: 80;
+  padding-vertical: 10;
+  padding-horizontal: 20;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: white;
 `;
 
 const HabitHeader = styled.TouchableOpacity`
@@ -14,7 +19,7 @@ const HabitText = styled.Text`
   align-self: center;
   font-size: 20px;
   font-family: Avenir Next;
-  
+  margin-top: 15px;
 `;
 
 const HabitCard = ({ habit, navigate, refetch }) => {

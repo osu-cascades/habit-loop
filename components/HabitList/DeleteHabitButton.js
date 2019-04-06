@@ -1,8 +1,27 @@
 import React from 'react';
 import _ from 'lodash';
 import { compose } from 'react-apollo';
-import { Button, Icon } from 'native-base';
+import { Animated, StyleSheet } from 'react-native';
 import { DeleteHabit } from '../../data';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import styled from 'styled-components/native';
+
+const RightActionButton = styled.TouchableOpacity`
+    flex-direction: row;
+    flex: 1;
+    background-color: #dd2c00;
+    justify-content: flex-end;
+`;
+
+const RightActionText = styled.Text`
+  align-self: center;
+  font-size: 35px;
+  font-family: Avenir Next;
+  color: white;
+  margin-right: 50px
+`;
+
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 class DeleteButton extends React.Component {
     constructor(props) {
@@ -33,14 +52,30 @@ class DeleteButton extends React.Component {
     }
 
     render() {
+        const { scale, error } = this.props;
+
         return (
-            <Button danger onPress={this.handlePress}>
-                <Icon active name="trash" />
-                {this.props.error && alert('Could not delete habit!')}
-            </Button>
+            <RightActionButton onPress={this.handlePress}>
+                <RightActionText> delete habit </RightActionText>
+                <AnimatedIcon
+                    name="delete-forever"
+                    size={30}
+                    color="#fff"
+                    style={[styles.actionIcon, { transform: [{ scale }] }]}
+                />
+                {error && alert('Error deleting habit.')}
+            </RightActionButton>
         );
     }
 }
+const styles = StyleSheet.create({
+
+actionIcon: {
+    width: 30,
+    marginHorizontal: 10,
+    alignSelf: 'center',
+  }
+});
 
 export default compose(
     DeleteHabit
