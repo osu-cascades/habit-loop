@@ -10,6 +10,12 @@ import { CreateHabit } from '../../data';
 import HabitForm from './HabitForm';
 
 export class CreateHabitForm extends Component {
+    constructor() {
+        super();
+        this.state = {
+            pressed: false,
+        }
+    }
     submitNewHabit = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const newHabit = {
@@ -20,22 +26,26 @@ export class CreateHabitForm extends Component {
                 }
             }
         }
-        
-        // Wait for server to return result before refetching and going back
-        try {
-            await this.props.mutate(newHabit);
 
-            // refetch then go back if the mutation was successful
-            // for future reference we don't even need to refetch
-            // it could just update in the app itself without making any requests
-            // since we know it is successful at this point.
-            refetch();
-            this.props.navigation.goBack();
-        } catch (err) {
-            // we can handle the state of an error here if submit fails
-            console.log(err);
+        // Prevent duplicate habits
+        if (!this.state.pressed){
+            this.setState({ pressed: true })
+            // Wait for server to return result before refetching and going back
+            try {
+                await this.props.mutate(newHabit);
+
+                // refetch then go back if the mutation was successful
+                // for future reference we don't even need to refetch
+                // it could just update in the app itself without making any requests
+                // since we know it is successful at this point.
+                refetch();
+                this.props.navigation.goBack();
+            } catch (err) {
+                // we can handle the state of an error here if submit fails
+                this.setState({ pressed: false })
+                console.log(err);
+            }
         }
-        
     }
 
     render() {
@@ -47,7 +57,7 @@ export class CreateHabitForm extends Component {
                     type: '',
                 }}
                 onSubmit={this.submitNewHabit}
-                render={props => <HabitForm {...props}/>}
+                render={props => <HabitForm {...props} pressed={this.state.pressed}/>}
                 validationSchema={
                     yup.object().shape({
                         name: yup

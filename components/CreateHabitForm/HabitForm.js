@@ -35,7 +35,7 @@ export default HabitForm = props => (
             onPress={props.handleSubmit}
             disabled={!props.isValid}
         >
-            <ButtonText>
+            <ButtonText disabled={props.pressed}>
                 Create New Habit
             </ButtonText>
         </Button>

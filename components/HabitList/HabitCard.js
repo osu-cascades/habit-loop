@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 const HabitHeader = styled.TouchableHighlight`
   flex: 1;
@@ -21,7 +21,7 @@ const HabitText = styled.Text`
 
 const HabitCard = ({ habit, navigate, refetch }) => {
     return (
-      <TouchableHighlight 
+      <TouchableOpacity 
           style={{
               flex: 1,
               height: 80,
@@ -43,7 +43,7 @@ const HabitCard = ({ habit, navigate, refetch }) => {
             fontFamily: `Avenir Next`,
             marginTop: 15,
           }}>{habit.name}</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     ) 
 }
 
