@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Text } from "native-base";
 import _ from 'lodash';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 
 import { GetHabits } from '../../data';
-import HabitList from './HabitList';
+import HabitList from './components/HabitList';
 import { 
   Loading,
   CreateHabitFAB,
@@ -25,7 +25,7 @@ class HabitListContainer extends React.Component {
     if (this.props.data.loading){
       return <Loading/>
     } else if (this.props.data.error) {
-      return <Text>Error Loading Data!!</Text>
+      return <Text>Error Loading Data!</Text>
     }
     
     const habits = this.props.data.getHabits.map(item => ({
@@ -37,7 +37,7 @@ class HabitListContainer extends React.Component {
     }));
 
     return (
-        <Fragment>
+        <>
           <HabitList 
             habits={habits}
             data={this.props.data}
@@ -45,7 +45,7 @@ class HabitListContainer extends React.Component {
             refetch={() => this.props.data.refetch()}
           />
           <CreateHabitFAB refetch={() => this.props.data.refetch()}/>
-        </Fragment>
+        </>
     );
   }
 }
