@@ -25,7 +25,7 @@ class HabitListContainer extends React.Component {
     if (this.props.data.loading){
       return <Loading/>
     } else if (this.props.data.error) {
-      return <Text>Error Loading Data!!</Text>
+      return <Text>Error Loading Data!</Text>
     }
     
     const habits = this.props.data.getHabits.map(item => ({
