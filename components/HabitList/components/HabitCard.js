@@ -1,27 +1,15 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native';
 
-const HabitHeader = styled.TouchableHighlight`
-  flex: 1;
-  height: 80;
-  padding-vertical: 10;
-  padding-horizontal: 20;
-  justify-content: space-between;
-  flex-direction: column;
-  background-color: white;
-`;
+import { GestureHandler } from 'expo';
 
-const HabitText = styled.Text`
-  align-self: center;
-  font-size: 20px;
-  font-family: Avenir Next;
-  margin-top: 15px;
-`;
+const { 
+  RectButton,
+} = GestureHandler;
 
 const HabitCard = ({ habit, navigate, refetch }) => {
     return (
-      <TouchableOpacity 
+      <RectButton 
           style={{
               flex: 1,
               height: 80,
@@ -43,7 +31,7 @@ const HabitCard = ({ habit, navigate, refetch }) => {
             fontFamily: `Avenir Next`,
             marginTop: 15,
           }}>{habit.name}</Text>
-      </TouchableOpacity>
+      </RectButton>
     ) 
 }
 

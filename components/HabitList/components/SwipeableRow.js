@@ -1,7 +1,6 @@
 import React from 'react';
 import { GestureHandler } from 'expo';
 import DeleteHabitButton from './DeleteHabitButton';
-
 import CompleteHabitButton from './CompleteHabit';
 
 

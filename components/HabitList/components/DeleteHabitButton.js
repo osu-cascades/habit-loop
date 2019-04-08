@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { compose } from 'react-apollo';
-import { Animated, StyleSheet } from 'react-native';
-import { DeleteHabit } from '../../data';
+import { Animated } from 'react-native';
+import { DeleteHabit } from '../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
 

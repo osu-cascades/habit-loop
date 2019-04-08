@@ -9,6 +9,6 @@ export default class SettingsScreen extends React.Component {
   };
 
   render() {
-    <Text>Nice</Text>
+    return <Text>Nice</Text>
   }
 }

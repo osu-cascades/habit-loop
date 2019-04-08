@@ -42,8 +42,9 @@ export class CreateHabitForm extends Component {
                 this.props.navigation.goBack();
             } catch (err) {
                 // we can handle the state of an error here if submit fails
-                this.setState({ pressed: false })
                 console.log(err);
+            } finally {
+                this.setState({ pressed: false })
             }
         }
     }
