@@ -25,6 +25,9 @@ class SwipeableRow extends React.Component {
   
         return (
           <CompleteHabitButton
+            habit={this.props.item}
+            error={this.props.error}
+            handleCompletion={this.props.handleCompletion}
             scale={scale}
           />
         );
@@ -56,7 +59,7 @@ class SwipeableRow extends React.Component {
                 friction={2}
                 leftThreshold={80}
                 rightThreshold={40}
-                onSwipeableLeftOpen={() => alert('completed')}
+                onSwipeableLeftOpen={() => this.props.handleCompletion(this.props.item.habit_id)}
             >        
                 {this.props.children}
             </Swipeable>

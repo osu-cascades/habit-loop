@@ -23,6 +23,7 @@ export class CreateHabitForm extends Component {
                 input: {
                     name: values.name,
                     type: values.type,
+                    recurrence: values.recurrence,
                 }
             }
         }
@@ -56,6 +57,7 @@ export class CreateHabitForm extends Component {
                 initialValues={{
                     name: '',
                     type: '',
+                    recurrence: ''
                 }}
                 onSubmit={this.submitNewHabit}
                 render={props => <HabitForm {...props} pressed={this.state.pressed}/>}
@@ -65,6 +67,9 @@ export class CreateHabitForm extends Component {
                             .string()
                             .required(),
                         type: yup
+                            .string()
+                            .required(),
+                        recurrence: yup
                             .string()
                             .required(),
                     })
