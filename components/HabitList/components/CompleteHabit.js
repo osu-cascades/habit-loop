@@ -21,11 +21,14 @@ const LeftActionText = styled.Text`
 `;
 
 export class CompleteHabitButton extends React.Component {
+    completeHabit() {
+
+    }
     render() {
         const { scale } = this.props;
 
         return (
-            <LeftAction onPress={this.close}>
+            <LeftAction onPress={() => this.props.handleCompletion(this.props.habit.habit_id)}>
                 <AnimatedIcon
                     name="archive"
                     size={30}

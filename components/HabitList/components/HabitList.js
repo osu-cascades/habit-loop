@@ -20,15 +20,16 @@ class HabitList extends React.Component {
         this.handleDeletionError = this.handleDeletionError.bind(this);
         this.handleDeletion = this.handleDeletion.bind(this);
         this.renderProps = this.renderProps.bind(this);
+        this.handleCompletion = this.handleCompletion.bind(this);
     }
 
     componentDidMount() {
       if (!_.isEmpty(this.state.habits)) {
         this.setState({
           sectionedLists: [
-              { title: 'Daily Habits', data: this.state.habits },
-              { title: 'Weekly Habits', data: this.state.habits },
-              { title: 'Completed Habits', data: this.state.habits}
+              { title: 'Daily Habits', data: this.state.habits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY') },
+              { title: 'Weekly Habits', data: this.state.habits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY') },
+              { title: 'Completed Habits', data: this.state.habits.filter(habit => habit.completed_today === true) }
           ]
         });
       } 
@@ -38,9 +39,9 @@ class HabitList extends React.Component {
       if (this.state.habits !== prevState.habits && !_.isEmpty(this.state.habits)) {
         this.setState({
           sectionedLists: [
-            { title: 'Daily Habits', data: this.state.habits },
-            { title: 'Weekly Habits', data: this.state.habits },
-            { title: 'Completed Habits', data: this.state.habits}
+            { title: 'Daily Habits', data: this.state.habits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY') },
+            { title: 'Weekly Habits', data: this.state.habits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY') },
+            { title: 'Completed Habits', data: this.state.habits.filter(habit => habit.completed_today === true) }
           ]
         })
       } else if (this.state.habits !== prevState.habits && _.isEmpty(this.state.habits)) {
@@ -60,6 +61,18 @@ class HabitList extends React.Component {
         });
     }
 
+    handleCompletion(habit_id) {
+      const completeHabit = this.state.habits.map(habit => {
+        if (habit_id === habit.habit_id) {
+          return Object.assign(habit, { completed_today: true });
+        } return habit;
+
+      });
+      this.setState({
+        habits: completeHabit
+      });
+    }
+
     renderProps() {
       return Object.assign({
         error: this.state.error,
@@ -68,6 +81,7 @@ class HabitList extends React.Component {
         data: this.props.data,
         handleDeletion: this.handleDeletion,
         handleDeletionError: this.handleDeletionError,
+        handleCompletion: this.handleCompletion,
       })
     }
 

@@ -27,13 +27,15 @@ class HabitListContainer extends React.Component {
     } else if (this.props.data.error) {
       return <Text>Error Loading Data!</Text>
     }
-    
+
     const habits = this.props.data.getHabits.map(item => ({
         name: item.name,
         created_at: item.created_at,
         habit_id: item.habit_id,
         key: item.habit_id,
         type: item.type,
+        completed_today: item.completed_today,
+        recurrence: item.recurrence,
     }));
 
     return (
