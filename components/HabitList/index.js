@@ -34,8 +34,9 @@ class HabitListContainer extends React.Component {
         habit_id: item.habit_id,
         key: item.habit_id,
         type: item.type,
-        completed_today: item.completed_today,
+        completed_today: item.completed_today || false,
         recurrence: item.recurrence,
+        user_id: item.user_id,
     }));
 
     return (

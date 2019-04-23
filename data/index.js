@@ -7,6 +7,7 @@ import DeleteHabit from './DeleteHabit';
 import UpdatePriority from './UpdatePriority';
 import RegisterPushNotifications from './RegisterPushNotifications';
 import UpdateHabit from './UpdateHabit';
+import CompleteHabit from './CompleteHabit';
 
 export {
     Login,
@@ -16,6 +17,7 @@ export {
     DeleteHabit,
     UpdateHabit,
     GetAllHabits,
+    CompleteHabit,
     UpdatePriority,
     RegisterPushNotifications,
 }

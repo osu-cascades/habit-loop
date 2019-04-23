@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 import { CreateHabit } from '../../data';
 import HabitForm from './HabitForm';
@@ -16,6 +16,7 @@ export class CreateHabitForm extends Component {
             pressed: false,
         }
     }
+
     submitNewHabit = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const newHabit = {
@@ -83,10 +84,9 @@ const styles = StyleSheet.create({
     addHabitForm: {
         backgroundColor: '#ffffff'
     }
-})
+});
 
 export default compose(
     withNavigation,
     CreateHabit,
-)(CreateHabitForm)
-
+)(CreateHabitForm);

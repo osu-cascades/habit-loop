@@ -14,6 +14,11 @@ class SwipeableRow extends React.Component {
 
         this.renderLeftActions = this.renderLeftActions.bind(this);
         this.renderRightActions = this.renderRightActions.bind(this);
+
+    }
+
+    handleSubmit = () => {
+        this.props.handleCompletion(this.props.item.habit_id);
     }
 
     renderLeftActions = (progress, dragX) => {
@@ -59,7 +64,7 @@ class SwipeableRow extends React.Component {
                 friction={2}
                 leftThreshold={80}
                 rightThreshold={40}
-                onSwipeableLeftOpen={() => this.props.handleCompletion(this.props.item.habit_id)}
+                // onSwipeableLeftOpen={this.handleSubmit}
             >        
                 {this.props.children}
             </Swipeable>
