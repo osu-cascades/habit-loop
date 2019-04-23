@@ -2,6 +2,9 @@ import React from 'react';
 import { Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
+import { compose } from 'react-apollo';
+import _ from 'lodash';
+import { CompleteHabit } from '../../../data';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -21,14 +24,40 @@ const LeftActionText = styled.Text`
 `;
 
 export class CompleteHabitButton extends React.Component {
-    completeHabit() {
+    constructor(props) {
+        super(props);
 
+        this.submitCompletion = this.submitCompletion.bind(this);
+        this.handleCompletion = this.handleCompletion.bind(this);
     }
+
+    handleCompletion() {
+        this.props.handleCompletion(this.props.habit.habit_id);
+        this.submitCompletion();
+    }
+
+    async submitCompletion() {
+        const completeHabit = {
+            variables: {
+                user_id: _.get(this.props.habit, 'user_id', ''),
+                habit_id: _.get(this.props.habit, 'habit_id', ''),
+                recurrence: _.get(this.props.habit, 'recurrence', ''),
+            }
+        }
+
+        try {
+            await this.props.mutate(completeHabit);
+        } catch (err) {
+            console.log(err);
+        } 
+        
+    }
+
     render() {
         const { scale } = this.props;
 
         return (
-            <LeftAction onPress={() => this.props.handleCompletion(this.props.habit.habit_id)}>
+            <LeftAction onPress={this.handleCompletion}>
                 <AnimatedIcon
                     name="archive"
                     size={30}
@@ -47,4 +76,6 @@ export class CompleteHabitButton extends React.Component {
     }
 }
 
-export default CompleteHabitButton;
+export default compose(
+    CompleteHabit
+)(CompleteHabitButton);
