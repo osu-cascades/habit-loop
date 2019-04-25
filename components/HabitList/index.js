@@ -12,15 +12,6 @@ import {
  } from '../';
 
 class HabitListContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      error: false,    
-    }
-  }
-
-
   render() {
     if (this.props.data.loading){
       return <Loading/>
