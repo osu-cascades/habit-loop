@@ -9,7 +9,7 @@ import { AsyncStorage } from "react-native";
 // http://localhost:3000/graphql -> what works most of the time with the local server
 
 const client = new ApolloClient({
-    uri: "https://m7g5pc0boi.execute-api.us-east-1.amazonaws.com/dev/graphql",
+    uri: "https://hw3qaa8bgd.execute-api.us-east-1.amazonaws.com/dev/graphql",
     // uri: "http://localhost:3000/graphql",
     // uri: "http://192.168.0.11:3000/graphql",
     request: async operation => {
