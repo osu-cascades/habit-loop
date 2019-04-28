@@ -39,7 +39,6 @@ export class CompleteHabitButton extends React.Component {
     async submitCompletion() {
         const completeHabit = {
             variables: {
-                user_id: _.get(this.props.habit, 'user_id', ''),
                 habit_id: _.get(this.props.habit, 'habit_id', ''),
                 recurrence: _.get(this.props.habit, 'recurrence', ''),
             }
