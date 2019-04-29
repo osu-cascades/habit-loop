@@ -25,6 +25,10 @@ Once you clone this git repository, navigate to the containing folder and run
 ```
 expo start
 ```
+If you are running into issues with running expo normally, you can run it in tunnel mode like so
+```
+expo start --tunnel
+```
 
 The program will load up and you will be presented with a QR code.
 Navigate to the url through the provided code to view your app.
@@ -32,6 +36,7 @@ Navigate to the url through the provided code to view your app.
 ## Built With
 
 * [Expo](https://expo.io/) - The web framework used
+* [Back end](https://github.com/osu-cascades/habit-loop-server) - CBT Habit Loop Server
 
 ## Authors
 
