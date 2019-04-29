@@ -1,31 +1,40 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text, Badge, Right } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 
-export default class LeaderboardList extends Component {
+import { StyleSheet } from 'react-native';
+import { compose } from 'react-apollo';
+import { GetTopStreaks } from '../../data';
+import { 
+  Loading,
+ } from '../';
+
+class LeaderboardList extends Component {
   render() {
-    var items = [
-      'Simon Mignolet',
-      'Nathaniel Clyne',
-      'Dejan Lovren',
-      'Mama Sakho',
-      'Emre Can',
-      'Nathan Hil'
-    ];
-    
+     if (this.props.data.loading){
+      return <Loading/>
+    } else if (this.props.data.error) {
+      return <Text>Error Loading Data!</Text>
+    }
+
+    const items = this.props.data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
+
     return (
-      <Container>
-        <Content>
-          <List dataArray={items}
-            renderRow={(item, sectionID, rowID) =>
+
+          <FlatList 
+            data={items}
+            onRefresh={this.props.data.refetch}
+            refreshing={this.props.data.networkStatus === 4 }
+            renderItem={(item) => 
               <ListItem style={styles.listItem}>
-                <Badge style={styles.badge}><Text>{rowID}</Text></Badge>
-                <Text style={styles.listItemText}>{item}</Text>
+                <Badge style={styles.badge}><Text>{item.index + 1}</Text></Badge>
+                <Text style={styles.listItemText}>{item.item.username}</Text>
+                <Badge><Text>Streak {item.item.score}</Text></Badge>
               </ListItem>
-            }>
-          </List>
-        </Content>
-      </Container>
+            }
+            >
+          </FlatList>
+ 
     );
   }
 }
@@ -49,5 +58,8 @@ const styles = StyleSheet.create({
     listItemText: {
       alignSelf: 'flex-start',
     }
-  });
-  
+});
+
+export default compose(
+  GetTopStreaks,
+)(LeaderboardList)

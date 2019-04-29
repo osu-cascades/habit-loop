@@ -30,6 +30,7 @@ class EditHabit extends Component {
                     created_at: this.props.habit.created_at,
                     habit_id: this.props.habit.habit_id,
                     user_id: this.props.habit.user_id,
+                    recurrence: values.recurrence,
                 }
             }
         }
@@ -51,7 +52,8 @@ class EditHabit extends Component {
             <Formik
                 initialValues={{
                     name: this.props.habit.name,
-                    type: this.props.habit.type
+                    type: this.props.habit.type,
+                    recurrence: this.props.habit.recurrence,
                 }}
                 onSubmit={this.submitUpdatedHabit}
                 render={props => <EditHabitForm {...props}/>}

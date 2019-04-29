@@ -1,14 +1,58 @@
 import React from 'react';
-import { Svg } from 'expo';
-import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
+import { Button, StyleSheet, View } from 'react-native';
+import { DangerZone } from 'expo';
+import LoadingAnimation from '../assets/loading.json';
+const { Lottie } = DangerZone;
 
-// Skeleton loading
-const Loading = () => (
-    <SvgAnimatedLinearGradient height={ 300 }>
-      <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
-      <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
-      <Svg.Rect x="80" y="70" rx="5" ry="5" width="400" height="50" />
-    </SvgAnimatedLinearGradient>
-)
+export default class Loading extends React.Component {
+  state = {
+    animation: undefined,
+  };
 
-export default Loading;
+  componentWillMount() {
+    this._playAnimation();
+  }
+
+  render() {
+    return (
+      <>
+        {this.state.animation &&
+          <Lottie
+            ref={animation => {
+              this.animation = animation;
+            }}
+            style={{
+              width: 400,
+              height: 400,
+            }}
+            source={this.state.animation}
+          />}
+      </>
+    );
+  }
+
+  _playAnimation = () => {
+    if (!this.state.animation) {
+      this._loadAnimationAsync();
+    } else {
+      this.animation.reset();
+      this.animation.play();
+    }
+  };
+
+  _loadAnimationAsync = async () => {
+    this.setState({ animation: LoadingAnimation }, this._playAnimation);
+  };
+}
+
+const styles = StyleSheet.create({
+  animationContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  buttonContainer: {
+    paddingTop: 20,
+  },
+});

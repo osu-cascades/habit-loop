@@ -9,6 +9,8 @@ const GET_HABITS = gql`
       type
       created_at
       user_id
+      completed_today
+      recurrence
     }
   }
 `;

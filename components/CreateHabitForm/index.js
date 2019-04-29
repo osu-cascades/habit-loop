@@ -4,12 +4,19 @@ import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 import { CreateHabit } from '../../data';
 import HabitForm from './HabitForm';
 
 export class CreateHabitForm extends Component {
+    constructor() {
+        super();
+        this.state = {
+            pressed: false,
+        }
+    }
+
     submitNewHabit = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const newHabit = {
@@ -17,25 +24,31 @@ export class CreateHabitForm extends Component {
                 input: {
                     name: values.name,
                     type: values.type,
+                    recurrence: values.recurrence,
                 }
             }
         }
-        
-        // Wait for server to return result before refetching and going back
-        try {
-            await this.props.mutate(newHabit);
 
-            // refetch then go back if the mutation was successful
-            // for future reference we don't even need to refetch
-            // it could just update in the app itself without making any requests
-            // since we know it is successful at this point.
-            refetch();
-            this.props.navigation.goBack();
-        } catch (err) {
-            // we can handle the state of an error here if submit fails
-            console.log(err);
+        // Prevent duplicate habits
+        if (!this.state.pressed){
+            this.setState({ pressed: true })
+            // Wait for server to return result before refetching and going back
+            try {
+                await this.props.mutate(newHabit);
+
+                // refetch then go back if the mutation was successful
+                // for future reference we don't even need to refetch
+                // it could just update in the app itself without making any requests
+                // since we know it is successful at this point.
+                refetch();
+                this.props.navigation.goBack();
+            } catch (err) {
+                // we can handle the state of an error here if submit fails
+                console.log(err);
+            } finally {
+                this.setState({ pressed: false })
+            }
         }
-        
     }
 
     render() {
@@ -45,15 +58,19 @@ export class CreateHabitForm extends Component {
                 initialValues={{
                     name: '',
                     type: '',
+                    recurrence: ''
                 }}
                 onSubmit={this.submitNewHabit}
-                render={props => <HabitForm {...props}/>}
+                render={props => <HabitForm {...props} pressed={this.state.pressed}/>}
                 validationSchema={
                     yup.object().shape({
                         name: yup
                             .string()
                             .required(),
                         type: yup
+                            .string()
+                            .required(),
+                        recurrence: yup
                             .string()
                             .required(),
                     })
@@ -67,10 +84,9 @@ const styles = StyleSheet.create({
     addHabitForm: {
         backgroundColor: '#ffffff'
     }
-})
+});
 
 export default compose(
     withNavigation,
     CreateHabit,
-)(CreateHabitForm)
-
+)(CreateHabitForm);
