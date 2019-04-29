@@ -1,6 +1,6 @@
 # CBT Habit Loop
 
-This app allows employees to create, and track habits and gamify their progress.
+App that allows employees of CBT Nuggets to create and track habits and gamify their progress against other employees.
 
 ## Getting Started
 
@@ -8,10 +8,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You'll need to have Node.js (version 6 or newer) installed on your computer:
+You'll need to have **Node.js** (version 6 or newer) installed on your computer:
 https://nodejs.org/en/
 
-Expo CLI tools
+**Expo** for [IOS or Android](https://expo.io/)
+
+**Expo CLI tools**
 You can install Expo CLI by running:
 
 ```
@@ -32,6 +34,7 @@ expo start --tunnel
 
 The program will load up and you will be presented with a QR code.
 Navigate to the url through the provided code to view your app.
+*You must have the Expo app installed on your phone to run the application*
 
 ## Built With
 
