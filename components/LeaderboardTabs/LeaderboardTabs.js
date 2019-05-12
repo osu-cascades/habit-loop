@@ -10,8 +10,8 @@ export default class LeaderboardTabs extends Component {
           <Tab heading="Top 25">
             <LeaderboardList type="top25"/>
           </Tab>
-          <Tab heading="Achievements">
-            <LeaderboardList type="achievements" />
+          <Tab heading="Groups">
+            <LeaderboardList type="groups" />
           </Tab>
           <Tab heading="Most Consistent">
             <LeaderboardList type="consistent" />

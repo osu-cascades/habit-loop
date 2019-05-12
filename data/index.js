@@ -9,17 +9,19 @@ import RegisterPushNotifications from './RegisterPushNotifications';
 import UpdateHabit from './UpdateHabit';
 import CompleteHabit from './CompleteHabit';
 import GetTopStreaks from './GetTopStreaks';
+import GetGroupLeaderboard from './GetGroupLeaderboard';
 
 export {
     Login,
     Signup,
     GetHabits,
-    GetTopStreaks,
     CreateHabit,
     DeleteHabit,
     UpdateHabit,
     GetAllHabits,
     CompleteHabit,
     UpdatePriority,
+    GetTopStreaks,
+    GetGroupLeaderboard,
     RegisterPushNotifications,
 }
