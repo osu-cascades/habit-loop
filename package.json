@@ -3,11 +3,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "mocha"
   },
   "jest": {
     "preset": "jest-expo"
@@ -30,6 +26,8 @@
     "yup": "^0.26.6"
   },
   "devDependencies": {
-    "jest-expo": "30.0.0"
+    "chai": "^4.2.0",
+    "jest-expo": "30.0.0",
+    "mocha": "^6.1.4"
   }
 }
