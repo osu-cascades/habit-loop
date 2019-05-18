@@ -10,37 +10,38 @@ import {
  } from '../../data';
 import { 
   Loading,
- } from '../';
+} from '../';
 
 class LeaderboardList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: []
+      tab: props.type,
     };
   }
 
   render() {
-    if (this.props.data.loading){
+    if (this.props.loadingOne || this.props.loadingTwo) {
       return <Loading/>
-    } else if (this.props.data.error) {
+    } else if (this.props.tsError || this.props.glError) {
       return <Text>Error Loading Data!</Text>
     }
-
-    let items;
-
-    if (this.props.type === 'top25') {
-        items = this.props.data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
-    } else if (this.props.type === 'group') {
-        items = this.props.data.getGroupLeaderboard.map((item, key) => Object.assign(item, { key: key.toString() }));
+    console.log(this.props)
+    let topStreaks = this.props.topStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
+    let groupStreaks = this.props.groupLeaderboard;
+    let data = [];
+    if (this.state.tab === 'top25') {
+      data = topStreaks;
+    } else if (this.state.tab == 'group') {
+      data = groupStreaks;
     }
-
+    console.log(groupStreaks)
     return (
       <FlatList 
-        data={items}
-        onRefresh={this.props.data.refetch}
-        refreshing={this.props.data.networkStatus === 4 }
+        data={data}
+        // onRefresh={this.props.data.refetch}
+        // refreshing={this.props.data.networkStatus === 4 }
         renderItem={(item) => 
           <ListItem style={styles.listItem}>
             <Badge style={styles.badge}><Text>{item.index + 1}</Text></Badge>
@@ -77,5 +78,5 @@ const styles = StyleSheet.create({
 
 export default compose(
   GetTopStreaks,
-  GetGroupLeaderboard,
+  GetGroupLeaderboard
 )(LeaderboardList)

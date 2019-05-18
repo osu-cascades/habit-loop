@@ -9,9 +9,17 @@ import LeaderboardScreen from '../screens/LeaderboardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CreateHabitScreen from '../screens/CreateHabitScreen';
 import UserHabitScreen from '../screens/UserHabitScreen';
+import CreateGroupScreen from '../screens/CreateGroupScreen';
+import JoinGroupScreen from '../screens/JoinGroupScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  CreateGroup: {
+    screen: CreateGroupScreen,
+  },
+  JoinGroup: {
+    screen: JoinGroupScreen,
+  }
 });
 
 HomeStack.navigationOptions = {
@@ -44,8 +52,8 @@ HabitStack.navigationOptions = {
   tabBarLabel: 'Habits',
   tabBarIcon: ({ focused }) => (
   <TabBarIcon
-  focused={focused}
-  name={Platform.OS === 'ios' ? `ios-list-box` : 'md-list-box'}
+    focused={focused}
+    name={Platform.OS === 'ios' ? `ios-list-box` : 'md-list-box'}
   />
   ),
 };
@@ -72,8 +80,8 @@ SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
   <TabBarIcon
-  focused={focused}
-  name={Platform.OS === 'ios' ? `ios-options` : 'md-options'}
+    focused={focused}
+    name={Platform.OS === 'ios' ? `ios-options` : 'md-options'}
   />
   ),
 };
