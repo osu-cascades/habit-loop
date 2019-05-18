@@ -22,7 +22,7 @@ export class CreateHabitForm extends Component {
         const newHabit = {
             variables: {
                 input: {
-                    name: values.name,
+                    habit_name: values.name,
                     type: values.type,
                     recurrence: values.recurrence,
                 }

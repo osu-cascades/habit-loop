@@ -25,10 +25,10 @@ class EditHabit extends Component {
         const updatedHabit = {
             variables: {
                 input: {
-                    name: values.name,
+                    habit_name: values.name,
                     type: values.type,
                     created_at: this.props.habit.created_at,
-                    habit_id: this.props.habit.habit_id,
+                    item_id: this.props.habit.habit_id,
                     user_id: this.props.habit.user_id,
                     recurrence: values.recurrence,
                 }

@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 const GET_HABITS = gql`
   query getHabits { 
     getHabits {
-      habit_id
-      name
+      item_id
+      habit_name
       type
       created_at
       user_id

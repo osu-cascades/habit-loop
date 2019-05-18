@@ -20,27 +20,25 @@ class LeaderboardList extends Component {
       data: []
     };
   }
-  componentDidMount() {
-    if (this.props.type === 'top25') {
-      this.setState({
-        data: this.props.data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() })),
-      })
-    } else if (this.props.type === 'group') {
-      this.setState({
-        data: this.props.data.getGroupLeaderboard.map((item, key) => Object.assign(item, { key: key.toString() })),
-      })
-    }
-  }
+
   render() {
-     if (this.props.data.loading){
+    if (this.props.data.loading){
       return <Loading/>
     } else if (this.props.data.error) {
       return <Text>Error Loading Data!</Text>
     }
 
+    let items;
+
+    if (this.props.type === 'top25') {
+        items = this.props.data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
+    } else if (this.props.type === 'group') {
+        items = this.props.data.getGroupLeaderboard.map((item, key) => Object.assign(item, { key: key.toString() }));
+    }
+
     return (
       <FlatList 
-        data={this.state.data}
+        data={items}
         onRefresh={this.props.data.refetch}
         refreshing={this.props.data.networkStatus === 4 }
         renderItem={(item) => 

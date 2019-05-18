@@ -10,11 +10,13 @@ import UpdateHabit from './UpdateHabit';
 import CompleteHabit from './CompleteHabit';
 import GetTopStreaks from './GetTopStreaks';
 import GetGroupLeaderboard from './GetGroupLeaderboard';
+import GetUserStreak from './GetUserStreak';
 
 export {
     Login,
     Signup,
     GetHabits,
+    GetUserStreak,
     CreateHabit,
     DeleteHabit,
     UpdateHabit,
