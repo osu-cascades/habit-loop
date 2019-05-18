@@ -6,10 +6,10 @@ import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup';
 
-import { JoinGroup as gqlRequest } from '../../../data';
+import { JoinGroup } from '../../../data';
 import JoinGroupForm from './JoinGroupForm';
 
-export class JoinGroup extends Component {
+export class JoinGroupContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -19,13 +19,9 @@ export class JoinGroup extends Component {
 
     submitJoinGroup = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
-        const newHabit = {
+        const joinGroup = {
             variables: {
-                input: {
-                    habit_name: values.name,
-                    type: values.type,
-                    recurrence: values.recurrence,
-                }
+                item_id: values.groups
             }
         }
 
@@ -34,12 +30,8 @@ export class JoinGroup extends Component {
             this.setState({ pressed: true })
             // Wait for server to return result before refetching and going back
             try {
-                await this.props.mutate(newHabit);
+                await this.props.mutate(joinGroup);
 
-                // refetch then go back if the mutation was successful
-                // for future reference we don't even need to refetch
-                // it could just update in the app itself without making any requests
-                // since we know it is successful at this point.
                 refetch();
                 this.props.navigation.goBack();
             } catch (err) {
@@ -56,23 +48,15 @@ export class JoinGroup extends Component {
             <Formik
                 style={styles.addJoinGroupForm}
                 initialValues={{
-                    name: '',
-                    type: '',
-                    recurrence: ''
+                    groups: '',
                 }}
                 onSubmit={this.submitJoinGroup}
                 render={props => <JoinGroupForm {...props} pressed={this.state.pressed}/>}
                 validationSchema={
                     yup.object().shape({
-                        name: yup
+                        groups: yup
                             .string()
-                            .required(),
-                        type: yup
-                            .string()
-                            .required(),
-                        recurrence: yup
-                            .string()
-                            .required(),
+                            .required()
                     })
                 }
             />
@@ -88,5 +72,5 @@ const styles = StyleSheet.create({
 
 export default compose(
     withNavigation,
-    gqlRequest,
-)(JoinGroup);
+    JoinGroup,
+)(JoinGroupContainer);

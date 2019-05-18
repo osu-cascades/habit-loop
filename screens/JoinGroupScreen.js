@@ -1,5 +1,5 @@
 import React from 'react';
-import { JoinGroupForm } from '../components/Groups';
+import { JoinGroup } from '../components/Groups';
 
 
 export default class JoinGroupScreen extends React.Component {
@@ -8,6 +8,6 @@ export default class JoinGroupScreen extends React.Component {
   };
 
   render() {
-    return <JoinGroupForm />
+    return <JoinGroup />
   }
 }

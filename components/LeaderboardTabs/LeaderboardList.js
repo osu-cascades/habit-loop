@@ -27,16 +27,16 @@ class LeaderboardList extends Component {
     } else if (this.props.tsError || this.props.glError) {
       return <Text>Error Loading Data!</Text>
     }
-    console.log(this.props)
+
     let topStreaks = this.props.topStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
-    let groupStreaks = this.props.groupLeaderboard;
+    let groupStreaks = this.props.groupLeaderboard.map((item, key) => Object.assign(item, { key: key.toString() }));;
     let data = [];
     if (this.state.tab === 'top25') {
       data = topStreaks;
-    } else if (this.state.tab == 'group') {
+    } else if (this.state.tab == 'groups') {
       data = groupStreaks;
     }
-    console.log(groupStreaks)
+    console.log(this.state.tab);
     return (
       <FlatList 
         data={data}
@@ -56,24 +56,24 @@ class LeaderboardList extends Component {
 }
 
 const styles = StyleSheet.create({
-    items: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      width: '100%'
-    },
-    listItem: {
-      width: '100%',
-      justifyContent: 'flex-start',
-      borderRightColor: '#222222',
-      borderRightWidth: 5
-    },
-    badge: {
-      backgroundColor: '#F78E2A',
-      marginRight: '5%'
-    },
-    listItemText: {
-      alignSelf: 'flex-start',
-    }
+  items: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    width: '100%'
+  },
+  listItem: {
+    width: '100%',
+    justifyContent: 'flex-start',
+    borderRightColor: '#222222',
+    borderRightWidth: 5
+  },
+  badge: {
+    backgroundColor: '#F78E2A',
+    marginRight: '5%'
+  },
+  listItemText: {
+    alignSelf: 'flex-start',
+  }
 });
 
 export default compose(

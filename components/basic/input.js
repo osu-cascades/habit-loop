@@ -40,9 +40,17 @@ const priority = [
     }
 ]
 
+const test_groups = [
+    {
+        label: 'FADS',
+        value: 'group-760c118b-0999-42b1-94c3-de1788f87873',
+    }
+]
+
 const pickerItems = {
     recurrences,
     priority,
+    groups: test_groups,
 }
 
 export const PickerHoc = props => <Picker 
