@@ -1,7 +1,6 @@
-import React, {Fragment} from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import React from 'react';
 import { Container } from "native-base";
-import LeaderboardTabs from '../components/LeaderboardTabs/LeaderboardTabs';
+import LeaderboardTabs from '../components/LeaderboardTabs';
 
 
 export default class LinksScreen extends React.Component {
@@ -17,11 +16,3 @@ export default class LinksScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});

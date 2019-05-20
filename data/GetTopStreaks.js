@@ -15,10 +15,5 @@ export default graphql(GET_TOP_STREAKS,
   {
     options: {
       notifyOnNetworkStatusChange: true,
-    },
-    props: ({ data }) => ({
-      loadingOne: data.loading,
-      topStreaks: data.getTopStreaks,
-      tsError: data.error,
-    })
+    }
 })

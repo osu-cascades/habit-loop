@@ -15,10 +15,5 @@ export default graphql(GET_GROUP_LEADERBOARD,
   {
     options: {
       notifyOnNetworkStatusChange: true,
-    },
-    props: ({ data }) => ({
-      loadingTwo: data.loading,
-      groupLeaderboard: data.getGroupLeaderboard,
-      glError: data.error,
-    })
+    }
 })

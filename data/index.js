@@ -13,6 +13,7 @@ import GetGroupLeaderboard from './GetGroupLeaderboard';
 import GetUserStreak from './GetUserStreak';
 import CreateGroup from './CreateGroup';
 import JoinGroup from './JoinGroup';
+import GetUserGroups from './GetUserGroups';
 
 export {
     Login,
@@ -28,6 +29,7 @@ export {
     CompleteHabit,
     UpdatePriority,
     GetTopStreaks,
+    GetUserGroups,
     GetGroupLeaderboard,
     RegisterPushNotifications,
 }
