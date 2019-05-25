@@ -47,7 +47,7 @@ export class CompleteHabitButton extends React.Component {
         try {
             await this.props.mutate(completeHabit);
         } catch (err) {
-            console.log(err);
+            console.error(err);
         } 
         
     }

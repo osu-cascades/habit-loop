@@ -42,7 +42,7 @@ class EditHabit extends Component {
             refetch();
             this.props.navigation.goBack();
         } catch (err) {
-            console.log(err);
+            console.error(err);
             this.setState({ networkError: true });
         }
     }

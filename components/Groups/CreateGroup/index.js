@@ -37,7 +37,7 @@ export class CreateGroupContainer extends Component {
                 this.props.navigation.goBack();
             } catch (err) {
                 // we can handle the state of an error here if submit fails
-                console.log(err);
+                console.error(err);
             } finally {
                 this.setState({ pressed: false })
             }

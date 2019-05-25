@@ -48,14 +48,18 @@ class GroupBoard extends Component {
             <Query 
                 query={GET_GROUP_LEADERBOARD}
                 variables={{ item_id: this.props.itemId }}
-                notifiyOnNetworkStatusChange
+                notifyOnNetworkStatusChange
             >
                 {({ loading, error, data, refetch, networkStatus }) => {
                     if (loading) return <Loading />;
-                    if (error) return `Error loading data! ${error}`;
+                    if (error) return <Text>`Error loading data! ${error.message}`</Text>;
 
-                    const items = data.getGroupLeaderboard.map((item, key) => Object.assign(item, { key: key.toString() }));
-                    return (
+                    const items = data.getGroupLeaderboard.map((item, key) => 
+                      Object.assign(item, {
+                        key: key.toString() || '',
+                      }));
+
+                      return (
                         <FlatList 
                             data={items}
                             onRefresh={refetch}

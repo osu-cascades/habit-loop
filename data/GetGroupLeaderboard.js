@@ -6,7 +6,7 @@ const GET_GROUP_LEADERBOARD = gql`
     getGroupLeaderboard {
       username
       user_id
-      score
+      streak
     }
   }
 `;

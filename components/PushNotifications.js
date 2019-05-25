@@ -55,7 +55,7 @@ class PushNotification extends React.Component {
             await this.props.mutate(token);
             console.log(`Successfully submitted new token ${token}`);
           } catch (err) {
-            console.log(`Error submitting new token: ${err}`);
+            console.error(`Error submitting new token: ${err}`);
           }
         }
         this._notificationSubscription = Notifications.addListener(this._handleNotification);

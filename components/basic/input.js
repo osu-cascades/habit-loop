@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import Picker from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
+import _ from 'lodash';
 
 export const Input = styled.TextInput`
     height: 40;
@@ -40,17 +41,9 @@ const priority = [
     }
 ]
 
-const test_groups = [
-    {
-        label: 'FADS',
-        value: 'group-760c118b-0999-42b1-94c3-de1788f87873',
-    }
-]
-
 const pickerItems = {
     recurrences,
     priority,
-    groups: test_groups,
 }
 
 export const PickerHoc = props => <Picker 

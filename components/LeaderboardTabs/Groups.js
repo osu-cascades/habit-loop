@@ -17,10 +17,11 @@ class Groups extends React.Component {
         if (this.props.data.loading) {
             return <Loading/>
           } else if (this.props.data.error) {
-            return <Text>Error Loading Data!</Text>
+            return <Text>`Error Loading Data! ${this.props.data.error.message}`</Text>
           }
       
         const items = this.props.data.getUserGroups.map((item) => Object.assign(item, { key: item.item_id.toString() }));
+        
         return (
             <FlatList 
                 data={items}

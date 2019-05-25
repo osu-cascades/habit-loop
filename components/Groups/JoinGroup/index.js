@@ -21,7 +21,8 @@ export class JoinGroupContainer extends Component {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
         const joinGroup = {
             variables: {
-                item_id: values.groups
+                item_id: values.group_id,
+                group_name: values.group_name,
             }
         }
 
@@ -48,15 +49,19 @@ export class JoinGroupContainer extends Component {
             <Formik
                 style={styles.addJoinGroupForm}
                 initialValues={{
-                    groups: '',
+                    group_id: '',
+                    group_name: '',
                 }}
                 onSubmit={this.submitJoinGroup}
                 render={props => <JoinGroupForm {...props} pressed={this.state.pressed}/>}
                 validationSchema={
                     yup.object().shape({
-                        groups: yup
+                        group_id: yup
                             .string()
-                            .required()
+                            .required(),
+                        group_name: yup
+                            .string()
+                            .required(),
                     })
                 }
             />
