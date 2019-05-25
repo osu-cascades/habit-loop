@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import Picker from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
+import _ from 'lodash';
 
 export const Input = styled.TextInput`
     height: 40;

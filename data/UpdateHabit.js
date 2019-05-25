@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 const UPDATE_HABIT = gql`
     mutation updateHabit($input: UpdateHabitInput!){
         updateHabit(input: $input){
-            name
+            habit_name
         }
     }
 `;

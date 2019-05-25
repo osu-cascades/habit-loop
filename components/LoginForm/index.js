@@ -37,7 +37,7 @@ export class LoginForm extends Component {
       await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main')
     } catch (err) {
-      console.log('Error logging in:', JSON.stringify(err))
+      console.error('Error logging in:', JSON.stringify(err))
     }
   }
 

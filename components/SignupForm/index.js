@@ -38,7 +38,7 @@ class SignupForm extends Component {
       this.props.navigation.navigate('Main')
 
     } catch (err) {
-      console.log('Error signing up:', JSON.stringify(err));
+      console.error('Error signing up:', JSON.stringify(err));
       this.setState({ error: true })
     }
   }

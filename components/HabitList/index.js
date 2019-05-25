@@ -20,10 +20,10 @@ class HabitListContainer extends React.Component {
     }
 
     const habits = this.props.data.getHabits.map(item => ({
-        name: item.name,
+        name: item.habit_name,
         created_at: item.created_at,
-        habit_id: item.habit_id,
-        key: item.habit_id,
+        habit_id: item.item_id,
+        key: item.item_id,
         type: item.type,
         completed_today: item.completed_today || false,
         recurrence: item.recurrence,

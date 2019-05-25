@@ -46,7 +46,7 @@ class DeleteButton extends React.Component {
             this.props.handleDeletion(habit_id);
             alert(`Successfully deleted the habit: ${this.props.habit.name}`)
         } catch (err) {
-            console.log(err);
+            console.error(err);
             this.props.handleDeletionError();
         }
     }

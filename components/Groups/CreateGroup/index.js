@@ -6,10 +6,10 @@ import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup';
 
-import { CreateHabit } from '../../data';
-import HabitForm from './HabitForm';
+import { CreateGroup } from '../../../data';
+import CreateGroupForm from './CreateGroupForm';
 
-export class CreateHabitForm extends Component {
+export class CreateGroupContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -17,15 +17,11 @@ export class CreateHabitForm extends Component {
         }
     }
 
-    submitNewHabit = async values => {
+    submitNewGroup = async values => {
         const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
-        const newHabit = {
+        const newGroup = {
             variables: {
-                input: {
-                    habit_name: values.name,
-                    type: values.type,
-                    recurrence: values.recurrence,
-                }
+                group_name: values.group_name
             }
         }
 
@@ -34,17 +30,14 @@ export class CreateHabitForm extends Component {
             this.setState({ pressed: true })
             // Wait for server to return result before refetching and going back
             try {
-                await this.props.mutate(newHabit);
+                await this.props.mutate(newGroup);
 
-                // refetch then go back if the mutation was successful
-                // for future reference we don't even need to refetch
-                // it could just update in the app itself without making any requests
-                // since we know it is successful at this point.
+
                 refetch();
                 this.props.navigation.goBack();
             } catch (err) {
                 // we can handle the state of an error here if submit fails
-                (err);
+                console.error(err);
             } finally {
                 this.setState({ pressed: false })
             }
@@ -54,25 +47,17 @@ export class CreateHabitForm extends Component {
     render() {
         return (
             <Formik
-                style={styles.addHabitForm}
+                style={styles.newGroup}
                 initialValues={{
-                    name: '',
-                    type: '',
-                    recurrence: ''
+                    group_name: '',
                 }}
-                onSubmit={this.submitNewHabit}
-                render={props => <HabitForm {...props} pressed={this.state.pressed}/>}
+                onSubmit={this.submitNewGroup}
+                render={props => <CreateGroupForm {...props} pressed={this.state.pressed}/>}
                 validationSchema={
                     yup.object().shape({
-                        name: yup
+                        group_name: yup
                             .string()
-                            .required(),
-                        type: yup
-                            .string()
-                            .required(),
-                        recurrence: yup
-                            .string()
-                            .required(),
+                            .required()
                     })
                 }
             />
@@ -81,12 +66,12 @@ export class CreateHabitForm extends Component {
 }
 
 const styles = StyleSheet.create({
-    addHabitForm: {
+    newGroup: {
         backgroundColor: '#ffffff'
     }
 });
 
 export default compose(
     withNavigation,
-    CreateHabit,
-)(CreateHabitForm);
+    CreateGroup,
+)(CreateGroupContainer);

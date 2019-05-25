@@ -10,8 +10,13 @@ import { Constants } from 'expo';
 import { 
   PushNotifications,
   SignoutButton,
-  PriorityHabit
+  PriorityHabit,
+  Streak
 } from '../components';
+import {
+  CreateGroupButton,
+  JoinGroupButton,
+} from '../components/Groups';
 import {
   Logo
 } from '../components/basic';
@@ -26,6 +31,9 @@ export default class HomeScreen extends React.Component {
       <Container style={styles.container}>
         <Logo source={require('../assets/images/lt.png')}/>
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
+        <Streak />
+        <CreateGroupButton />
+        <JoinGroupButton />
         {/* <PriorityHabit /> */}
         {/* <PushNotifications /> */}
         <SignoutButton/>

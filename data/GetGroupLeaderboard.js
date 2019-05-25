@@ -1,17 +1,17 @@
 import { graphql } from 'react-apollo';
 import gql from "graphql-tag";
 
-const GET_TOP_STREAKS = gql`
-  query getTopStreaks { 
-    getTopStreaks {
+const GET_GROUP_LEADERBOARD = gql`
+  query getGroupLeaderboard { 
+    getGroupLeaderboard {
       username
       user_id
-      score
+      streak
     }
   }
 `;
 
-export default graphql(GET_TOP_STREAKS,
+export default graphql(GET_GROUP_LEADERBOARD,
   {
     options: {
       notifyOnNetworkStatusChange: true,

@@ -9,14 +9,6 @@ const {
 } = GestureHandler;
 
 class SwipeableRow extends React.Component {
-    constructor() {
-        super();
-
-        this.renderLeftActions = this.renderLeftActions.bind(this);
-        this.renderRightActions = this.renderRightActions.bind(this);
-
-    }
-
     handleSubmit = () => {
         this.props.handleCompletion(this.props.item.habit_id);
     }
