@@ -2,9 +2,9 @@ import { graphql } from 'react-apollo';
 import gql from "graphql-tag";
 
 const DELETE_HABIT = gql`
-    mutation deleteHabit($habit_id: String!, $created_at: String!){
-        deleteHabit(habit_id: $habit_id, created_at: $created_at){
-            habit_id
+    mutation deleteHabit($item_id: String!){
+        deleteHabit(item_id: $item_id,){
+            habit_name
         }
     }
 `;
