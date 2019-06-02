@@ -19,6 +19,7 @@ class SignupForm extends Component {
       error: false,
     }
   }
+  
   signupUser = async values => {
     const signupData = {
       variables: {
@@ -42,7 +43,7 @@ class SignupForm extends Component {
       this.setState({ error: true })
     }
   }
-  
+
   render() {
       return (
         <>
