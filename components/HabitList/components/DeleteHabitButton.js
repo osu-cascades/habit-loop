@@ -31,13 +31,10 @@ class DeleteButton extends React.Component {
     }
 
     async handlePress() {
-        const created_at = _.get(this.props.habit, 'created_at', '');
         const habit_id = _.get(this.props.habit, 'habit_id', '');
-
         const deleteHabit = {
             variables: {
-              created_at,
-              habit_id
+              item_id: habit_id
             }
           } 
 
