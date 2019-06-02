@@ -42,35 +42,36 @@ class SignupForm extends Component {
       this.setState({ error: true })
     }
   }
+  
   render() {
       return (
-      <>
-        <Formik
-            initialValues={{
-                username: '',
-                email: '',
-                password: '',
-            }}
-            onSubmit={this.signupUser}
-            render={props => <Form {...props}/>}
-            validationSchema={
-              yup.object().shape({
-                username: yup
-                    .string()
-                    .required(),
-                password: yup
-                    .string()
-                    .min(8, "Password must have 8 characters")
-                    .required(),
-                email: yup
-                    .string()
-                    .email()
-                    .required()
-            })}
-        />
-        <Text>{this.state.error && 'Could not log in.'}</Text>
-      </>
-    );
+        <>
+          <Formik
+              initialValues={{
+                  username: '',
+                  email: '',
+                  password: '',
+              }}
+              onSubmit={this.signupUser}
+              render={props => <Form {...props}/>}
+              validationSchema={
+                yup.object().shape({
+                  username: yup
+                      .string()
+                      .required(),
+                  password: yup
+                      .string()
+                      .min(8, "Password must have 8 characters")
+                      .required(),
+                  email: yup
+                      .string()
+                      .email()
+                      .required()
+              })}
+          />
+          <Text>{this.state.error && 'Could not sign up.'}</Text>
+        </>
+      );
   }
 }
 

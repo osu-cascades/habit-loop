@@ -21,6 +21,7 @@ const GET_GROUP_LEADERBOARD = gql`
     }
   }
 `;
+
 const styles = StyleSheet.create({
     items: {
       display: 'flex',
@@ -43,41 +44,41 @@ const styles = StyleSheet.create({
 });
 
 class GroupBoard extends Component {
-    render() {      
-        return (
-            <Query 
-                query={GET_GROUP_LEADERBOARD}
-                variables={{ item_id: this.props.itemId }}
-                notifyOnNetworkStatusChange
-            >
-                {({ loading, error, data, refetch, networkStatus }) => {
-                    if (loading) return <Loading />;
-                    if (error) return <Text>`Error loading data! ${error.message}`</Text>;
+  render() {      
+    return (
+        <Query 
+            query={GET_GROUP_LEADERBOARD}
+            variables={{ item_id: this.props.itemId }}
+            notifyOnNetworkStatusChange
+        >
+            {({ loading, error, data, refetch, networkStatus }) => {
+                if (loading) return <Loading />;
+                if (error) return <Text>`Error loading data! ${error.message}`</Text>;
 
-                    const items = data.getGroupLeaderboard.map((item, key) => 
-                      Object.assign(item, {
-                        key: key.toString() || '',
-                      }));
+                const items = data.getGroupLeaderboard.map((item, key) => 
+                  Object.assign(item, {
+                    key: key.toString() || '',
+                  }));
 
-                      return (
-                        <FlatList 
-                            data={items}
-                            onRefresh={refetch}
-                            refreshing={networkStatus === 4 }
-                            renderItem={(item) => 
-                                <ListItem style={styles.listItem}>
-                                    <Badge style={styles.badge}><Text>{item.index + 1}</Text></Badge>
-                                    <Text style={styles.listItemText}>{item.item.username}</Text>
-                                    <Badge><Text>Streak {item.item.score}</Text></Badge>
-                                </ListItem>
-                            }
-                        >
-                        </FlatList>
-                    )
-                }}
-            </Query>
-        );
-    }
+                  return (
+                    <FlatList 
+                        data={items}
+                        onRefresh={refetch}
+                        refreshing={networkStatus === 4 }
+                        renderItem={(item) => 
+                            <ListItem style={styles.listItem}>
+                                <Badge style={styles.badge}><Text>{item.index + 1}</Text></Badge>
+                                <Text style={styles.listItemText}>{item.item.username}</Text>
+                                <Badge><Text>Streak {item.item.score}</Text></Badge>
+                            </ListItem>
+                        }
+                    >
+                    </FlatList>
+                )
+            }}
+        </Query>
+    );
+  }
 }
 
 export default GroupBoard;
