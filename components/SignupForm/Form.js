@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { Button, ButtonText, Input, Logo } from '../basic';
 import styled from 'styled-components/native';
 
@@ -15,8 +14,6 @@ const SignupText = styled.Text`
     text-align: center;
     font-family: Avenir Next;
 `;
-
-
 
 export default SignupComponent = props => (
     <SignupContainer behavior='padding'>
