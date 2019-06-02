@@ -4,13 +4,16 @@ import {
   AsyncStorage,
   Text
 } from 'react-native';
-import { compose } from 'react-apollo';
+import { withApollo, compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import { Button, ButtonText } from './basic';
 
 export class SignoutButton extends Component {
     _signOutAsync = async () => {
+        const { client } = this.props;
+
         await AsyncStorage.clear();
+        client.cache.reset();
         this.props.navigation.navigate('Auth');
     };
         
@@ -35,4 +38,5 @@ const styles = StyleSheet.create({
 
 export default compose(
   withNavigation,
+  withApollo,
 )(SignoutButton);

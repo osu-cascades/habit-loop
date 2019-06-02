@@ -3,22 +3,20 @@ import { Text } from "native-base";
 import _ from 'lodash';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
-
 import { GetHabits } from '../../data';
 import HabitList from './components/HabitList';
 import { 
   Loading,
   CreateHabitFAB,
- } from '../';
+} from '../';
+import {
+  renderWhileLoading,
+  renderForError,
+} from '../basic';
 
 class HabitListContainer extends React.Component {
   render() {
-    if (this.props.data.loading){
-      return <Loading/>
-    } else if (this.props.data.error) {
-      return <Text>Error Loading Data!</Text>
-    }
-
+    console.log(this.props);
     const habits = this.props.data.getHabits.map(item => ({
         name: item.habit_name,
         created_at: item.created_at,
@@ -47,4 +45,6 @@ class HabitListContainer extends React.Component {
 export default compose(
   withNavigation,
   GetHabits,
+  renderWhileLoading(Loading),
+  renderForError(),
 )(HabitListContainer);
