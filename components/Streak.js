@@ -1,26 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text } from "react-native";
 import _ from 'lodash';
 import { compose } from 'react-apollo';
 
 import { GetUserStreak } from '../data';
-import Loading from './Loading';
+import {
+  renderWhileLoading,
+  renderForError,
+} from './basic';
 
-class Streak extends React.Component {
-  render() {
-    if (this.props.data.loading){
-      return <Loading/>
-    } else if (this.props.data.error) {
-      return <Text>Error Loading Data!</Text>
-    }
-    const streak = this.props.data.getUserStreak;
-
-    return (
-        <Text>Your streak is {streak.score}</Text>
-    );
-  }
-}
+const Streak = props => (
+  <Text>
+    {`Your current streak is ${props.data.getUserStreak.score || 0}`}
+  </Text>
+);
 
 export default compose(
   GetUserStreak,
+  renderWhileLoading(),
+  renderForError(),
 )(Streak);

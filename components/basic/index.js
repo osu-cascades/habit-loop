@@ -3,6 +3,10 @@ import { Input, PickerHoc as Picker } from './input';
 import { Container } from './container';
 import { Logo } from './logo';
 import { Separator } from './separator';
+import { 
+    renderForError,
+    renderWhileLoading
+} from './hocs'
 
 export {
     Logo,
@@ -11,5 +15,7 @@ export {
     Picker,
     Container,
     Separator,
-    ButtonText
+    ButtonText,
+    renderForError,
+    renderWhileLoading,
 }

@@ -5,13 +5,6 @@ import {
     Badge,
 } from 'native-base';
 import { FlatList, StyleSheet } from 'react-native';
-import { compose } from 'react-apollo';
-import { 
-  GetGroupLeaderboard,
- } from '../../data';
-import { 
-  Loading,
-} from '../';
 
 export const TopStreakBoard = props => (
     <FlatList 
