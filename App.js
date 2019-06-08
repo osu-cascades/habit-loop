@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import AppNavigator from './navigation/AppNavigator';
-import { Font, AppLoading, Asset } from "expo";
+import { AppLoading } from "expo";
+import { Asset } from 'expo-asset'
+import * as Font from 'expo-font'
 import { AsyncStorage } from "react-native";
+import { Loading } from './components';
+
+import {
+    createAppContainer
+} from 'react-navigation';
+
+const AppNavContainer = createAppContainer(AppNavigator);
 
 // http://10.0.2.2:3000/graphql -> for android emulator (or something similar)
 // http://localhost:3000/graphql -> what works most of the time with the local server
@@ -58,9 +68,13 @@ class App extends React.Component {
         } 
 
         return (
-            <ApolloProvider client={client}>
-                <AppNavigator />
-            </ApolloProvider>
+            <Suspense fallback={<Loading />}  >
+                <ApolloProvider client={client}>
+                    <ApolloHooksProvider client={client}>
+                        <AppNavContainer />
+                    </ApolloHooksProvider>
+                </ApolloProvider>
+            </Suspense >
         );
     }
 }

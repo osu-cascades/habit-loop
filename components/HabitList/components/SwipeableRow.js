@@ -1,5 +1,5 @@
 import React from 'react';
-import { GestureHandler } from 'expo';
+import * as GestureHandler from 'react-native-gesture-handler';
 import DeleteHabitButton from './DeleteHabitButton';
 import CompleteHabitButton from './CompleteHabit';
 

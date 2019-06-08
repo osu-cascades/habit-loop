@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "CBT Habit Loop",
-    "description": "Wow!!!",
+    "description": "Wow!!!!",
     "slug": "cbt-habit-loop",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
