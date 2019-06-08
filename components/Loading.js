@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
-import { DangerZone } from 'expo';
+import { StyleSheet} from 'react-native';
+import Lottie from 'lottie-react-native'
 import LoadingAnimation from '../assets/loading.json';
-const { Lottie } = DangerZone;
 
 export default class Loading extends React.Component {
   state = {

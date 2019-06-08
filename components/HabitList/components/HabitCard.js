@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import { GestureHandler } from 'expo';
+import * as GestureHandler from 'react-native-gesture-handler';
 
 const { 
   RectButton,

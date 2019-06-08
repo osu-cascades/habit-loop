@@ -6,7 +6,7 @@ import {
 import {
   Container
 } from 'native-base';
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 import { 
   PushNotifications,
   SignoutButton,
