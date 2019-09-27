@@ -12,6 +12,6 @@ export default createSwitchNavigator(
     Main: MainTabNavigator,
   },
   {
-    InitialRouteName: 'AuthLoading'
+    initialRouteName: 'AuthLoading',
   }
 );

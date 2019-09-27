@@ -8,18 +8,11 @@ const Container = styled.KeyboardAvoidingView`
     background-color: #ffffff;
 `;
 
-export default JoinGroupForm = props => (
+export const JoinGroupForm = props => (
     <Container>
-      <Picker 
-        {...props}
-      />
-      <Button
-          onPress={props.handleSubmit}
-          disabled={!props.isValid}
-      >
-        <ButtonText>
-          JOIN 
-        </ButtonText>
-      </Button>
+        <Picker {...props} />
+        <Button onPress={props.handleSubmit} disabled={!props.isValid}>
+            <ButtonText>JOIN</ButtonText>
+        </Button>
     </Container>
 );

@@ -1,8 +1,8 @@
 import { graphql } from 'react-apollo';
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 const GET_USER_GROUPS = gql`
-  query getUserGroups { 
+  query getUserGroups {
     getUserGroups {
       item_id
       group_name
@@ -10,9 +10,8 @@ const GET_USER_GROUPS = gql`
   }
 `;
 
-export default graphql(GET_USER_GROUPS,
-  {
-    options: {
-      notifyOnNetworkStatusChange: true,
-    }
-})
+export default graphql(GET_USER_GROUPS, {
+  options: {
+    notifyOnNetworkStatusChange: true,
+  },
+});

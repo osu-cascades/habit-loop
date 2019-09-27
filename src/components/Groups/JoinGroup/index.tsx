@@ -6,29 +6,29 @@ import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup';
 
-import { JoinGroup } from '../../../data';
-import JoinGroupForm from './JoinGroupForm';
+import { JoinGroup } from '@src/data';
+import { JoinGroupForm } from './JoinGroupForm';
 
 export class JoinGroupContainer extends Component {
     constructor() {
         super();
         this.state = {
             pressed: false,
-        }
+        };
     }
 
     submitJoinGroup = async values => {
-        const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
+        const refetch = this.props.navigation.getParam('refetch', () => console.log("Couldn't find refetch function"));
         const joinGroup = {
             variables: {
                 item_id: values.group_id,
                 group_name: values.group_name,
-            }
-        }
+            },
+        };
 
         // Prevent duplicate habits
-        if (!this.state.pressed){
-            this.setState({ pressed: true })
+        if (!this.state.pressed) {
+            this.setState({ pressed: true });
             // Wait for server to return result before refetching and going back
             try {
                 await this.props.mutate(joinGroup);
@@ -39,10 +39,10 @@ export class JoinGroupContainer extends Component {
                 // we can handle the state of an error here if submit fails
                 console.log(err);
             } finally {
-                this.setState({ pressed: false })
+                this.setState({ pressed: false });
             }
         }
-    }
+    };
 
     render() {
         return (
@@ -53,17 +53,11 @@ export class JoinGroupContainer extends Component {
                     group_name: '',
                 }}
                 onSubmit={this.submitJoinGroup}
-                render={props => <JoinGroupForm {...props} pressed={this.state.pressed}/>}
-                validationSchema={
-                    yup.object().shape({
-                        group_id: yup
-                            .string()
-                            .required(),
-                        group_name: yup
-                            .string()
-                            .required(),
-                    })
-                }
+                render={props => <JoinGroupForm {...props} pressed={this.state.pressed} />}
+                validationSchema={yup.object().shape({
+                    group_id: yup.string().required(),
+                    group_name: yup.string().required(),
+                })}
             />
         );
     }
@@ -71,11 +65,11 @@ export class JoinGroupContainer extends Component {
 
 const styles = StyleSheet.create({
     addJoinGroupForm: {
-        backgroundColor: '#ffffff'
-    }
+        backgroundColor: '#ffffff',
+    },
 });
 
 export default compose(
     withNavigation,
-    JoinGroup,
+    JoinGroup
 )(JoinGroupContainer);

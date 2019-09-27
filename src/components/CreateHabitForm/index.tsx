@@ -10,28 +10,25 @@ import { CreateHabit } from '../../data';
 import HabitForm from './HabitForm';
 
 export class CreateHabitForm extends Component {
-    constructor() {
-        super();
-        this.state = {
-            pressed: false,
-        }
-    }
+    state = {
+        pressed: false,
+    };
 
     submitNewHabit = async values => {
-        const refetch = this.props.navigation.getParam('refetch', () => console.log('Couldn\'t find refetch function'));
+        const refetch = this.props.navigation.getParam('refetch', () => console.log("Couldn't find refetch function"));
         const newHabit = {
             variables: {
                 input: {
                     habit_name: values.name,
                     type: values.type,
                     recurrence: values.recurrence,
-                }
-            }
-        }
+                },
+            },
+        };
 
         // Prevent duplicate habits
-        if (!this.state.pressed){
-            this.setState({ pressed: true })
+        if (!this.state.pressed) {
+            this.setState({ pressed: true });
             // Wait for server to return result before refetching and going back
             try {
                 await this.props.mutate(newHabit);
@@ -46,10 +43,10 @@ export class CreateHabitForm extends Component {
                 // we can handle the state of an error here if submit fails
                 console.log(err);
             } finally {
-                this.setState({ pressed: false })
+                this.setState({ pressed: false });
             }
         }
-    }
+    };
 
     render() {
         return (
@@ -58,23 +55,15 @@ export class CreateHabitForm extends Component {
                 initialValues={{
                     name: '',
                     type: '',
-                    recurrence: ''
+                    recurrence: '',
                 }}
                 onSubmit={this.submitNewHabit}
-                render={props => <HabitForm {...props} pressed={this.state.pressed}/>}
-                validationSchema={
-                    yup.object().shape({
-                        name: yup
-                            .string()
-                            .required(),
-                        type: yup
-                            .string()
-                            .required(),
-                        recurrence: yup
-                            .string()
-                            .required(),
-                    })
-                }
+                render={props => <HabitForm {...props} pressed={this.state.pressed} />}
+                validationSchema={yup.object().shape({
+                    name: yup.string().required(),
+                    type: yup.string().required(),
+                    recurrence: yup.string().required(),
+                })}
             />
         );
     }
@@ -82,11 +71,11 @@ export class CreateHabitForm extends Component {
 
 const styles = StyleSheet.create({
     addHabitForm: {
-        backgroundColor: '#ffffff'
-    }
+        backgroundColor: '#ffffff',
+    },
 });
 
 export default compose(
     withNavigation,
-    CreateHabit,
+    CreateHabit
 )(CreateHabitForm);

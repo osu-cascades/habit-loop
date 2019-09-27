@@ -19,5 +19,7 @@ export {
     SignoutButton,
     PriorityHabit,
     CreateHabitFAB,
-    PushNotifications
+    PushNotifications,
 };
+
+export * from './basic';
