@@ -15,7 +15,6 @@
   "dependencies": {
     "@babel/runtime": "^7.6.2",
     "@expo/vector-icons": "^9.0.0",
-    "@react-native-community/async-storage": "^1.6.2",
     "apollo-boost": "^0.1.28",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
@@ -43,6 +42,7 @@
   "devDependencies": {
     "@types/react": "^16.9.3",
     "@types/react-native": "^0.60.16",
+    "@types/styled-components": "^4.1.19",
     "@types/yup": "^0.26.24",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
     "@typescript-eslint/parser": "^2.3.1",
