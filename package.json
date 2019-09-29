@@ -15,7 +15,6 @@
   "dependencies": {
     "@babel/runtime": "^7.6.2",
     "@expo/vector-icons": "^9.0.0",
-    "@react-native-community/async-storage": "^1.6.2",
     "apollo-boost": "^0.1.28",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
