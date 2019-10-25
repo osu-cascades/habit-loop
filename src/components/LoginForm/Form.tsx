@@ -5,11 +5,32 @@ import {
 } from 'react-native';
 import { SignupButton } from '../';
 import { Button, ButtonText, Input } from '../basic';
+import styled from 'styled-components/native';
+
+export const FormLabel = styled.Text`
+    font-family: Avenir Next;
+    color: #000;
+    opacity: 0.5;
+`;
+
+export const LoginButton = styled.TouchableOpacity`
+    background-color: #000;
+    padding-vertical: 10;
+    margin-top: 10;
+    border-radius: 5;
+`;
+
+export const LoginView = styled.View`
+    padding: 20px;
+    border-radius: 5;
+    background-color: #CCC
+`;
 
 export default LoginForm = props => (
-    <View>
+    <LoginView>
+        <FormLabel>Email</FormLabel>
         <Input 
-            placeholder="username or email" 
+            placeholder="email" 
             placeholderTextColor='#666'
             onChangeText={props.handleChange('email')}
             onBlur={() => props.setFieldTouched('email')}
@@ -21,6 +42,7 @@ export default LoginForm = props => (
             onSubmitEditing={() => this.passwordInput.focus()}
             error={props.touched.email && props.errors.email}
         />
+        <FormLabel>Password</FormLabel>
         <Input 
             placeholder="password" 
             placeholderTextColor='#666'
@@ -33,12 +55,12 @@ export default LoginForm = props => (
             ref={input => this.passwordInput = input}
             error={props.touched.password && props.errors.password}
         />
-        <Button 
+        <LoginButton
             onPress={props.handleSubmit}
             // disabled={!props.isValid}
         > 
             <ButtonText>LOGIN</ButtonText>
-        </Button>
+        </LoginButton>
         <SignupButton />
-    </View>
+    </LoginView>
 )
