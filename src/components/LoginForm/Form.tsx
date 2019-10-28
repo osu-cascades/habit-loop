@@ -16,6 +16,8 @@ export const FormLabel = styled.Text`
 export const LoginButton = styled.TouchableOpacity`
     background-color: #666;
     padding-vertical: 10;
+    width: 200;
+    margin: 0 auto;
     margin-top: 10;
     border-radius: 5;
 `;
