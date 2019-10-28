@@ -21,7 +21,7 @@ export class SignupButton extends Component {
     render() {
         return (
             <Button onPress={this.handlePress}>
-                <ButtonText>SIGNUP</ButtonText>
+                <ButtonText>SIGN UP</ButtonText>
             </Button>
         );
     }
