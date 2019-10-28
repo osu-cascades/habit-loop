@@ -23,7 +23,7 @@ export const LoginView = styled.View`
 
 export const LoginInput = styled.TextInput`
     height: 40;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #E9E9E9;
     margin-bottom: 10;
     padding-horizontal: 10;
     font-family: Avenir Next;
