@@ -37,7 +37,7 @@ export default LoginForm = props => (
             onPress={props.handleSubmit}
             // disabled={!props.isValid}
         > 
-            <ButtonText>LOGIN</ButtonText>
+            <ButtonText>LOG IN</ButtonText>
         </LoginButton>
         <SignupButton />
     </LoginView>
