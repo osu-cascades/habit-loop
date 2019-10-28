@@ -1,7 +1,8 @@
 import React from 'react';
 import { SignupButton } from '../';
 import { ButtonText } from '../basic';
-import { FormLabel, LoginButton, LoginInput, LoginView } from './login_style'
+import { LoginButton, LoginInput, LoginView } from './login_style';
+import { FormLabel } from '../basic/form_label';
 
 export default LoginForm = props => (
     <LoginView>

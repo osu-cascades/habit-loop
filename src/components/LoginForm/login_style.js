@@ -1,11 +1,5 @@
 import styled from 'styled-components/native'
 
-export const FormLabel = styled.Text`
-    font-family: Avenir Next;
-    color: #000;
-    opacity: 0.8;
-`;
-
 export const LoginButton = styled.TouchableOpacity`
     background-color: #666;
     padding-vertical: 10;
