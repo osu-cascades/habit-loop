@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
-import { Button, ButtonText } from './basic';
+import { ButtonText } from './basic';
+import styled from 'styled-components/native';
+
+export const Button = styled.TouchableOpacity`
+    background-color: #000;
+    padding-vertical: 10;
+    margin-top: 10;
+    border-radius: 5;
+`;
 
 export class SignupButton extends Component {     
     handlePress = () => {
