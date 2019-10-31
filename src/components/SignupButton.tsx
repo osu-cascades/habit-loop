@@ -5,7 +5,7 @@ import { ButtonText } from './basic';
 import styled from 'styled-components/native';
 
 export const Button = styled.TouchableOpacity`
-    background-color: #666;
+    background-color: #E6B43C;
     padding-vertical: 10;
     width: 200;
     margin: 0 auto;

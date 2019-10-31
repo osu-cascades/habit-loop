@@ -16,7 +16,7 @@ export const SignupText = styled.Text`
 export const SignupView = styled.View`
     padding: 20px;
     border-radius: 5;
-    background-color: #E6B43C;
+    background-color: #666;
 `;
 
 export const SignupInput = styled.TextInput`
