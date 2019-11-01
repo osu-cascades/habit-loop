@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text
+  Text,
+  Image,
+  ImageBackground
 } from 'react-native';
 import {
-  Container
+  Container, View
 } from 'native-base';
 import Constants from 'expo-constants';
-import { 
+import {
   PushNotifications,
   SignoutButton,
   PriorityHabit,
@@ -21,23 +23,45 @@ import {
   Logo
 } from '../components/basic';
 
+import Groups from '../components/LeaderboardTabs'
+import { relative } from 'path';
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'CBT Habit Loop',
+    title: 'Home',
   };
 
   render() {
     return (
       <Container style={styles.container}>
-        <Logo source={require('../assets/images/lt.png')}/>
+        {/* <Logo source={require('../assets/images/lt.png')} /> */}
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <Streak />
+        {/* <Streak /> */}
+
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <ImageBackground
+            source={require('../assets/images/cbtFlameIcon-sml.png')}
+            style={styles.flameIconImage}
+          >
+            <Text
+              style={{
+                fontSize: 25,
+                position: 'absolute',
+                bottom: 30,
+                left: 38
+              }}>
+              <Streak />
+            </Text>
+          </ImageBackground>
+        </View>
         <CreateGroupButton />
         <JoinGroupButton />
+        <Groups />
         {/* <PriorityHabit /> */}
         {/* <PushNotifications /> */}
-        <SignoutButton/>
-      </Container>
+
+      </Container >
+
     );
   }
 }
@@ -49,6 +73,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
+
   },
   intro: {
     textAlign: 'center',
@@ -80,5 +105,13 @@ const styles = StyleSheet.create({
     //   textAlign: 'left',
     //   fontSize: '20px',
     // }
-  }
+  },
+  flameIconImage: {
+    width: 100,
+    height: 143,
+    position: 'relative',
+    top: 0,
+    left: 0,
+
+  },
 });
