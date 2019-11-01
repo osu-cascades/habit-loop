@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import { ButtonText } from '../basic';
-import { Button } from './signup_style'
+import { Button } from './signup_styles'
 
 export class SignupButton extends Component {     
     handlePress = () => {

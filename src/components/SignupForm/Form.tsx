@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonText, Logo } from '../basic';
-import { Button, SignupContainer, SignupText, SignupView, SignupInput } from './signup_style';
+import { Button, SignupContainer, SignupText, SignupView, SignupInput } from './signup_styles';
 import { FormLabel } from '../basic/form_label';
 
 export default SignupComponent = props => (
