@@ -1,11 +1,17 @@
 import React from 'react';
-import { Button, ButtonText, Input, Picker } from '../basic';
+import { ButtonText, Input, Picker } from '../basic';
 import styled from 'styled-components/native';
-import { StyleSheet } from 'react-native';
 
 const Container = styled.KeyboardAvoidingView`
   padding: 20px;
   background-color: #ffffff;
+`;
+
+const AddButton = styled.TouchableOpacity`
+  padding-vertical: 10;
+  margin-top: 10;
+  border-radius: 5;
+  background-color: #F78E2A;
 `;
 
 export const HabitForm = props => {
@@ -40,15 +46,11 @@ export const HabitForm = props => {
         mode={'dropdown'}
         error={props.touched.recurrence && props.errors.recurrence}
       />
-      <Button style={styles.addBtn} onPress={props.handleSubmit} disabled={!props.isValid}>
+      <AddButton 
+        onPress={props.handleSubmit} 
+        disabled={!props.isValid}>
         <ButtonText>Create New Habit</ButtonText>
-      </Button>
+      </AddButton>
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  addBtn: {
-    backgroundColor: '#F78E2A',
-  },
-});
