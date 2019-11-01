@@ -5,7 +5,7 @@ import SignupForm from './SignupForm';
 import SignoutButton from './SignoutButton';
 import PriorityHabit from './PriorityHabit';
 import LoginForm from './LoginForm';
-import SignupButton from './SignupButton';
+import SignupButton from './SignupForm/SignupButton';
 import Settings from './Settings';
 import Streak from './Streak';
 

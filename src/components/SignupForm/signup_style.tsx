@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components/native';
 
 export const SignupContainer = styled.KeyboardAvoidingView`
@@ -28,4 +27,13 @@ export const SignupInput = styled.TextInput`
     font-family: Avenir Next;
     border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
     border-radius: 4px;
+`;
+
+export const Button = styled.TouchableOpacity`
+    background-color: #666;
+    padding-vertical: 10;
+    width: 200;
+    margin: 0 auto;
+    margin-top: 10;
+    border-radius: 5;
 `;
