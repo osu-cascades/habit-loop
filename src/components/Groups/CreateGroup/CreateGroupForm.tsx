@@ -1,11 +1,6 @@
 import React from 'react';
 import { Button, ButtonText, Input } from '@src/components';
-import styled from 'styled-components/native';
-
-const Container = styled.KeyboardAvoidingView`
-    padding: 20px;
-    background-color: #ffffff;
-`;
+import { Container } from './create_group_styles';
 
 export const CreateGroupForm = props => (
     <Container>
