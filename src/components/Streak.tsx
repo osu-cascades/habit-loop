@@ -26,7 +26,7 @@ const StreakHook = () => {
     return <Text>Error getting streak.</Text>;
   }
 
-  return <Text>{`${data.getUserStreak.score || 99}`}</Text>;
+  return <Text>{`${data.getUserStreak.score || 0}`}</Text>;
 };
 
 export default StreakHook;
