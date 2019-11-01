@@ -34,22 +34,16 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
-        {/* <Logo source={require('../assets/images/lt.png')} /> */}
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        {/* <Streak /> */}
-
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <ImageBackground
             source={require('../assets/images/cbtFlameIcon-sml.png')}
             style={styles.flameIconImage}
           >
             <Text
-              style={{
-                fontSize: 25,
-                position: 'absolute',
-                bottom: 30,
-                left: 38
-              }}>
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={styles.streakNum}>
               <Streak />
             </Text>
           </ImageBackground>
@@ -70,7 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
 
@@ -110,8 +104,15 @@ const styles = StyleSheet.create({
     width: 100,
     height: 143,
     position: 'relative',
+    textAlign: 'center',
     top: 0,
     left: 0,
-
   },
+
+  streakNum: {
+    fontSize: 25,
+    textAlignVertical: 'center',
+    alignSelf: 'center',
+    marginTop: 78,
+  }
 });
