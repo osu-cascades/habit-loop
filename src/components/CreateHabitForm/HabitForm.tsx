@@ -1,18 +1,6 @@
 import React from 'react';
 import { ButtonText, Input, Picker } from '../basic';
-import styled from 'styled-components/native';
-
-const Container = styled.KeyboardAvoidingView`
-  padding: 20px;
-  background-color: #ffffff;
-`;
-
-const AddButton = styled.TouchableOpacity`
-  padding-vertical: 10;
-  margin-top: 10;
-  border-radius: 5;
-  background-color: #F78E2A;
-`;
+import { Container, AddButton } from './create_habit_styles';
 
 export const HabitForm = props => {
   return (
