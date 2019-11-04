@@ -8,6 +8,7 @@ import LoginForm from './LoginForm';
 import SignupButton from './SignupButton';
 import Settings from './Settings';
 import Streak from './Streak';
+import StreakImage from './StreakImage';
 
 export {
     Streak,
@@ -20,6 +21,7 @@ export {
     PriorityHabit,
     CreateHabitFAB,
     PushNotifications,
+    StreakImage,
 };
 
 export * from './basic';

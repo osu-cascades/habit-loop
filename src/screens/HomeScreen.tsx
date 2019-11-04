@@ -13,7 +13,8 @@ import {
   PushNotifications,
   SignoutButton,
   PriorityHabit,
-  Streak
+  Streak,
+  StreakImage
 } from '../components';
 import {
   CreateGroupButton,
@@ -35,19 +36,7 @@ export default class HomeScreen extends React.Component {
     return (
       <Container style={styles.container}>
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <ImageBackground
-            source={require('../assets/images/cbtFlameIcon-sml.png')}
-            style={styles.flameIconImage}
-          >
-            <Text
-              adjustsFontSizeToFit={true}
-              numberOfLines={1}
-              style={styles.streakNum}>
-              <Streak />
-            </Text>
-          </ImageBackground>
-        </View>
+        <StreakImage />
         <CreateGroupButton />
         <JoinGroupButton />
         <Groups />
@@ -100,19 +89,4 @@ const styles = StyleSheet.create({
     //   fontSize: '20px',
     // }
   },
-  flameIconImage: {
-    width: 100,
-    height: 143,
-    position: 'relative',
-    textAlign: 'center',
-    top: 0,
-    left: 0,
-  },
-
-  streakNum: {
-    fontSize: 25,
-    textAlignVertical: 'center',
-    alignSelf: 'center',
-    marginTop: 78,
-  }
 });
