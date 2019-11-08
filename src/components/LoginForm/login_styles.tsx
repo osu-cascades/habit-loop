@@ -24,3 +24,11 @@ export const LoginInput = styled.TextInput`
     border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
     border-radius: 4px;
 `;
+
+export const Container = styled.KeyboardAvoidingView`
+  flex: 1;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #E9E9E9;
+`;
