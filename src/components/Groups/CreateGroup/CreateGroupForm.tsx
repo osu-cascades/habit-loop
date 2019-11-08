@@ -1,6 +1,11 @@
 import React from 'react';
 import { Button, ButtonText, Input } from '@src/components';
 import styled from 'styled-components/native';
+import {
+    StyleSheet
+} from 'react-native'
+
+import { from } from 'zen-observable';
 
 const Container = styled.KeyboardAvoidingView`
     padding: 20px;
@@ -19,8 +24,15 @@ export const CreateGroupForm = props => (
             onSubmitEditing={() => this.typeInput.focus()}
             error={props.touched.group_name && props.errors.group_name}
         />
-        <Button onPress={props.handleSubmit} disabled={!props.isValid}>
+        <Button onPress={props.handleSubmit} disabled={!props.isValid} style={styles.buttonCreateStyle}>
             <ButtonText>CREATE</ButtonText>
         </Button>
     </Container>
 );
+
+const styles = StyleSheet.create({
+    buttonCreateStyle: {
+        backgroundColor: '#E6B43C'
+    }
+})
+

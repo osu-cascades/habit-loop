@@ -13,24 +13,42 @@ import {
     Streak
 } from '../components'
 
-export class StreakImage extends React.Component {
-    render() {
-        return (
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <ImageBackground
-                    source={require('../assets/images/cbtFlameIcon-sml.png')}
-                    style={styles.flameIconImage}
-                >
-                    <Text
-                        adjustsFontSizeToFit={true}
-                        numberOfLines={1}
-                        style={styles.streakNum}>
-                        <Streak />
-                    </Text>
-                </ImageBackground>
-            </View>
-        );
-    }
+// export class StreakImage extends React.Component {
+//     render() {
+//         return (
+//             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+//                 <ImageBackground
+//                     source={require('../assets/images/cbtFlameIcon-sml.png')}
+//                     style={styles.flameIconImage}
+//                 >
+//                     <Text
+//                         adjustsFontSizeToFit={true}
+//                         numberOfLines={1}
+//                         style={styles.streakNum}>
+//                         <Streak />
+//                     </Text>
+//                 </ImageBackground>
+//             </View>
+//         );
+//     }
+// }
+
+const StreakImage = () => {
+    return (
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <ImageBackground
+                source={require('../assets/images/cbtFlameIcon-sml.png')}
+                style={styles.flameIconImage}
+            >
+                <Text
+                    adjustsFontSizeToFit={true}
+                    numberOfLines={1}
+                    style={styles.streakNum}>
+                    <Streak />
+                </Text>
+            </ImageBackground>
+        </View>
+    );
 }
 
 export default StreakImage;
