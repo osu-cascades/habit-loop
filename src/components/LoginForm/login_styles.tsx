@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const LoginButton = styled.TouchableOpacity`
-    background-color: #666;
+    background-color: #E6B43C;
     padding-vertical: 10;
     width: 200;
     margin: 0 auto;
@@ -12,7 +12,7 @@ export const LoginButton = styled.TouchableOpacity`
 export const LoginView = styled.View`
     padding: 20px;
     border-radius: 5;
-    background-color: #E6B43C;
+    background-color: #666;
 `;
 
 export const LoginInput = styled.TextInput`
