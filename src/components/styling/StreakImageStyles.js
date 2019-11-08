@@ -16,6 +16,11 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         alignSelf: 'center',
         marginTop: 78,
+    },
+
+    viewContainer: {
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

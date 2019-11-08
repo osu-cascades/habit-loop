@@ -16,7 +16,8 @@ import { styles } from './styling/StreakImageStyles'
 
 const StreakImage = () => {
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        // <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <View style={styles.viewContainer}>
             <ImageBackground
                 source={require('../assets/images/cbtFlameIcon-sml.png')}
                 style={styles.flameIconImage}
