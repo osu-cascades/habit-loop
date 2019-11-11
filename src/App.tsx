@@ -55,13 +55,13 @@ class App extends React.Component {
     }
 
     return (
-      <NavigationNativeContainer>
-        <Suspense fallback={<Loading />}>
-          <ApolloProvider client={client}>
+      <Suspense fallback={<Loading />}>
+        <ApolloProvider client={client}>
+          <NavigationNativeContainer>
             <AppStack />
-          </ApolloProvider>
-        </Suspense>
-      </NavigationNativeContainer>
+          </NavigationNativeContainer>
+        </ApolloProvider>
+      </Suspense>
     );
   }
 }

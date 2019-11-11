@@ -6,12 +6,9 @@ const { Navigator, Screen } = createStackNavigator();
 
 export const AuthStack = () => {
   return (
-    <Navigator
-      screenOptions={{
-        headerTransparent: true,
-      }}>
-      <Screen name="" component={LoginScreen} />
-      <Screen name="" component={SignupScreen} />
+    <Navigator headerMode="none">
+      <Screen name="Login" component={LoginScreen} />
+      <Screen name="Signup" component={SignupScreen} />
     </Navigator>
   );
 };

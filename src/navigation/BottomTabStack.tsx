@@ -10,13 +10,13 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 const getIconName = route => {
   switch (route.name) {
-    case 'home':
+    case 'Home':
       return Platform.OS === 'ios' ? `ios-home` : 'md-home';
-    case 'habits':
+    case 'Habits':
       return Platform.OS === 'ios' ? `ios-list-box` : 'md-list-box';
-    case 'leaderboard':
+    case 'Leaderboard':
       return Platform.OS === 'ios' ? `ios-podium` : 'md-podium';
-    case 'settings':
+    case 'Settings':
       return Platform.OS === 'ios' ? `ios-options` : 'md-options';
     default:
       return Platform.OS === 'ios' ? `ios-home` : 'md-home';
@@ -25,6 +25,7 @@ const getIconName = route => {
 
 const handleAppScreenOptions = ({ route }) => {
   const iconName = getIconName(route);
+
   return {
     tabBarIcon: ({ focused, color, size }) => <TabBarIcon focused={focused} name={iconName} />,
   };

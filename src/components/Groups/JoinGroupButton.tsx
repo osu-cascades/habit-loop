@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
+import React from 'react';
 import { Button, ButtonText } from '../basic';
+import { useNavigation } from '@react-navigation/core';
 
-export class JoinGroupButton extends Component {     
-    handlePress = () => {
-        this.props.navigation.navigate('JoinGroup');
-    }
+const JoinGroupButton = () => {
+  const { navigate } = useNavigation();
 
-    render() {
-        return (
-            <Button onPress={this.handlePress}>
-                <ButtonText>Join Group</ButtonText>
-            </Button>
-        );
-    }
-}
+  return (
+    <Button onPress={() => navigate('CreateGroup')}>
+      <ButtonText>Join Group</ButtonText>
+    </Button>
+  );
+};
 
-export default compose(
-  withNavigation,
-)(JoinGroupButton);
+export default JoinGroupButton;

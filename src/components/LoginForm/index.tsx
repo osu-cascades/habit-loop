@@ -15,6 +15,7 @@ const LOGIN = gql`
 `;
 
 const loginUser = async ({ values, login, navigate }) => {
+  console.log(values, 'pls');
   const loginData = {
     variables: {
       email: values.email,
@@ -44,7 +45,7 @@ const LoginForm = () => {
           email: 'email@email.com',
           password: '12345678',
         }}
-        onSubmit={({ values }) => loginUser({ values, login, navigate })}
+        onSubmit={values => loginUser({ values, login, navigate })}
         validationSchema={yup.object().shape({
           email: yup
             .string()
