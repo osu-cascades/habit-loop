@@ -1,27 +1,12 @@
 import React from 'react';
 import { Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styled from 'styled-components/native';
+import { LeftAction, LeftActionText } from '../habit_list_styles';
 import { compose } from 'react-apollo';
 import _ from 'lodash';
 import { CompleteHabit } from '@src/data';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
-
-const LeftAction = styled.TouchableOpacity`
-  flex-direction: row;
-  flex: 1;
-  background-color: #388e3c;
-  justify-content: flex-start;
-`;
-
-const LeftActionText = styled.Text`
-  align-self: center;
-  font-size: 35px;
-  font-family: Avenir Next;
-  color: white;
-  margin-left: 40px;
-`;
 
 export class CompleteHabitButton extends React.Component {
   constructor(props) {

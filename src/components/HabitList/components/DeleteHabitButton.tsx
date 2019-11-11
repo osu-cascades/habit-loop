@@ -4,22 +4,7 @@ import { compose } from 'react-apollo';
 import { Animated } from 'react-native';
 import { DeleteHabit } from '../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styled from 'styled-components/native';
-
-const RightActionButton = styled.TouchableOpacity`
-    flex-direction: row;
-    flex: 1;
-    background-color: #dd2c00;
-    justify-content: flex-end;
-`;
-
-const RightActionText = styled.Text`
-    align-self: center;
-    font-size: 35px;
-    font-family: Avenir Next;
-    color: white;
-    margin-right: 45px
-`;
+import { RightActionButton, RightActionText } from '../habit_list_styles';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 

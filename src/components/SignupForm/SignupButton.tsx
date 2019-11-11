@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
-import { Button, ButtonText } from './basic';
+import { ButtonText } from '../basic';
+import { Button } from './signup_styles'
 
 export class SignupButton extends Component {     
     handlePress = () => {
@@ -11,7 +12,7 @@ export class SignupButton extends Component {
     render() {
         return (
             <Button onPress={this.handlePress}>
-                <ButtonText>SIGNUP</ButtonText>
+                <ButtonText>SIGN UP</ButtonText>
             </Button>
         );
     }

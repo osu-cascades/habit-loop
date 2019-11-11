@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionList, Image, StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
-import SignoutButton from './SignoutButton';
+import SignoutButton from './SignOut/SignoutButton';
 
 export default class Settings extends React.Component {
   render() {
