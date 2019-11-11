@@ -6,12 +6,10 @@ import UpdatePriority from './UpdatePriority';
 import RegisterPushNotifications from './RegisterPushNotifications';
 import UpdateHabit from './UpdateHabit';
 import CompleteHabit from './CompleteHabit';
-import GetTopStreaks from './GetTopStreaks';
 import GetGroupLeaderboard from './GetGroupLeaderboard';
 import GetUserStreak from './GetUserStreak';
 import CreateGroup from './CreateGroup';
 import JoinGroup from './JoinGroup';
-import GetUserGroups from './GetUserGroups';
 
 export {
   GetHabits,
@@ -24,8 +22,6 @@ export {
   GetAllHabits,
   CompleteHabit,
   UpdatePriority,
-  GetTopStreaks,
-  GetUserGroups,
   GetGroupLeaderboard,
   RegisterPushNotifications,
 };

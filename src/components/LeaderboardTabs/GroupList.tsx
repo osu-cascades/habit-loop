@@ -1,36 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import GroupBoard from './GroupBoard';
 import Groups from './Groups';
 
-class GroupList extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            groupName: undefined,
-            itemId: undefined
-        }
-    }
+const GroupList = () => {
+  const [groupName, setGroupName] = useState(undefined);
+  const [itemId, setItemId] = useState(undefined);
 
-    handleGroupChange = (name, id) => {
-        this.setState({
-            groupName: name,
-            itemId: id,
-        })
-    }
+  const handleGroupChange = (name, id) => {
+    setGroupName(name);
+    setItemId(id);
+  };
 
-    render() {
-        return (
-            <>
-                <Groups handleGroupChange={this.handleGroupChange}/>
-                {this.state.groupName && <GroupBoard 
-                    groupName={this.state.groupName}
-                    itemId={this.state.itemId}
-                />}
-            </>
-        );
-    }
-}
-
+  return (
+    <>
+      <Groups handleGroupChange={handleGroupChange} />
+      {groupName && <GroupBoard groupName={groupName} itemId={itemId} />}
+    </>
+  );
+};
 
 export default GroupList;
