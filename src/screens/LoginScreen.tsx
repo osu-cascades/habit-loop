@@ -1,36 +1,26 @@
-import React from 'react';
-import {
-  View, 
-  StyleSheet,
-  KeyboardAvoidingView
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { LocalAuthentication } from 'expo';
 
-import {
-  LoginForm,
-} from '../components';
-import {
-  Logo
-} from '../components/basic';
+import { LoginForm } from '../components';
+import { Logo } from '../components/basic';
 
-export default class LoginScreen extends React.Component {
-  async componentDidMount() {
+export const LoginScreen = () => {
+  const [setTouchId, hasTouchId] = useState(false);
+  useEffect(() => {
     // const hasTouchId = await LocalAuthentication.hasHardwareAsync();
-    
     // if (hasTouchId) {
     //   await LocalAuthentication.authenticateAsync();
     // }
-  }
+  });
 
-  render() {
-    return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
-          <Logo source={require('../assets/images/lt.png')}/>
-          <LoginForm />
-      </KeyboardAvoidingView>
-    );
-  }
-}
+  return (
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <Logo source={require('../assets/images/lt.png')} />
+      <LoginForm />
+    </KeyboardAvoidingView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +33,6 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: 100,
-    resizeMode: 'contain'
-  }
+    resizeMode: 'contain',
+  },
 });

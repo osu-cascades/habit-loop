@@ -1,46 +1,25 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text
-} from 'react-native';
-import {
-  Container
-} from 'native-base';
+import { StyleSheet, Text } from 'react-native';
+import { Container } from 'native-base';
 import Constants from 'expo-constants';
-import { 
-  PushNotifications,
-  SignoutButton,
-  PriorityHabit,
-  Streak
-} from '../components';
-import {
-  CreateGroupButton,
-  JoinGroupButton,
-} from '../components/Groups';
-import {
-  Logo
-} from '../components/basic';
+import { PushNotifications, SignoutButton, PriorityHabit, Streak } from '@src/components';
+import { CreateGroupButton, JoinGroupButton } from '@src/components/Groups';
+import { Logo } from '../components/basic';
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'CBT Habit Loop',
-  };
-
-  render() {
-    return (
-      <Container style={styles.container}>
-        <Logo source={require('../assets/images/lt.png')}/>
-        <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <Streak />
-        <CreateGroupButton />
-        <JoinGroupButton />
-        {/* <PriorityHabit /> */}
-        {/* <PushNotifications /> */}
-        <SignoutButton/>
-      </Container>
-    );
-  }
-}
+export const HomeScreen = () => {
+  return (
+    <Container style={styles.container}>
+      <Logo source={require('../assets/images/lt.png')} />
+      <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
+      <Streak />
+      <CreateGroupButton />
+      <JoinGroupButton />
+      {/* <PriorityHabit /> */}
+      {/* <PushNotifications /> */}
+      <SignoutButton />
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +32,7 @@ const styles = StyleSheet.create({
   intro: {
     textAlign: 'center',
     fontSize: 30,
-    marginBottom: 30
+    marginBottom: 30,
   },
   heading: {
     fontSize: 30,
@@ -80,5 +59,5 @@ const styles = StyleSheet.create({
     //   textAlign: 'left',
     //   fontSize: '20px',
     // }
-  }
+  },
 });

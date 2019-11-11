@@ -1,66 +1,62 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Text, View, AsyncStorage } from 'react-native';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Login } from '../../data';
 import Form from './Form';
+import { useNavigation } from '@react-navigation/core';
 
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
+import { useMutation, gql } from '@apollo/client';
 
-    this.state = {
-      error: false,
-    };
+const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password)
   }
-  // test user --> email: sik.email@sik.com password: 12345678
-  loginUser = async values => {
-    const loginData = {
-      variables: {
-        email: values.email,
-        password: values.password,
-      },
-    };
+`;
 
-    try {
-      const result = await this.props.mutate(loginData);
-      const token = _.get(result.data, 'login', '');
-
-      await AsyncStorage.setItem('userToken', token);
-      this.props.navigation.navigate('Main');
-    } catch (err) {
-      console.error('Error logging in:', JSON.stringify(err));
-    }
+const loginUser = async ({ values, login, navigate }) => {
+  const loginData = {
+    variables: {
+      email: values.email,
+      password: values.password,
+    },
   };
 
-  render() {
-    return (
-      <View>
-        <Formik
-          initialValues={{
-            email: 'email@email.com',
-            password: '12345678',
-          }}
-          onSubmit={this.loginUser}
-          render={props => <Form {...props} />}
-          validationSchema={yup.object().shape({
-            email: yup
-              .string()
-              .email()
-              .required(),
-            password: yup.string().required(),
-          })}
-        />
-        <Text>{this.state.error && 'Could not log in.'}</Text>
-      </View>
-    );
-  }
-}
+  try {
+    const result = await login(loginData);
+    const token = _.get(result.data, 'login', '');
 
-export default compose(
-  withNavigation,
-  Login
-)(LoginForm);
+    await AsyncStorage.setItem('userToken', token);
+    navigate('Main');
+  } catch (err) {
+    console.error('Error logging in:', JSON.stringify(err));
+  }
+};
+
+const LoginForm = () => {
+  const { navigate } = useNavigation();
+  const [login, { data, loading, error }] = useMutation(LOGIN);
+
+  return (
+    <View>
+      <Formik
+        initialValues={{
+          email: 'email@email.com',
+          password: '12345678',
+        }}
+        onSubmit={({ values }) => loginUser({ values, login, navigate })}
+        validationSchema={yup.object().shape({
+          email: yup
+            .string()
+            .email()
+            .required(),
+          password: yup.string().required(),
+        })}>
+        {props => <Form {...props} />}
+      </Formik>
+      <Text>{error && 'Could not log in.'}</Text>
+    </View>
+  );
+};
+
+export default LoginForm;

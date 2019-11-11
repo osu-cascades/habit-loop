@@ -1,43 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Icon, Fab } from 'native-base';
-import { withNavigation } from 'react-navigation';
-import { 
-  Platform, 
-  StyleSheet 
-} from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
-class CreateButtonFAB extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      active: 'true'
-    };
-  }
+import { Platform, StyleSheet } from 'react-native';
 
-  render() {
-    return (  
-        <Fab
-          active={this.state.active}
-          direction="up"
-          style={styles.fab}
-          position="bottomRight"
-          onPress={() => this.props.navigation.navigate('CreateHabit', {
-              refetch: this.props.refetch
-            })}>
-          <Icon name={
-            Platform.OS === 'ios'
-              ? 'ios-add'
-              : 'md-add'} 
-          />
-        </Fab>
-    );
-  }
-}
+const CreateButtonFAB = ({ refetch }) => {
+  const { navigate } = useNavigation();
+  const [active, setActive] = useState(true);
+
+  return (
+    <Fab
+      active={active}
+      direction="up"
+      style={styles.fab}
+      position="bottomRight"
+      onPress={() =>
+        navigate('CreateHabit', {
+          refetch,
+        })
+      }>
+      <Icon name={Platform.OS === 'ios' ? 'ios-add' : 'md-add'} />
+    </Fab>
+  );
+};
 
 const styles = StyleSheet.create({
   fab: {
     backgroundColor: '#5067FF',
-  }
-})
+  },
+});
 
-export default withNavigation(CreateButtonFAB)
+export default CreateButtonFAB;
