@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Login } from '../../data';
+import { CbtLogin } from '../../data';
 import Form from './Form';
 
 export class LoginForm extends Component {
@@ -40,10 +40,6 @@ export class LoginForm extends Component {
     return (
       <View>
         <Formik
-          initialValues={{
-            email: 'email@email.com',
-            password: '12345678',
-          }}
           onSubmit={this.loginUser}
           render={props => <Form {...props} />}
           validationSchema={yup.object().shape({
@@ -62,5 +58,5 @@ export class LoginForm extends Component {
 
 export default compose(
   withNavigation,
-  Login
+  CbtLogin
 )(LoginForm);
