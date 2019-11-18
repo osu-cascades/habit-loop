@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation';
 import { Button, ButtonText } from '../basic';
 import { StyleSheet } from 'react-native';
 
+export { styles }
 export class JoinGroupButton extends Component {
     handlePress = () => {
         this.props.navigation.navigate('JoinGroup');

@@ -4,8 +4,7 @@ import styled from 'styled-components/native';
 import {
     StyleSheet
 } from 'react-native'
-
-import { from } from 'zen-observable';
+import { styles } from './CreateGroupFormSyles';
 
 const Container = styled.KeyboardAvoidingView`
     padding: 20px;
@@ -29,10 +28,4 @@ export const CreateGroupForm = props => (
         </Button>
     </Container>
 );
-
-const styles = StyleSheet.create({
-    buttonCreateStyle: {
-        backgroundColor: '#E6B43C'
-    }
-})
 
