@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  View, 
-  StyleSheet,
-  KeyboardAvoidingView
-} from 'react-native';
 import { LocalAuthentication } from 'expo';
-
-import {
-  LoginForm,
-} from '../components';
-import {
-  Logo
-} from '../components/basic';
+import { LoginForm } from '../components';
+import { Logo } from '../components/basic/logo';
+import { Container } from '../components/LoginForm/login_styles';
 
 export default class LoginScreen extends React.Component {
   async componentDidMount() {
@@ -24,25 +15,10 @@ export default class LoginScreen extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+      <Container behavior='padding'>
           <Logo source={require('../assets/images/lt.png')}/>
           <LoginForm />
-      </KeyboardAvoidingView>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#E9E9E9',
-  },
-  logo: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'contain'
-  }
-});

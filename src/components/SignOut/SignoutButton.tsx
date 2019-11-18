@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 import { withApollo, compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
-import { Button, ButtonText } from './basic';
+import { ButtonText } from '../basic';
+import { Button } from './signout_styles';
 
 export class SignoutButton extends Component {
     _signOutAsync = async () => {
@@ -19,22 +20,12 @@ export class SignoutButton extends Component {
         
   render() {
     return (
-        <Button block onPress={this._signOutAsync} style={styles.signOut}>
+        <Button block onPress={this._signOutAsync}>
             <ButtonText>Sign out</ButtonText>
         </Button>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  signOut: {
-    backgroundColor: '#F78E2A',
-    width: '90%',
-    alignSelf: 'center',
-    position: 'absolute',
-    bottom: 20
-  }
-})
 
 export default compose(
   withNavigation,

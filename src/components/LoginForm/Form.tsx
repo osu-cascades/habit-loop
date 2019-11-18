@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-    Text,
-    View,
-} from 'react-native';
 import { SignupButton } from '../';
-import { Button, ButtonText, Input } from '../basic';
+import { ButtonText } from '../basic';
+import { LoginButton, LoginInput, LoginView } from './login_styles';
+import { FormLabel } from '../basic/form_label';
 
 export default LoginForm = props => (
-    <View>
-        <Input 
-            placeholder="username or email" 
+    <LoginView>
+        <FormLabel>Email</FormLabel>
+        <LoginInput 
+            placeholder="email" 
             placeholderTextColor='#666'
             onChangeText={props.handleChange('email')}
             onBlur={() => props.setFieldTouched('email')}
@@ -21,7 +20,8 @@ export default LoginForm = props => (
             onSubmitEditing={() => this.passwordInput.focus()}
             error={props.touched.email && props.errors.email}
         />
-        <Input 
+        <FormLabel>Password</FormLabel>
+        <LoginInput 
             placeholder="password" 
             placeholderTextColor='#666'
             onChangeText={props.handleChange('password')}
@@ -33,12 +33,12 @@ export default LoginForm = props => (
             ref={input => this.passwordInput = input}
             error={props.touched.password && props.errors.password}
         />
-        <Button 
+        <LoginButton
             onPress={props.handleSubmit}
             // disabled={!props.isValid}
         > 
-            <ButtonText>LOGIN</ButtonText>
-        </Button>
+            <ButtonText>LOG IN</ButtonText>
+        </LoginButton>
         <SignupButton />
-    </View>
+    </LoginView>
 )

@@ -1,13 +1,8 @@
 import React from 'react';
 import { Button, ButtonText } from '../../basic';
-import styled from 'styled-components/native';
+import { Container } from './join_group_styles';
 import Picker from './Picker';
 import { StyleSheet } from 'react-native'
-
-const Container = styled.KeyboardAvoidingView`
-    padding: 20px;
-    background-color: #ffffff;
-`;
 
 export const JoinGroupForm = props => (
     <Container>

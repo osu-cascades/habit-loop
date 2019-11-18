@@ -1,15 +1,6 @@
 import React from 'react';
 import { Button, ButtonText, Input } from '@src/components';
-import styled from 'styled-components/native';
-import {
-    StyleSheet
-} from 'react-native'
-import { styles } from './CreateGroupFormSyles';
-
-const Container = styled.KeyboardAvoidingView`
-    padding: 20px;
-    background-color: #ffffff;
-`;
+import { Container } from './create_group_styles';
 
 export const CreateGroupForm = props => (
     <Container>
@@ -23,7 +14,7 @@ export const CreateGroupForm = props => (
             onSubmitEditing={() => this.typeInput.focus()}
             error={props.touched.group_name && props.errors.group_name}
         />
-        <Button onPress={props.handleSubmit} disabled={!props.isValid} style={styles.buttonCreateStyle}>
+        <Button onPress={props.handleSubmit} disabled={!props.isValid}>
             <ButtonText>CREATE</ButtonText>
         </Button>
     </Container>
