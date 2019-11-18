@@ -32,7 +32,8 @@ export class LoginForm extends Component {
       await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main');
     } catch (err) {
-      console.error('Error logging in:', JSON.stringify(err));
+      console.log('Error logging in:', JSON.stringify(err));
+      this.setState({error: true});
     }
   };
 
@@ -50,7 +51,7 @@ export class LoginForm extends Component {
             password: yup.string().required(),
           })}
         />
-        <Text>{this.state.error && 'Could not log in.'}</Text>
+        <Text>{this.state.error && 'Invalid username/password.'}</Text>
       </View>
     );
   }
