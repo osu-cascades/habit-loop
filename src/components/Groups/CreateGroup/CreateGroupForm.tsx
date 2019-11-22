@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, ButtonText, Input } from '@src/components';
-import { Container } from './create_group_styles';
+import { ButtonText, Input } from '@src/components';
+import { Container, Button } from './create_group_styles';
 
 export const CreateGroupForm = props => (
     <Container>
