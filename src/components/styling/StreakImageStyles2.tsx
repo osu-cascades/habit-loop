@@ -9,7 +9,7 @@ export const FlameImgBg = styled.ImageBackground`
     width: 100px;
     height: 143px;
     position: relative;
-    textAlign: center;
+    text-align: center;
     top: 0;
     left: 0;
 `;
