@@ -1,10 +1,14 @@
 import React from 'react';
 import { Settings, SignoutButton } from '../components';
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import Constants from 'expo-constants';
 import {
-  Container, View
+  View
 } from 'native-base';
+
+import { Container } from '../components/styling/SettinngsScreenStyles';
+import { from } from 'zen-observable';
+
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
@@ -12,21 +16,10 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <Container>
         <Text>Nice</Text>
         <SignoutButton />
       </Container>
-
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: '100%',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-});
