@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { CbtLogin } from '../../data';
 import Form from './Form';
+import { InvalidLoginText } from './login_styles'
 
 export class LoginForm extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ export class LoginForm extends Component {
             password: yup.string().required(),
           })}
         />
-        <Text>{this.state.error && 'Invalid username/password.'}</Text>
+        <InvalidLoginText>{this.state.error && 'Invalid username/password.'}</InvalidLoginText>
       </View>
     );
   }
