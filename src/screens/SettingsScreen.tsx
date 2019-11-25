@@ -1,9 +1,6 @@
 import React from 'react';
-import { Settings, SignoutButton } from '../components';
-import { Text } from 'react-native';
-import Constants from 'expo-constants';
-import { Container } from '../components/styling/SettinngsScreenStyles';
-import { from } from 'zen-observable';
+import { SignoutButton } from '../components';
+import { Container } from '../components/styling/SettingsScreenStyles';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -13,7 +10,6 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <Container>
-        <Text>Nice</Text>
         <SignoutButton />
       </Container>
     );
