@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text
+  Text,
+  Image,
+  ImageBackground
 } from 'react-native';
 import {
-  Container
+  Container, View
 } from 'native-base';
 import Constants from 'expo-constants';
-import { 
+import {
   PushNotifications,
   SignoutButton,
   PriorityHabit,
-  Streak
+  Streak,
+  StreakImage
 } from '../components';
 import {
   CreateGroupButton,
@@ -21,23 +24,27 @@ import {
   Logo
 } from '../components/basic';
 
+import Groups from '../components/LeaderboardTabs'
+import { relative } from 'path';
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'CBT Habit Loop',
+    title: 'Home',
   };
 
   render() {
     return (
       <Container style={styles.container}>
-        <Logo source={require('../assets/images/lt.png')}/>
         <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <Streak />
+        <StreakImage />
         <CreateGroupButton />
         <JoinGroupButton />
+        <Groups />
         {/* <PriorityHabit /> */}
         {/* <PushNotifications /> */}
-        <SignoutButton/>
-      </Container>
+
+      </Container >
+
     );
   }
 }
@@ -46,9 +53,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
+
   },
   intro: {
     textAlign: 'center',
@@ -80,5 +88,5 @@ const styles = StyleSheet.create({
     //   textAlign: 'left',
     //   fontSize: '20px',
     // }
-  }
+  },
 });
