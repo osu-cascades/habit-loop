@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { compose } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Login } from '../../data';
+import { CbtLogin } from '../../data';
 import Form from './Form';
+import { InvalidLoginText } from './login_styles'
 
 export class LoginForm extends Component {
   constructor(props) {
@@ -32,7 +33,8 @@ export class LoginForm extends Component {
       await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main');
     } catch (err) {
-      console.error('Error logging in:', JSON.stringify(err));
+      console.log('Error logging in:', JSON.stringify(err));
+      this.setState({error: true});
     }
   };
 
@@ -40,10 +42,6 @@ export class LoginForm extends Component {
     return (
       <View>
         <Formik
-          initialValues={{
-            email: 'email@email.com',
-            password: '12345678',
-          }}
           onSubmit={this.loginUser}
           render={props => <Form {...props} />}
           validationSchema={yup.object().shape({
@@ -54,7 +52,7 @@ export class LoginForm extends Component {
             password: yup.string().required(),
           })}
         />
-        <Text>{this.state.error && 'Could not log in.'}</Text>
+        <InvalidLoginText>{this.state.error && 'Invalid username/password.'}</InvalidLoginText>
       </View>
     );
   }
@@ -62,5 +60,5 @@ export class LoginForm extends Component {
 
 export default compose(
   withNavigation,
-  Login
+  CbtLogin
 )(LoginForm);
