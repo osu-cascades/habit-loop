@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { CbtLogin } from '../../data';
 import Form from './Form';
-import { InvalidLoginText } from './login_styles'
 
 export class LoginForm extends Component {
   constructor(props) {
