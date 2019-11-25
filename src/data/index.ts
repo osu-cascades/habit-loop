@@ -14,9 +14,11 @@ import GetUserStreak from './GetUserStreak';
 import CreateGroup from './CreateGroup';
 import JoinGroup from './JoinGroup';
 import GetUserGroups from './GetUserGroups';
+import CbtLogin from './CbtLogin';
 
 export {
   Login,
+  CbtLogin,
   Signup,
   GetHabits,
   CreateGroup,
