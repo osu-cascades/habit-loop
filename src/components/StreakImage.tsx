@@ -4,7 +4,7 @@ import {
     Streak
 } from '../components';
 
-import { View, FlameImgBg, Text } from './styling/StreakImageStyles2';
+import { View, FlameImgBg, Text } from './styling/StreakImageStyles';
 
 const StreakImage = () => {
     return (
