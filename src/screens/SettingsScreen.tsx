@@ -1,12 +1,17 @@
 import React from 'react';
-import { Settings } from '../components';
-import { Text } from 'react-native';
+import { SignoutButton } from '../components';
+import { Container } from '../components/styling/SettingsScreenStyles';
+
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
   };
 
   render() {
-    return <Text>Nice</Text>
+    return (
+      <Container>
+        <SignoutButton />
+      </Container>
+    );
   }
 }
