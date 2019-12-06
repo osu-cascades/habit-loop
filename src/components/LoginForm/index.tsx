@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { CbtLogin } from '../../data';
 import Form from './Form';
-import { InvalidLoginText } from './login_styles'
 
 export class LoginForm extends Component {
   constructor(props) {
@@ -34,7 +33,7 @@ export class LoginForm extends Component {
       this.props.navigation.navigate('Main');
     } catch (err) {
       console.log('Error logging in:', JSON.stringify(err));
-      this.setState({error: true});
+      this.setState({ error: true });
     }
   };
 
@@ -43,7 +42,7 @@ export class LoginForm extends Component {
       <View>
         <Formik
           onSubmit={this.loginUser}
-          render={props => <Form {...props} />}
+          render={props => <Form {...props} loginError={this.state.error} />}
           validationSchema={yup.object().shape({
             email: yup
               .string()
@@ -52,7 +51,6 @@ export class LoginForm extends Component {
             password: yup.string().required(),
           })}
         />
-        <InvalidLoginText>{this.state.error && 'Invalid username/password.'}</InvalidLoginText>
       </View>
     );
   }

@@ -35,4 +35,7 @@ export const Container = styled.KeyboardAvoidingView`
 
 export const InvalidLoginText = styled.Text`
   text-align: center;
+  color: #fff;
+  opacity: 0.8;
+  font-weight: bold;
 `;
