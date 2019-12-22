@@ -42,7 +42,7 @@ const loginUser = async ({ values, login, navigate }) => {
 
 const LoginForm = () => {
   const { navigate } = useNavigation();
-  const [login, { data, loading, error }] = useMutation(CBT_LOGIN);
+  const [login, { data, loading, error }] = useMutation(LOGIN);
 
   return (
     <View>
