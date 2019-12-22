@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Container } from 'native-base';
 import Constants from 'expo-constants';
-import { PushNotifications, SignoutButton, PriorityHabit, Streak } from '@src/components';
+import { PushNotifications, SignoutButton, PriorityHabit, StreakImage } from '@src/components';
 import { CreateGroupButton, JoinGroupButton } from '@src/components/Groups';
 import { Logo } from '../components/basic';
 
@@ -11,7 +11,7 @@ export const HomeScreen = () => {
     <Container style={styles.container}>
       <Logo source={require('../assets/images/lt.png')} />
       <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-      <Streak />
+      <StreakImage />
       <CreateGroupButton />
       <JoinGroupButton />
       {/* <PriorityHabit /> */}
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
   },

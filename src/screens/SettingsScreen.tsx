@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
-
-import { Settings } from '@src/components';
+import { SignoutButton } from '../components';
+import { Container } from '../components/styling/SettingsScreenStyles';
 
 export const SettingsScreen = () => {
-  return <Text>Nice</Text>;
+  return (
+    <Container>
+      <SignoutButton />
+    </Container>
+  );
 };
 
 SettingsScreen.navigationOptions = {

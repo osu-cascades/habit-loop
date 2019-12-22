@@ -3,6 +3,7 @@ import { Text, View, AsyncStorage } from 'react-native';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+
 import Form from './Form';
 import { useNavigation } from '@react-navigation/core';
 
@@ -14,8 +15,13 @@ const LOGIN = gql`
   }
 `;
 
+const CBT_LOGIN = gql`
+  mutation cbtLogin($email: String!, $password: String!) {
+    cbtLogin(email: $email, password: $password)
+  }
+`;
+
 const loginUser = async ({ values, login, navigate }) => {
-  console.log(values, 'pls');
   const loginData = {
     variables: {
       email: values.email,
@@ -36,7 +42,7 @@ const loginUser = async ({ values, login, navigate }) => {
 
 const LoginForm = () => {
   const { navigate } = useNavigation();
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+  const [login, { data, loading, error }] = useMutation(CBT_LOGIN);
 
   return (
     <View>
