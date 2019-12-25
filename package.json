@@ -62,6 +62,7 @@
     "eslint-plugin-react": "^7.14.3",
     "jest-expo": "^36.0.0",
     "prettier": "^1.18.2",
+    "reactotron-react-native": "^4.0.2",
     "typescript": "^3.7.4"
   }
 }

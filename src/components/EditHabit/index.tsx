@@ -15,11 +15,10 @@ const UPDATE_HABIT = gql`
   }
 `;
 
-const EditHabit = ({ habit, route }) => {
+const EditHabit = ({ habit, refetch }) => {
   const [networkError, setNetworkError] = useState();
   const { goBack } = useNavigation();
-  const [editHabit, { data, loading, error }] = useMutation(UPDATE_HABIT);
-  const { refetch } = route.params;
+  const [editHabit] = useMutation(UPDATE_HABIT);
 
   async function submitUpdatedHabit(values) {
     const updatedHabit = {

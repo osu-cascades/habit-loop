@@ -8,7 +8,7 @@ const JoinGroupButton = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Button onPress={() => navigate('CreateGroup')} style={styles.joinGroupb}>
+    <Button onPress={() => navigate('JoinGroup')} style={styles.joinGroupb}>
       <ButtonText>Join Group</ButtonText>
     </Button>
   );

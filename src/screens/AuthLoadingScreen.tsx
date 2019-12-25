@@ -6,12 +6,16 @@ export const AuthLoadingScreen = () => {
   const { navigate } = useNavigation();
 
   // Fetch the token from storage then navigate to our appropriate place
-  useEffect(async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+  useEffect(() => {
+    const login = async () => {
+      const userToken = await AsyncStorage.getItem('userToken');
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    navigate(userToken ? 'Main' : 'Auth');
+      // This will switch to the App screen or Auth screen and this loading
+      // screen will be unmounted and thrown away.
+      navigate(userToken ? 'Main' : 'Auth');
+    };
+
+    login();
   });
 
   return (

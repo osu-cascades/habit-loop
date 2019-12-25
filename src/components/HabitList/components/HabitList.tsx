@@ -7,6 +7,7 @@ import { Separator } from '../../basic';
 import SwipeableRow from './SwipeableRow';
 import Header from './ListHeader';
 import { gql, useQuery } from '@apollo/client';
+import { Loading } from '@src/components';
 
 // Hook
 function usePrevious(value) {
@@ -40,12 +41,18 @@ const GET_HABITS = gql`
 const HabitList = ({ updateHabits, ...props }) => {
   const [habits, setHabits] = useState([]);
   const [sectionedLists, setSectionedLists] = useState([]);
-  const [error, setError] = useState({});
-  const prevHabits = usePrevious(habits);
 
-  const { data, loading, error: getHabitsError } = useQuery(GET_HABITS);
+  const { data, loading, refetch, networkStatus } = useQuery(GET_HABITS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   // componentDidMount
+  useEffect(() => {
+    // grab refetch from apollo query and use it when we want to edit habits
+    updateHabits(refetch);
+  }, []);
+
+  // componentDidUpdate
   useEffect(() => {
     if (data?.getHabits) {
       const mappedHabits = data.getHabits.map(item => ({
@@ -61,55 +68,32 @@ const HabitList = ({ updateHabits, ...props }) => {
 
       setHabits(mappedHabits);
 
-      if (!_.isEmpty(habits)) {
-        const lists = [
-          {
-            title: 'Daily Habits',
-            data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY'),
-          },
-          {
-            title: 'Weekly Habits',
-            data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY'),
-          },
-          { title: 'Completed Habits', data: habits.filter(habit => habit.completed_today === true) },
-        ];
-
-        setSectionedLists(lists);
-      }
-    }
-
-    // grab refetch from apollo query and use it when we want to edit habits
-    updateHabits(props.data.refetch);
-  }, []);
-
-  // componentDidUpdate
-  useEffect(() => {
-    if (habits !== prevHabits && !_.isEmpty(habits)) {
       const lists = [
         {
           title: 'Daily Habits',
-          data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY'),
+          data: mappedHabits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY'),
         },
         {
           title: 'Weekly Habits',
-          data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY'),
+          data: mappedHabits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY'),
         },
-        { title: 'Completed Habits', data: habits.filter(habit => habit.completed_today === true) },
+        { title: 'Completed Habits', data: mappedHabits.filter(habit => habit.completed_today === true) },
       ];
 
       setSectionedLists(lists);
-    } else if (habits !== prevHabits && _.isEmpty(habits)) {
+    } else {
       setSectionedLists([]);
     }
-  }, [habits]);
+  }, [data]);
 
   const handleDeletionError = useCallback(() => {
     setError(true);
   }, []);
 
-  const handleDeletion = useCallback(habit_id => {
-    setHabits(habits.filter(habit => habit_id !== habit.habit_id));
-  }, []);
+  const handleDeletion = useCallback(
+    habit_id => setHabits(habits => habits.filter(habit => habit_id !== habit.habit_id)),
+    []
+  );
 
   const handleCompletion = useCallback(habit_id => {
     const completeHabit = habits.map(habit => {
@@ -122,13 +106,10 @@ const HabitList = ({ updateHabits, ...props }) => {
   }, []);
 
   const renderProps = {
-    error,
     handleDeletion,
     handleDeletionError,
     handleCompletion,
-    navigate: props.navigate,
-    refetch: props.refetch,
-    data: props.data,
+    data,
   };
 
   return (
@@ -136,7 +117,7 @@ const HabitList = ({ updateHabits, ...props }) => {
       data={sectionedLists}
       renderItem={({ item }) => (
         <SwipeableRow item={item} {...renderProps}>
-          <HabitCard habit={item} navigate={props.navigate} refetch={props.refetch} />
+          <HabitCard habit={item} refetch={refetch} />
         </SwipeableRow>
       )}
       sections={sectionedLists}
@@ -144,8 +125,8 @@ const HabitList = ({ updateHabits, ...props }) => {
       ItemSeparatorComponent={() => <Separator />}
       renderSectionHeader={({ section: { title } }) => <Header text={title} />}
       ListEmptyComponent={<EmptyText />}
-      onRefresh={props.data.refetch}
-      refreshing={props.data.networkStatus === 4}
+      onRefresh={refetch}
+      refreshing={networkStatus === 4}
     />
   );
 };

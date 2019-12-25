@@ -13,12 +13,10 @@ const CREATE_GROUP = gql`
   }
 `;
 
-const CreateGroupContainer = ({ route }) => {
+const CreateGroupContainer = () => {
   const [pressed, setPressed] = useState();
-  const [networkError, setNetworkError] = useState();
   const { goBack } = useNavigation();
-  const [createGroup, { data, loading, error }] = useMutation(CREATE_GROUP);
-  const { refetch } = route.params;
+  const [createGroup] = useMutation(CREATE_GROUP);
 
   const submitNewGroup = async values => {
     const newGroup = {
@@ -34,7 +32,6 @@ const CreateGroupContainer = ({ route }) => {
       try {
         await createGroup(newGroup);
 
-        refetch();
         goBack();
       } catch (err) {
         // we can handle the state of an error here if submit fails

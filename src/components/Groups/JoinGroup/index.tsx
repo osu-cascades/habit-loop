@@ -14,11 +14,10 @@ const JOIN_GROUP = gql`
   }
 `;
 
-const JoinGroupContainer = ({ route }) => {
+const JoinGroupContainer = () => {
   const [pressed, setPressed] = useState(false);
-  const [joinGroup, { data, loading, error }] = useMutation(JOIN_GROUP);
+  const [joinGroup] = useMutation(JOIN_GROUP);
   const { goBack } = useNavigation();
-  const { refetch } = route.params;
 
   const submitJoinGroup = async values => {
     const group = {
@@ -35,7 +34,6 @@ const JoinGroupContainer = ({ route }) => {
       try {
         await joinGroup(group);
 
-        refetch();
         goBack();
       } catch (err) {
         // we can handle the state of an error here if submit fails

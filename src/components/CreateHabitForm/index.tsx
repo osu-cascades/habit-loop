@@ -15,13 +15,12 @@ const CREATE_HABIT = gql`
   }
 `;
 
-const CreateHabitForm = ({ route }) => {
+const CreateHabitForm = ({ refetch }) => {
   const [pressed, setPressed] = useState(false);
   const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
   const { goBack } = useNavigation();
 
   const submitNewHabit = async values => {
-    const { refetch } = route.params;
     const newHabit = {
       variables: {
         input: {
