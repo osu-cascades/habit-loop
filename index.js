@@ -2,7 +2,7 @@ if (__DEV__) {
   import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
 }
 
-import { registerRootComponent } from 'expo';
+import { AppRegistry } from 'react-native';
 import App from './src/App';
 
-registerRootComponent(App);
+AppRegistry.registerComponent('main', () => App);
