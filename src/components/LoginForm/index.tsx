@@ -27,7 +27,7 @@ export class LoginForm extends Component {
 
     try {
       const result = await this.props.mutate(loginData);
-      const token = _.get(result.data, 'login', '');
+      const token = _.get(result.data, 'cbtLogin', '');
 
       await AsyncStorage.setItem('userToken', token);
       this.props.navigation.navigate('Main');
