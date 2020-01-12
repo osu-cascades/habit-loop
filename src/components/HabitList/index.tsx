@@ -1,31 +1,28 @@
-import React from "react";
+import React from 'react';
 import _ from 'lodash';
-import HabitListContainer from './components/HabitListContainer';
+import HabitList from './components/HabitList';
 
-import { 
-  CreateHabitFAB,
-} from '../';
+import { CreateHabitFAB } from '../';
 
-
-class HabitList extends React.Component {
+class HabitListContainer extends React.Component {
   state = {
     refetch: null,
-  }
+  };
 
-  updateHabits = (refetch) => {
-    this.setState({ 
+  updateHabits = refetch => {
+    this.setState({
       refetch,
-    })
-  }
+    });
+  };
 
   render() {
     return (
-        <>
-          <HabitListContainer updateHabits={this.updateHabits}/>
-          <CreateHabitFAB refetch={this.state.refetch} />
-        </>
+      <>
+        <HabitList updateHabits={this.updateHabits} />
+        <CreateHabitFAB refetch={this.state.refetch} />
+      </>
     );
   }
 }
 
-export default HabitList;
+export default HabitListContainer;

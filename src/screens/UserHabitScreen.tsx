@@ -1,15 +1,13 @@
 import React from 'react';
 import EditHabitForm from '@src/components/EditHabit';
-import { useNavigation } from '@react-navigation/core';
 
-export const UserHabitScreen = () => {
-  const { getParam } = useNavigation();
-  return <EditHabitForm habit={getParam('habit', {})} refetch={getParam('refetch', null)} />;
+export const UserHabitScreen = ({ route }) => {
+  const { habit, refetch } = route.params;
+  return <EditHabitForm habit={habit} refetch={refetch} />;
 };
 
-UserHabitScreen.navigationOptions = ({ navigation }) => {
-  const habit = navigation.getParam('habit', {});
-
+UserHabitScreen.navigationOptions = ({ navigation, route }) => {
+  const { habit } = route.params;
   return {
     title: habit.name,
   };

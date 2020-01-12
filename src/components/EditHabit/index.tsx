@@ -1,72 +1,65 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup';
 
-import { UpdateHabit } from '../../data';
 import EditHabitForm from './EditHabitForm';
+import { gql, useMutation } from '@apollo/client';
+import { useNavigation } from '@react-navigation/core';
 
-// Class to update habit details such as name, description,
-// etc.
-class EditHabit extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      networkError: false,
-    };
-
-    this.submitUpdatedHabit = this.submitUpdatedHabit.bind(this);
+const UPDATE_HABIT = gql`
+  mutation updateHabit($input: UpdateHabitInput!) {
+    updateHabit(input: $input) {
+      habit_name
+    }
   }
+`;
 
-  async submitUpdatedHabit(values) {
+const EditHabit = ({ habit, refetch }) => {
+  const [networkError, setNetworkError] = useState();
+  const { goBack } = useNavigation();
+  const [editHabit] = useMutation(UPDATE_HABIT);
+
+  async function submitUpdatedHabit(values) {
     const updatedHabit = {
       variables: {
         input: {
           habit_name: values.name,
           type: values.type,
-          created_at: this.props.habit.created_at,
-          item_id: this.props.habit.habit_id,
-          user_id: this.props.habit.user_id,
+          created_at: habit.created_at,
+          item_id: habit.habit_id,
+          user_id: habit.user_id,
           recurrence: values.recurrence,
         },
       },
     };
 
     try {
-      await this.props.mutate(updatedHabit);
-      const refetch = this.props.navigation.getParam('refetch', () => console.log("Couldn't find refetch function"));
+      await editHabit(updatedHabit);
 
       refetch();
-      this.props.navigation.goBack();
+      goBack();
     } catch (err) {
       console.error(err);
-      this.setState({ networkError: true });
+      setNetworkError(true);
     }
   }
 
-  render() {
-    return (
-      <Formik
-        initialValues={{
-          name: this.props.habit.name,
-          type: this.props.habit.type,
-          recurrence: this.props.habit.recurrence,
-        }}
-        onSubmit={this.submitUpdatedHabit}
-        render={props => <EditHabitForm {...props} />}
-        validationSchema={yup.object().shape({
-          name: yup.string().required(),
-          type: yup.string().required(),
-        })}
-      />
-    );
-  }
-}
+  return (
+    <Formik
+      initialValues={{
+        name: habit.name,
+        type: habit.type,
+        recurrence: habit.recurrence,
+      }}
+      onSubmit={submitUpdatedHabit}
+      validationSchema={yup.object().shape({
+        name: yup.string().required(),
+        type: yup.string().required(),
+      })}>
+      {props => <EditHabitForm {...props} />}
+    </Formik>
+  );
+};
 
-export default compose(
-  withNavigation,
-  UpdateHabit
-)(EditHabit);
+export default EditHabit;

@@ -1,62 +1,65 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import _ from 'lodash';
-import { compose } from 'react-apollo';
-import { Animated } from 'react-native';
-import { DeleteHabit } from '../../../data';
+import { Animated, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RightActionButton, RightActionText } from '../habit_list_styles';
+import { useMutation, gql } from '@apollo/client';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-class DeleteButton extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handlePress = this.handlePress.bind(this);
+const DELETE_HABIT = gql`
+  mutation deleteHabit($item_id: String!) {
+    deleteHabit(item_id: $item_id) {
+      habit_name
     }
+  }
+`;
 
-    async handlePress() {
-        const habit_id = _.get(this.props.habit, 'habit_id', '');
-        const deleteHabit = {
-            variables: {
-              item_id: habit_id
-            }
-          } 
+const DeleteButton = ({ habit, handleDeletion, scale, handleDeletionError }) => {
+  const [deleteHabit, { data, loading, error: deleteHabitError }] = useMutation(DELETE_HABIT);
 
-        try {
-            await this.props.mutate(deleteHabit);
-            this.props.handleDeletion(habit_id);
-            alert(`Successfully deleted the habit: ${this.props.habit.name}`)
-        } catch (err) {
-            console.error(err);
-            this.props.handleDeletionError();
-        }
-    }
+  const handlePress = useCallback(() => {
+    const habit_id = _.get(habit, 'habit_id', '');
 
-    render() {
-        const { scale, error } = this.props;
+    const deletedHabit = {
+      variables: {
+        item_id: habit_id,
+      },
+    };
 
-        return (
-            <RightActionButton onPress={this.handlePress}>
-                <RightActionText> delete habit </RightActionText>
-                <AnimatedIcon
-                    name="delete-forever"
-                    size={30}
-                    color="#fff"
-                    style={{ 
-                        transform: [{ scale }],
-                        width: 30,
-                        marginHorizontal: 10,
-                        alignSelf: 'center',
-                        marginRight: 20,                  
-                    }}
-                />
-                {error && alert('Error deleting habit.')}
-            </RightActionButton>
-        );
-    }
-}
+    const deleteHabitCallback = async () => {
+      try {
+        await deleteHabit(deletedHabit);
 
-export default compose(
-    DeleteHabit
-)(DeleteButton);
+        handleDeletion(habit_id);
+        Alert.alert(`Successfully deleted the habit: ${habit.name}`);
+      } catch (err) {
+        console.tron.error('Delete Habit Error: ', err);
+        handleDeletionError();
+      }
+    };
+
+    deleteHabitCallback();
+  }, []);
+
+  return (
+    <RightActionButton onPress={handlePress}>
+      <RightActionText> delete habit </RightActionText>
+      <AnimatedIcon
+        name="delete-forever"
+        size={30}
+        color="#fff"
+        style={{
+          transform: [{ scale }],
+          width: 30,
+          marginHorizontal: 10,
+          alignSelf: 'center',
+          marginRight: 20,
+        }}
+      />
+      {deleteHabitError && Alert.alert('Error deleting habit.')}
+    </RightActionButton>
+  );
+};
+
+export default DeleteButton;
