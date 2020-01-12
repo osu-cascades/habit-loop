@@ -8,7 +8,7 @@ const { RectButton } = GestureHandler;
 
 const HabitCard = ({ habit, refetch }) => {
   const { navigate } = useNavigation();
-  1;
+
   return (
     <RectButton
       style={{
