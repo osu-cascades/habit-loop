@@ -1,5 +1,5 @@
 import React from 'react';
-import { FolderIcon } from '@src/assets/svgs';
+import { PlusIcon } from '@src/assets/svgs';
 import { LeftAction, LeftActionText } from '../habit_list_styles';
 import _ from 'lodash';
 import { useMutation, gql } from '@apollo/client';
@@ -33,7 +33,7 @@ const CompleteHabitButton = ({ habit, handleCompletion, scale }) => {
 
   return (
     <LeftAction onPress={submitCompletion}>
-      <FolderIcon
+      <PlusIcon
         name="archive"
         width={30}
         color="#fff"

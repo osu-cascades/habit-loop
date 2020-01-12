@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import React from 'react';
+import { View, AsyncStorage } from 'react-native';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';

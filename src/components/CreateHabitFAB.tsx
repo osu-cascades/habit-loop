@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Fab } from 'native-base';
 import { useNavigation } from '@react-navigation/core';
-import { FolderIcon } from '@src/assets/svgs';
+import { PlusIcon } from '@src/assets/svgs';
 
 import { Platform, StyleSheet } from 'react-native';
 
@@ -20,7 +20,7 @@ const CreateButtonFAB = ({ refetch }) => {
           refetch,
         })
       }>
-      <FolderIcon width={24} />
+      <PlusIcon width={24} />
     </Fab>
   );
 };

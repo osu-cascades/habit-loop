@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { Alert } from 'react-native';
-import { FolderIcon } from '@src/assets/svgs';
+import { TrashIcon } from '@src/assets/svgs';
 import { RightActionButton, RightActionText } from '../habit_list_styles';
 import { useMutation, gql } from '@apollo/client';
-
 
 const DELETE_HABIT = gql`
   mutation deleteHabit($item_id: String!) {
@@ -44,7 +43,7 @@ const DeleteButton = ({ habit, handleDeletion, scale, handleDeletionError }) => 
   return (
     <RightActionButton onPress={handlePress}>
       <RightActionText> delete habit </RightActionText>
-      <FolderIcon
+      <TrashIcon
         name="archive"
         width={30}
         color="#fff"

@@ -2,38 +2,32 @@ import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Platform, Text } from 'react-native';
-import { HomeStack, HabitStack, LeaderboardStack, SettingsStack } from '..';
-import { FolderIcon } from '@src/assets/svgs';
+import { HomeStack, HabitStack, LeaderboardStack, SettingsStack } from '../stacks';
+import { HomeIconIOS, PodiumIcon, ListIconIOS, SettingsIconIOS } from '@src/assets/svgs';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-const getIconName = route => {
+const getIcon = route => {
   switch (route.name) {
     case 'Home':
-      return Platform.OS === 'ios' ? `ios-home` : 'md-home';
+      return Platform.OS === 'ios' ? HomeIconIOS : 'md-home';
     case 'Habits':
-      return Platform.OS === 'ios' ? `ios-list-box` : 'md-list-box';
+      return Platform.OS === 'ios' ? ListIconIOS : 'md-list-box';
     case 'Leaderboard':
-      return Platform.OS === 'ios' ? `ios-podium` : 'md-podium';
+      return PodiumIcon;
     case 'Settings':
-      return Platform.OS === 'ios' ? `ios-options` : 'md-options';
+      return Platform.OS === 'ios' ? SettingsIconIOS : 'md-options';
     default:
-      return Platform.OS === 'ios' ? `ios-home` : 'md-home';
+      return Platform.OS === 'ios' ? HomeIconIOS : 'md-home';
   }
 };
 
 const handleAppScreenOptions = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {
-    let iconName;
-
-    if (route.name === 'Home') {
-      iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
-    } else if (route.name === 'Settings') {
-      iconName = focused ? 'ios-list-box' : 'ios-list';
-    }
+    const Icon = getIcon(route);
 
     // You can return any component that you like here!
-    return <FolderIcon width={size} />;
+    return <Icon width={size} />;
   },
 });
 
@@ -42,7 +36,6 @@ export const BottomTabNavigator = () => {
     <Navigator
       screenOptions={handleAppScreenOptions}
       tabBarOptions={{
-        activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       }}>
       <Screen
