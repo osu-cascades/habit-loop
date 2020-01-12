@@ -1,13 +1,10 @@
 import React from 'react';
-import { JoinGroup } from '../components/Groups';
+import { JoinGroup } from '@src/components/Groups';
 
+export const JoinGroupScreen = () => {
+  return <JoinGroup />;
+};
 
-export default class JoinGroupScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Join a group',
-  };
-
-  render() {
-    return <JoinGroup />
-  }
-}
+JoinGroupScreen.navigationOptions = {
+  title: 'Join a group',
+};

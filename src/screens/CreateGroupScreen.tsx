@@ -1,15 +1,10 @@
 import React from 'react';
-import { CreateGroup } from '../components/Groups';
+import { CreateGroup } from '@src/components/Groups';
 
+export const CreateGroupScreen = () => {
+  return <CreateGroup />;
+};
 
-export default class CreateGroupScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Create a new group',
-  };
-
-  render() {
-    return (
-      <CreateGroup />
-    );
-  }
-}
+CreateGroupScreen.navigationOptions = {
+  title: 'Create a new group',
+};

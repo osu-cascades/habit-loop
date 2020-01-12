@@ -1,53 +1,25 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  Image,
-  ImageBackground
-} from 'react-native';
-import {
-  Container, View
-} from 'native-base';
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { Container } from 'native-base';
 import Constants from 'expo-constants';
-import {
-  PushNotifications,
-  SignoutButton,
-  PriorityHabit,
-  Streak,
-  StreakImage
-} from '../components';
-import {
-  CreateGroupButton,
-  JoinGroupButton,
-} from '../components/Groups';
-import {
-  Logo
-} from '../components/basic';
+import { PushNotifications, SignoutButton, PriorityHabit, StreakImage } from '@src/components';
+import { CreateGroupButton, JoinGroupButton } from '@src/components/Groups';
+import { Logo } from '../components/basic';
 
-import Groups from '../components/LeaderboardTabs'
-import { relative } from 'path';
-
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-  };
-
-  render() {
-    return (
-      <Container style={styles.container}>
-        <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <StreakImage />
-        <CreateGroupButton />
-        <JoinGroupButton />
-        <Groups />
-        {/* <PriorityHabit /> */}
-        {/* <PushNotifications /> */}
-
-      </Container >
-
-    );
-  }
-}
+export const HomeScreen = () => {
+  return (
+    <Container style={styles.container}>
+      <Logo source={require('../assets/images/lt.png')} />
+      <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
+      <StreakImage />
+      <CreateGroupButton />
+      <JoinGroupButton />
+      {/* <PriorityHabit /> */}
+      {/* <PushNotifications /> */}
+      <SignoutButton />
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -56,12 +28,11 @@ const styles = StyleSheet.create({
     // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
-
   },
   intro: {
     textAlign: 'center',
     fontSize: 30,
-    marginBottom: 30
+    marginBottom: 30,
   },
   heading: {
     fontSize: 30,

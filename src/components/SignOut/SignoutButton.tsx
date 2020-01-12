@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  AsyncStorage,
-  Text
-} from 'react-native';
-import { withApollo, compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
-import { ButtonText } from '../basic';
+import React from 'react';
+import { AsyncStorage } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import { Button } from './signout_styles';
 
-export class SignoutButton extends Component {
-    _signOutAsync = async () => {
-        const { client } = this.props;
+import { ButtonText } from '@src/components/basic';
 
-        await AsyncStorage.clear();
-        client.cache.reset();
-        this.props.navigation.navigate('Auth');
-    };
-        
-  render() {
-    return (
-        <Button block onPress={this._signOutAsync}>
-            <ButtonText>Sign out</ButtonText>
-        </Button>
-    );
-  }
-}
+const signOut = async ({ navigate }) => {
+  await AsyncStorage.clear();
+  navigate('Auth');
+};
 
-export default compose(
-  withNavigation,
-  withApollo,
-)(SignoutButton);
+const SignoutButton = () => {
+  const { navigate } = useNavigation();
+
+  return (
+    <Button block onPress={() => signOut({ navigate })}>
+      <ButtonText>Sign out</ButtonText>
+    </Button>
+  );
+};
+
+export default SignoutButton;

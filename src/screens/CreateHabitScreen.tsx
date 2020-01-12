@@ -1,15 +1,10 @@
 import React from 'react';
-import CreateHabitForm from '../components/CreateHabitForm';
+import CreateHabitForm from '@src/components/CreateHabitForm';
 
+export const CreateHabitScreen = () => {
+  return <CreateHabitForm />;
+};
 
-export default class CreateHabitScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Create a new habit',
-  };
-
-  render() {
-    return (
-      <CreateHabitForm />
-    );
-  }
-}
+CreateHabitScreen.navigationOptions = {
+  title: 'Create a new group',
+};

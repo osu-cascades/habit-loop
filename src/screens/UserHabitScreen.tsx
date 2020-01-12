@@ -1,22 +1,16 @@
 import React from 'react';
-import EditHabitForm from '../components/EditHabit';
+import EditHabitForm from '@src/components/EditHabit';
+import { useNavigation } from '@react-navigation/core';
 
-export default class UserHabitScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-      const habit = navigation.getParam('habit', {});
+export const UserHabitScreen = () => {
+  const { getParam } = useNavigation();
+  return <EditHabitForm habit={getParam('habit', {})} refetch={getParam('refetch', null)} />;
+};
 
-      return {
-          title: habit.name,
-      }
+UserHabitScreen.navigationOptions = ({ navigation }) => {
+  const habit = navigation.getParam('habit', {});
+
+  return {
+    title: habit.name,
   };
-
-  
-  render() {
-    return (
-      <EditHabitForm 
-        habit={this.props.navigation.getParam('habit', {})}
-        refetch={this.props.navigation.getParam('refetch', null)}
-      />
-    );
-  }
-}
+};

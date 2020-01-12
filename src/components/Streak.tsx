@@ -1,11 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import _ from 'lodash';
-import { compose } from 'react-apollo';
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { GetUserStreak } from '@src/data';
-import { renderWhileLoading, renderForError } from '@src/components';
 
 const Streak = props => <Text>{`Your current streak is ${props.data.getUserStreak.score || 0}`}</Text>;
 

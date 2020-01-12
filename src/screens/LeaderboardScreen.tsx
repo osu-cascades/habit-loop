@@ -1,18 +1,14 @@
 import React from 'react';
-import { Container } from "native-base";
-import LeaderboardTabs from '../components/LeaderboardTabs';
+import { Container } from 'native-base';
+import LeaderboardTabs from '@src/components/LeaderboardTabs';
 
-
-export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Leaderboard',
-  };
-
-  render() {
-    return (
-      <Container>
-        <LeaderboardTabs />
-      </Container>
-    );
-  }
-}
+export const LeaderboardScreen = () => {
+  return (
+    <Container>
+      <LeaderboardTabs />
+    </Container>
+  );
+};
+LeaderboardScreen.navigationOptions = {
+  title: 'Leaderboard',
+};

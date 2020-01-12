@@ -1,14 +1,10 @@
 import React from 'react';
-import { SignupForm } from '../components';
+import { SignupForm } from '@src/components';
 
-export default class SignupScreen extends React.Component {
-  static navigationOptions = {
-    title: 'CBT Habit Loop',
-  };
+export const SignupScreen = () => {
+  return <SignupForm />;
+};
 
-  render() {
-    return (
-          <SignupForm />
-      );
-  }
-}
+SignupScreen.navigationOptions = {
+  title: 'Sign up',
+};

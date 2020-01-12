@@ -1,16 +1,10 @@
 import React from 'react';
+import HabitList from '@src/components/HabitList';
 
-import HabitList from '../components/HabitList';
+export const HabitScreen = () => {
+  return <HabitList />;
+};
 
-export default class HabitScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Habits',
-  };
-
-  render() {
-    return (
-        <HabitList/>
-    );
-  }
-}
-
+HabitScreen.navigationOptions = {
+  title: 'Habits',
+};

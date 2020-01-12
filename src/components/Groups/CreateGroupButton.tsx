@@ -1,29 +1,22 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
+import React from 'react';
 import { Button, ButtonText } from '../basic';
 import { StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
-export class CreateGroupButton extends Component {
-    handlePress = () => {
-        this.props.navigation.navigate('CreateGroup');
-    }
+const CreateGroupButton = () => {
+  const { navigate } = useNavigation();
 
-    render() {
-        return (
-            <Button onPress={this.handlePress} style={styles.createGroupb}>
-                <ButtonText>Create Group</ButtonText>
-            </Button>
-        );
-    }
-}
+  return (
+    <Button onPress={() => navigate('CreateGroup')} style={styles.createGroupb}>
+      <ButtonText>Create Group</ButtonText>
+    </Button>
+  );
+};
 
 const styles = StyleSheet.create({
-    createGroupb: {
-        backgroundColor: '#E6B43C'
-    }
-})
+  createGroupb: {
+    backgroundColor: '#E6B43C',
+  },
+});
 
-export default compose(
-    withNavigation,
-)(CreateGroupButton);
+export default CreateGroupButton;
