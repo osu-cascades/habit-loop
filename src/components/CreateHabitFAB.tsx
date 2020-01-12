@@ -20,7 +20,7 @@ const CreateButtonFAB = ({ refetch }) => {
           refetch,
         })
       }>
-      <PlusIcon width={24} />
+      <PlusIcon width={24} fill="white" />
     </Fab>
   );
 };
