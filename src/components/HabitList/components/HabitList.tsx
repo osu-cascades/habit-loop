@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import _ from 'lodash';
 import HabitCard from './HabitCard';
 import EmptyText from './EmptyText';
-import { SectionList, Text } from 'react-native';
+import { SectionList } from 'react-native';
 import { Separator } from '../../basic';
 import SwipeableRow from './SwipeableRow';
 import Header from './ListHeader';
@@ -24,6 +24,16 @@ function usePrevious(value) {
   return ref.current;
 }
 
+function useForceUpdate(): () => void {
+  const [, dispatch] = useState<{}>(Object.create(null));
+
+  // Turn dispatch(required_parameter) into dispatch().
+  const memoizedDispatch = useCallback((): void => {
+    dispatch(Object.create(null));
+  }, [dispatch]);
+  return memoizedDispatch;
+}
+
 const GET_HABITS = gql`
   query getHabits {
     getHabits {
@@ -41,6 +51,7 @@ const GET_HABITS = gql`
 const HabitList = ({ updateHabits, ...props }) => {
   const [habits, setHabits] = useState([]);
   const [sectionedLists, setSectionedLists] = useState([]);
+  const forceUpdate = useForceUpdate();
 
   const { data, loading, refetch, networkStatus } = useQuery(GET_HABITS, {
     notifyOnNetworkStatusChange: true,
@@ -51,6 +62,26 @@ const HabitList = ({ updateHabits, ...props }) => {
     // grab refetch from apollo query and use it when we want to edit habits
     updateHabits(refetch);
   }, []);
+
+  useEffect(() => {
+    if (habits.length === 0) {
+      setSectionedLists([]);
+    } else {
+      const lists = [
+        {
+          title: 'Daily Habits',
+          data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY'),
+        },
+        {
+          title: 'Weekly Habits',
+          data: habits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY'),
+        },
+        { title: 'Completed Habits', data: habits.filter(habit => habit.completed_today === true) },
+      ];
+
+      setSectionedLists(lists);
+    }
+  }, [habits]);
 
   // componentDidUpdate
   useEffect(() => {
@@ -67,22 +98,6 @@ const HabitList = ({ updateHabits, ...props }) => {
       }));
 
       setHabits(mappedHabits);
-
-      const lists = [
-        {
-          title: 'Daily Habits',
-          data: mappedHabits.filter(habit => habit.completed_today === false && habit.recurrence === 'DAILY'),
-        },
-        {
-          title: 'Weekly Habits',
-          data: mappedHabits.filter(habit => habit.completed_today === false && habit.recurrence === 'WEEKLY'),
-        },
-        { title: 'Completed Habits', data: mappedHabits.filter(habit => habit.completed_today === true) },
-      ];
-
-      setSectionedLists(lists);
-    } else {
-      setSectionedLists([]);
     }
   }, [data]);
 
@@ -96,13 +111,14 @@ const HabitList = ({ updateHabits, ...props }) => {
   );
 
   const handleCompletion = useCallback(habit_id => {
-    const completeHabit = habits.map(habit => {
-      if (habit_id === habit.habit_id) {
-        return Object.assign(habit, { completed_today: true });
-      }
-      return habit;
-    });
-    setHabits(completeHabit);
+    setHabits(prevHabits =>
+      prevHabits.map(habit => {
+        if (habit_id === habit.habit_id) {
+          return Object.assign(habit, { completed_today: true });
+        }
+        return habit;
+      })
+    );
   }, []);
 
   const renderProps = {
@@ -125,7 +141,7 @@ const HabitList = ({ updateHabits, ...props }) => {
       ItemSeparatorComponent={() => <Separator />}
       renderSectionHeader={({ section: { title } }) => <Header text={title} />}
       ListEmptyComponent={<EmptyText />}
-      onRefresh={refetch}
+      onRefresh={() => refetch && refetch()}
       refreshing={networkStatus === 4}
     />
   );

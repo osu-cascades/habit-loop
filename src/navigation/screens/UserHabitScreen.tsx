@@ -3,6 +3,7 @@ import EditHabitForm from '@src/components/EditHabit';
 
 export const UserHabitScreen = ({ route }) => {
   const { habit, refetch } = route.params;
+
   return <EditHabitForm habit={habit} refetch={refetch} />;
 };
 

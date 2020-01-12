@@ -14,13 +14,15 @@ const GET_TOP_STREAKS = gql`
 `;
 
 const TopStreakList = () => {
-  const { data, loading } = useQuery(GET_TOP_STREAKS);
+  const { data, loading, refetch, networkStatus } = useQuery(GET_TOP_STREAKS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   if (loading) return <Loading />;
 
   const items = data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
 
-  return <TopStreakBoard items={items} networkStatus={data.networkStatus} refetch={data.refetch} />;
+  return <TopStreakBoard items={items} networkStatus={networkStatus} refetch={refetch} />;
 };
 
 export default TopStreakList;

@@ -14,7 +14,9 @@ const GET_USER_GROUPS = gql`
 `;
 
 const Groups = ({ handleGroupChange }) => {
-  const { data, error, loading } = useQuery(GET_USER_GROUPS);
+  const { data, error, loading, refetch, networkStatus } = useQuery(GET_USER_GROUPS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   if (loading) return <Loading />;
 
@@ -23,8 +25,8 @@ const Groups = ({ handleGroupChange }) => {
   return (
     <FlatList
       data={items}
-      onRefresh={data.refetch}
-      refreshing={data.networkStatus === 4}
+      onRefresh={refetch}
+      refreshing={networkStatus === 4}
       renderItem={row => (
         <ListItem onPress={() => handleGroupChange(row.item.group_name, row.item.item_id)}>
           <Text>{row.item.group_name}</Text>
