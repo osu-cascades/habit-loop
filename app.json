@@ -27,6 +27,10 @@
     },
     "android": {
       "package": "com.donaldjr.cbt_habit_loop"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     }
   }
 }

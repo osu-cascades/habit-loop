@@ -4,20 +4,21 @@ import { Container } from 'native-base';
 import Constants from 'expo-constants';
 import { PushNotifications, SignoutButton, PriorityHabit, StreakImage } from '@src/components';
 import { CreateGroupButton, JoinGroupButton } from '@src/components/Groups';
-import { Logo } from '../components/basic';
+import { Logo } from '../../components/basic';
+import Groups from '../../components/LeaderboardTabs'
 
 export const HomeScreen = () => {
   return (
     <Container style={styles.container}>
-      <Logo source={require('../assets/images/lt.png')} />
-      <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-      <StreakImage />
-      <CreateGroupButton />
-      <JoinGroupButton />
-      {/* <PriorityHabit /> */}
-      {/* <PushNotifications /> */}
-      <SignoutButton />
-    </Container>
+        <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
+        <StreakImage />
+        <CreateGroupButton />
+        <JoinGroupButton />
+        <Groups />
+        {/* <PriorityHabit /> */}
+        {/* <PushNotifications /> */}
+
+      </Container >
   );
 };
 
@@ -28,11 +29,12 @@ const styles = StyleSheet.create({
     // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
     padding: 8,
+
   },
   intro: {
     textAlign: 'center',
     fontSize: 30,
-    marginBottom: 30,
+    marginBottom: 30
   },
   heading: {
     fontSize: 30,

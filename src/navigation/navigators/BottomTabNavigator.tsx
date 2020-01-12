@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Platform } from 'react-native';
-
-import TabBarIcon from '@src/components/TabBarIcon';
-import { HomeStack, HabitStack, LeaderboardStack, SettingsStack } from './';
+import { Platform, Text } from 'react-native';
+import { HomeStack, HabitStack, LeaderboardStack, SettingsStack } from '..';
+import { FolderIcon } from '@src/assets/svgs';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -23,17 +22,29 @@ const getIconName = route => {
   }
 };
 
-const handleAppScreenOptions = ({ route }) => {
-  const iconName = getIconName(route);
+const handleAppScreenOptions = ({ route }) => ({
+  tabBarIcon: ({ focused, color, size }) => {
+    let iconName;
 
-  return {
-    tabBarIcon: ({ focused, color, size }) => <TabBarIcon focused={focused} name={iconName} />,
-  };
-};
+    if (route.name === 'Home') {
+      iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+    } else if (route.name === 'Settings') {
+      iconName = focused ? 'ios-list-box' : 'ios-list';
+    }
 
-export const BottomTabStack = () => {
+    // You can return any component that you like here!
+    return <FolderIcon width={size} />;
+  },
+});
+
+export const BottomTabNavigator = () => {
   return (
-    <Navigator screenOptions={handleAppScreenOptions}>
+    <Navigator
+      screenOptions={handleAppScreenOptions}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}>
       <Screen
         name="Home"
         component={HomeStack}

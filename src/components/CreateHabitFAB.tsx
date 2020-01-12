@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Icon, Fab } from 'native-base';
+import { Fab } from 'native-base';
 import { useNavigation } from '@react-navigation/core';
+import { FolderIcon } from '@src/assets/svgs';
 
 import { Platform, StyleSheet } from 'react-native';
 
@@ -19,7 +20,7 @@ const CreateButtonFAB = ({ refetch }) => {
           refetch,
         })
       }>
-      <Icon name={Platform.OS === 'ios' ? 'ios-add' : 'md-add'} />
+      <FolderIcon width={24} />
     </Fab>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HabitScreen, CreateHabitScreen, UserHabitScreen } from '@src/screens';
+import { HabitScreen, CreateHabitScreen, UserHabitScreen } from '@src/navigation/screens';
 
 const { Navigator, Screen } = createStackNavigator();
 

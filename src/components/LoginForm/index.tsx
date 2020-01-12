@@ -42,7 +42,7 @@ const loginUser = async ({ values, login, navigate }) => {
 
 const LoginForm = () => {
   const { navigate } = useNavigation();
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+  const [login, { error }] = useMutation(CBT_LOGIN);
 
   return (
     <View>
@@ -59,9 +59,8 @@ const LoginForm = () => {
             .required(),
           password: yup.string().required(),
         })}>
-        {props => <Form {...props} />}
+        {props => <Form {...props} loginError={error} />}
       </Formik>
-      <Text>{error && 'Could not log in.'}</Text>
     </View>
   );
 };

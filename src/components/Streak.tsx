@@ -4,8 +4,6 @@ import _ from 'lodash';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
-const Streak = props => <Text>{`Your current streak is ${props.data.getUserStreak.score || 0}`}</Text>;
-
 const GET_USER_STREAK = gql`
   query getUserStreak {
     getUserStreak {
@@ -16,7 +14,7 @@ const GET_USER_STREAK = gql`
   }
 `;
 
-const StreakHook = () => {
+const Streak = () => {
   const { data, error, loading } = useQuery(GET_USER_STREAK);
   if (loading) return <Text>Loading...</Text>;
   if (error) {
@@ -26,10 +24,4 @@ const StreakHook = () => {
   return <Text>{`${data.getUserStreak.score || 0}`}</Text>;
 };
 
-export default StreakHook;
-
-// export default compose(
-//   GetUserStreak,
-//   renderWhileLoading(),
-//   renderForError(),
-// )(Streak);
+export default Streak;

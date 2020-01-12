@@ -1,6 +1,5 @@
-import React, { useCallback } from 'react';
-import { Animated } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react';
+import { FolderIcon } from '@src/assets/svgs';
 import { LeftAction, LeftActionText } from '../habit_list_styles';
 import _ from 'lodash';
 import { useMutation, gql } from '@apollo/client';
@@ -10,8 +9,6 @@ const COMPLETE_HABIT = gql`
     completeHabit(item_id: $item_id, recurrence: $recurrence)
   }
 `;
-
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const CompleteHabitButton = ({ habit, handleCompletion, scale }) => {
   const [completeHabit, { data, loading, error }] = useMutation(COMPLETE_HABIT);
@@ -36,12 +33,11 @@ const CompleteHabitButton = ({ habit, handleCompletion, scale }) => {
 
   return (
     <LeftAction onPress={submitCompletion}>
-      <AnimatedIcon
+      <FolderIcon
         name="archive"
-        size={30}
+        width={30}
         color="#fff"
         style={{
-          transform: [{ scale }],
           width: 30,
           marginHorizontal: 10,
           alignSelf: 'center',

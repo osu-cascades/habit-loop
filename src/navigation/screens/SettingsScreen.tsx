@@ -1,6 +1,6 @@
 import React from 'react';
-import { SignoutButton } from '../components';
-import { Container } from '../components/styling/SettingsScreenStyles';
+import { SignoutButton } from '../../components';
+import { Container } from '../../components/styling/SettingsScreenStyles';
 
 export const SettingsScreen = () => {
   return (

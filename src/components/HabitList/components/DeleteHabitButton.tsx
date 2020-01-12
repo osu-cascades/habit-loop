@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
-import { Animated, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Alert } from 'react-native';
+import { FolderIcon } from '@src/assets/svgs';
 import { RightActionButton, RightActionText } from '../habit_list_styles';
 import { useMutation, gql } from '@apollo/client';
 
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const DELETE_HABIT = gql`
   mutation deleteHabit($item_id: String!) {
@@ -45,16 +44,15 @@ const DeleteButton = ({ habit, handleDeletion, scale, handleDeletionError }) => 
   return (
     <RightActionButton onPress={handlePress}>
       <RightActionText> delete habit </RightActionText>
-      <AnimatedIcon
-        name="delete-forever"
-        size={30}
+      <FolderIcon
+        name="archive"
+        width={30}
         color="#fff"
         style={{
-          transform: [{ scale }],
           width: 30,
           marginHorizontal: 10,
           alignSelf: 'center',
-          marginRight: 20,
+          marginLeft: 20,
         }}
       />
       {deleteHabitError && Alert.alert('Error deleting habit.')}
