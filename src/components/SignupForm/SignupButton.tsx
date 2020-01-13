@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
-import { ButtonText } from '../basic';
-import { Button } from './signup_styles'
+import React from 'react';
+import { useNavigation } from '@react-navigation/core';
+import { ButtonText } from '@src/components/basic';
+import { Button } from './signup_styles';
 
-export class SignupButton extends Component {     
-    handlePress = () => {
-        this.props.navigation.navigate('Signup');
-    }
+const SignupButton = () => {
+  const { navigate } = useNavigation();
 
-    render() {
-        return (
-            <Button onPress={this.handlePress}>
-                <ButtonText>SIGN UP</ButtonText>
-            </Button>
-        );
-    }
-}
+  return (
+    <Button onPress={() => navigate('Signup')}>
+      <ButtonText>SIGNUP</ButtonText>
+    </Button>
+  );
+};
 
-export default compose(
-  withNavigation,
-)(SignupButton);
+export default SignupButton;

@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
-import { 
-  GetTopStreaks,
- } from '../../data';
-import {
-  renderForError,
-  renderWhileLoading
-} from '../basic';
-import { TopStreakBoard } from './Board'
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { Loading } from '@src/components';
+import { TopStreakBoard } from './Board';
 
-const TopStreakList = props => {
-  const items = props.data.getTopStreaks
-    .map((item, key) => Object.assign(item, { key: key.toString() }));
+const GET_TOP_STREAKS = gql`
+  query getTopStreaks {
+    getTopStreaks {
+      username
+      user_id
+      score
+    }
+  }
+`;
 
-  return (
-    <TopStreakBoard 
-        items={items}
-        networkStatus={props.data.networkStatus}
-        refetch={props.data.refetch}
-    />
-  )
-}
+const TopStreakList = () => {
+  const { data, loading, refetch, networkStatus } = useQuery(GET_TOP_STREAKS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
-export default compose(
-  GetTopStreaks,
-  renderForError(),
-  renderWhileLoading(),
-)(TopStreakList)
+  if (loading) return <Loading />;
+
+  const items = data.getTopStreaks.map((item, key) => Object.assign(item, { key: key.toString() }));
+
+  return <TopStreakBoard items={items} networkStatus={networkStatus} refetch={refetch} />;
+};
+
+export default TopStreakList;

@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
-import { compose } from 'react-apollo';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import * as yup from 'yup';
-
-import { CreateHabit } from '@src/data';
 import { HabitForm } from './HabitForm';
+import { useMutation, gql } from '@apollo/client';
+import { useNavigation } from '@react-navigation/native';
 
-export class CreateHabitForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pressed: false,
-    };
+const CREATE_HABIT = gql`
+  mutation createHabit($input: HabitInput) {
+    createHabit(input: $input) {
+      habit_name
+    }
   }
+`;
 
-  submitNewHabit = async values => {
-    const refetch = this.props.navigation.getParam('refetch', () => console.log("Couldn't find refetch function"));
+const CreateHabitForm = ({ refetch }) => {
+  const [pressed, setPressed] = useState(false);
+  const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
+  const { goBack } = useNavigation();
+
+  const submitNewHabit = async values => {
     const newHabit = {
       variables: {
         input: {
@@ -30,47 +32,45 @@ export class CreateHabitForm extends Component {
     };
 
     // Prevent duplicate habits
-    if (!this.state.pressed) {
-      this.setState({ pressed: true });
+    if (!pressed) {
+      setPressed(true);
       // Wait for server to return result before refetching and going back
       try {
-        await this.props.mutate(newHabit);
+        await createHabit(newHabit);
 
         // refetch then go back if the mutation was successful
         // for future reference we don't even need to refetch
         // it could just update in the app itself without making any requests
         // since we know it is successful at this point.
         refetch();
-        this.props.navigation.goBack();
+        goBack();
       } catch (err) {
         // we can handle the state of an error here if submit fails
         console.log(err);
       } finally {
-        this.setState({ pressed: false });
+        setPressed(false);
       }
     }
   };
 
-  render() {
-    return (
-      <Formik
-        style={styles.addHabitForm}
-        initialValues={{
-          name: '',
-          type: '',
-          recurrence: '',
-        }}
-        onSubmit={this.submitNewHabit}
-        validationSchema={yup.object().shape({
-          name: yup.string().required(),
-          type: yup.string().required(),
-          recurrence: yup.string().required(),
-        })}>
-        {props => <HabitForm {...props} pressed={this.state.pressed} />}
-      </Formik>
-    );
-  }
-}
+  return (
+    <Formik
+      style={styles.addHabitForm}
+      initialValues={{
+        name: '',
+        type: '',
+        recurrence: '',
+      }}
+      onSubmit={submitNewHabit}
+      validationSchema={yup.object().shape({
+        name: yup.string().required(),
+        type: yup.string().required(),
+        recurrence: yup.string().required(),
+      })}>
+      {props => <HabitForm {...props} pressed={pressed} />}
+    </Formik>
+  );
+};
 
 const styles = StyleSheet.create({
   addHabitForm: {
@@ -78,7 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default compose(
-  withNavigation,
-  CreateHabit
-)(CreateHabitForm);
+export default CreateHabitForm;

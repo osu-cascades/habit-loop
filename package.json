@@ -1,9 +1,8 @@
 {
   "name": "habit-loop",
-  "main": "./main.js",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=dev expo start",
+    "start": "__DEV__=true NODE_ENV=dev expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -13,15 +12,22 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.4",
     "@babel/runtime": "^7.6.2",
     "@expo/vector-icons": "^10.0.0",
-    "apollo-boost": "^0.1.28",
+    "@react-native-community/masked-view": "0.1.5",
+    "@react-navigation/bottom-tabs": "^5.0.0-alpha.34",
+    "@react-navigation/core": "^5.0.0-alpha.32",
+    "@react-navigation/native": "^5.0.0-alpha.24",
+    "@react-navigation/native-stack": "5.0.0-alpha.16",
+    "@react-navigation/stack": "^5.0.0-alpha.58",
+    "apollo-boost": "^0.4.4",
     "expo": "^36.0.0",
     "expo-asset": "~8.0.0",
     "expo-constants": "~8.0.0",
     "expo-font": "~8.0.0",
     "formik": "^1.4.2",
-    "graphql": "^14.0.2",
+    "graphql": "^14.5.8",
     "lodash": "^4.17.15",
     "lottie-react-native": "~2.6.1",
     "native-base": "^2.13.8",
@@ -31,12 +37,16 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-gesture-handler": "~1.5.0",
     "react-native-picker-select": "^6.1.0",
+    "react-native-reanimated": "^1.2.0",
+    "react-native-safe-area-context": "0.6.0",
+    "react-native-safe-area-view": "^1.0.0",
+    "react-native-screens": "^2.0.0-alpha.22",
+    "react-native-svg": "9.13.3",
     "react-native-svg-animated-linear-gradient": "^0.1.9",
-    "react-native-vector-icons": "^6.4.2",
-    "react-navigation": "^3.11.0",
-    "react-navigation-hooks": "^1.0.3",
-    "recompose": "^0.30.0",
+    "react-native-svg-transformer": "^0.14.3",
     "styled-components": "^4.1.3",
+    "svg": "^0.1.0",
+    "unstated-next": "^1.1.0",
     "yup": "^0.26.6"
   },
   "devDependencies": {
@@ -55,6 +65,7 @@
     "eslint-plugin-react": "^7.14.3",
     "jest-expo": "^36.0.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.7.2"
+    "reactotron-react-native": "^4.0.2",
+    "typescript": "^3.7.4"
   }
 }

@@ -1,62 +1,68 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, AsyncStorage } from 'react-native';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
 import _ from 'lodash';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { CbtLogin } from '../../data';
+
 import Form from './Form';
+import { useNavigation } from '@react-navigation/core';
 
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
+import { useMutation, gql } from '@apollo/client';
 
-    this.state = {
-      error: false,
-    };
+const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password)
   }
-  // test user --> email: sik.email@sik.com password: 12345678
-  loginUser = async values => {
-    const loginData = {
-      variables: {
-        email: values.email,
-        password: values.password,
-      },
-    };
+`;
 
-    try {
-      const result = await this.props.mutate(loginData);
-      const token = _.get(result.data, 'cbtLogin', '');
+const CBT_LOGIN = gql`
+  mutation cbtLogin($email: String!, $password: String!) {
+    cbtLogin(email: $email, password: $password)
+  }
+`;
 
-      await AsyncStorage.setItem('userToken', token);
-      this.props.navigation.navigate('Main');
-    } catch (err) {
-      console.log('Error logging in:', JSON.stringify(err));
-      this.setState({ error: true });
-    }
+const loginUser = async ({ values, login, navigate }) => {
+  const loginData = {
+    variables: {
+      email: values.email,
+      password: values.password,
+    },
   };
 
-  render() {
-    return (
-      <View>
-        <Formik
-          onSubmit={this.loginUser}
-          render={props => <Form {...props} loginError={this.state.error} />}
-          validationSchema={yup.object().shape({
-            email: yup
-              .string()
-              .email()
-              .required(),
-            password: yup.string().required(),
-          })}
-        />
-      </View>
-    );
-  }
-}
+  try {
+    const result = await login(loginData);
+    const token = _.get(result.data, 'cbtLogin', '');
 
-export default compose(
-  withNavigation,
-  CbtLogin
-)(LoginForm);
+    await AsyncStorage.setItem('userToken', token);
+    navigate('Main');
+  } catch (err) {
+    console.error('Error logging in:', JSON.stringify(err));
+  }
+};
+
+const LoginForm = () => {
+  const { navigate } = useNavigation();
+  const [login, { error }] = useMutation(CBT_LOGIN);
+
+  return (
+    <View>
+      <Formik
+        initialValues={{
+          email: 'email@email.com',
+          password: '12345678',
+        }}
+        onSubmit={values => loginUser({ values, login, navigate })}
+        validationSchema={yup.object().shape({
+          email: yup
+            .string()
+            .email()
+            .required(),
+          password: yup.string().required(),
+        })}>
+        {props => <Form {...props} loginError={error} />}
+      </Formik>
+    </View>
+  );
+};
+
+export default LoginForm;

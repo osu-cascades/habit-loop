@@ -1,19 +1,10 @@
-import React, { Component } from 'react';
-import { Picker } from '../../basic';
-import { Query } from 'react-apollo';
-import { 
-    Text,
-    ListItem,
-    Badge,
-} from 'native-base';
-import { FlatList, StyleSheet } from 'react-native';
-import { 
-  Loading,
-} from '../../Loading';
-import gql from 'graphql-tag';
+import React from 'react';
+import { Text, ListItem } from 'native-base';
+import { FlatList } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
 
 const GET_ALL_GROUPS = gql`
-  query getAllGroups { 
+  query getAllGroups {
     getAllGroups {
       group_name
       item_id
@@ -22,54 +13,35 @@ const GET_ALL_GROUPS = gql`
   }
 `;
 
-const GroupPicker = props => (
-    <Query 
-        query={GET_ALL_GROUPS}
-    >
-        {({ loading, error, data, refetch, networkStatus }) => {
-            if (loading) return <Text>Loading...</Text>;
-            if (error) return <Text>Error loading data! {error}</Text>;
+const GroupPicker = props => {
+  const { data, error, loading, refetch, networkStatus } = useQuery(GET_ALL_GROUPS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
-            const items = data.getAllGroups.map((item) => ({ label: item.group_name, value: item.user_id, key: item.item_id }));
-            return (
-                <FlatList 
-                    data={items}
-                    onRefresh={refetch}
-                    refreshing={networkStatus === 4 }
-                    renderItem={(item) => 
-                        <ListItem onPress={() => { 
-                          props.setFieldValue('group_id', item.item.value);
-                          props.setFieldValue('group_name', item.item.label);
-                        }}>
-                            <Text>{item.item.label}</Text>
-                        </ListItem>
-                    }
-                >
-                </FlatList>
-            );
-        }}
-    </Query>
-);
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error loading data! {error}</Text>;
 
-const styles = StyleSheet.create({
-    items: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      width: '100%'
-    },
-    listItem: {
-      width: '100%',
-      justifyContent: 'flex-start',
-      borderRightColor: '#222222',
-      borderRightWidth: 5
-    },
-    badge: {
-      backgroundColor: '#F78E2A',
-      marginRight: '5%'
-    },
-    listItemText: {
-      alignSelf: 'flex-start',
-    }
-});
+  const groups = data.getAllGroups.map(group => ({
+    label: group.group_name,
+    value: group.user_id,
+    key: group.item_id,
+  }));
+
+  return (
+    <FlatList
+      data={groups}
+      onRefresh={refetch}
+      refreshing={networkStatus === 4}
+      renderItem={item => (
+        <ListItem
+          onPress={() => {
+            props.setFieldValue('group_id', item.item.value);
+            props.setFieldValue('group_name', item.item.label);
+          }}>
+          <Text>{item.item.label}</Text>
+        </ListItem>
+      )}></FlatList>
+  );
+};
 
 export default GroupPicker;

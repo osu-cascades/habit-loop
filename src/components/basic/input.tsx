@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { default as PickerComponent } from 'react-native-picker-select';
-import { Ionicons } from '@expo/vector-icons';
+import { ArrowDownIcon } from '@src/assets/svgs';
 import _ from 'lodash';
 
 export const Input = styled.TextInput`
@@ -50,7 +50,7 @@ export const Picker = props => (
   <PickerComponent
     style={styles}
     items={pickerItems[props.values]}
-    Icon={() => <Ionicons name="md-arrow-down" size={24} color="gray" />}
+    // Icon={() => <ArrowDownIcon width={24} />} // curently bugged
     {...props}
   />
 );
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon
   },
+  iconContainer: {},
   inputAndroid: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
