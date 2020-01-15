@@ -1,82 +1,70 @@
 import React, { Component } from 'react';
-import { 
-  Text,
-  AsyncStorage,
-} from 'react-native';
-import { compose } from 'react-apollo';
-import { withNavigation } from 'react-navigation';
+import { Text, AsyncStorage } from 'react-native';
 import { Formik } from 'formik';
-import * as yup from 'yup'
+import * as yup from 'yup';
+import { useNavigation } from '@react-navigation/core';
 
-import { Signup } from '../../data';
+import { useMutation, gql } from '@apollo/client';
+
 import Form from './Form';
 
-class SignupForm extends Component {
-  constructor(props) {
-    super(props);
+const signupUser = async ({ values, navigate, signup }) => {
+  const signupData = {
+    variables: {
+      input: {
+        email: values.email,
+        password: values.password,
+        username: values.username,
+      },
+    },
+  };
 
-    this.state = {
-      error: false,
-    }
+  try {
+    const result = await signup(signupData);
+    const token = result.data.signup;
+
+    await AsyncStorage.setItem('userToken', token);
+    navigate('Main');
+  } catch (err) {
+    console.error('Error signing up:', JSON.stringify(err));
   }
-  
-  signupUser = async values => {
-    const signupData = {
-      variables: {
-        input: {
-          email: values.email,
-          password: values.password,
-          username: values.username,
-        }
-      }
-    }
+};
 
-    try {
-      const result = await this.props.mutate(signupData);
-      const token = result.data.signup;
-
-      await AsyncStorage.setItem('userToken', token)
-      this.props.navigation.navigate('Main')
-
-    } catch (err) {
-      console.error('Error signing up:', JSON.stringify(err));
-      this.setState({ error: true })
-    }
+const SIGNUP = gql`
+  mutation signup($input: SignupInput!) {
+    signup(input: $input)
   }
+`;
 
-  render() {
-      return (
-        <>
-          <Formik
-              initialValues={{
-                  username: '',
-                  email: '',
-                  password: '',
-              }}
-              onSubmit={this.signupUser}
-              render={props => <Form {...props}/>}
-              validationSchema={
-                yup.object().shape({
-                  username: yup
-                      .string()
-                      .required(),
-                  password: yup
-                      .string()
-                      .min(8, "Password must have 8 characters")
-                      .required(),
-                  email: yup
-                      .string()
-                      .email()
-                      .required()
-              })}
-          />
-          <Text>{this.state.error && 'Could not sign up.'}</Text>
-        </>
-      );
-  }
-}
+const SignupForm = () => {
+  const { navigate } = useNavigation();
+  const [signup, { data, loading, error }] = useMutation(SIGNUP);
 
-export default compose(
-  Signup,
-  withNavigation
-)(SignupForm);
+  return (
+    <>
+      <Formik
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+        }}
+        onSubmit={({ values }) => signupUser({ values, signup, navigate })}
+        validationSchema={yup.object().shape({
+          username: yup.string().required(),
+          password: yup
+            .string()
+            .min(8, 'Password must have 8 characters')
+            .required(),
+          email: yup
+            .string()
+            .email()
+            .required(),
+        })}>
+        {props => <Form {...props} />}
+      </Formik>
+      <Text>{error && 'Could not sign up.'}</Text>
+    </>
+  );
+};
+
+export default SignupForm;

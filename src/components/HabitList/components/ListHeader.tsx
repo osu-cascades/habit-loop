@@ -1,14 +1,8 @@
 import React from 'react';
-import { Header, HeaderText } from '../habit_list_styles'
+import { Header, HeaderText } from '../habit_list_styles';
 
-export default class ListHeader extends React.Component {
-    render() {
-        return (
-            <Header>
-                <HeaderText>
-                    {this.props.text}
-                </HeaderText>
-            </Header>
-        )
-    }
-}
+export default ({ text }) => (
+  <Header>
+    <HeaderText>{text}</HeaderText>
+  </Header>
+);

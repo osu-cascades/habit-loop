@@ -6,13 +6,11 @@ import SignoutButton from './SignOut/SignoutButton';
 import PriorityHabit from './PriorityHabit';
 import LoginForm from './LoginForm';
 import SignupButton from './SignupForm/SignupButton';
-import Settings from './Settings';
 import Streak from './Streak';
 import StreakImage from './StreakImage';
 
 export {
     Streak,
-    Settings,
     Loading,
     LoginForm,
     SignupForm,

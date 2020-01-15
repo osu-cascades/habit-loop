@@ -1,47 +1,37 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
-import Lottie from 'lottie-react-native'
-import LoadingAnimation from '../assets/loading.json';
+import { Button, StyleSheet, View } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 export default class Loading extends React.Component {
-  state = {
-    animation: undefined,
-  };
-
-  componentWillMount() {
-    this._playAnimation();
+  componentDidMount() {
+    this.animation.play();
+    // Or set a specific startFrame and endFrame with:
+    // this.animation.play(30, 120);
   }
+
+  resetAnimation = () => {
+    this.animation.reset();
+    this.animation.play();
+  };
 
   render() {
     return (
-      <>
-        {this.state.animation &&
-          <Lottie
-            ref={animation => {
-              this.animation = animation;
-            }}
-            style={{
-              width: 400,
-              height: 400,
-            }}
-            source={this.state.animation}
-          />}
-      </>
+      <View style={styles.animationContainer}>
+        <LottieView
+          ref={animation => {
+            this.animation = animation;
+          }}
+          style={{
+            width: 400,
+            height: 400,
+          }}
+          source={require('../assets/loading.json')}
+          // OR find more Lottie files @ https://lottiefiles.com/featured
+          // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
+        />
+      </View>
     );
   }
-
-  _playAnimation = () => {
-    if (!this.state.animation) {
-      this._loadAnimationAsync();
-    } else {
-      this.animation.reset();
-      this.animation.play();
-    }
-  };
-
-  _loadAnimationAsync = async () => {
-    this.setState({ animation: LoadingAnimation }, this._playAnimation);
-  };
 }
 
 const styles = StyleSheet.create({

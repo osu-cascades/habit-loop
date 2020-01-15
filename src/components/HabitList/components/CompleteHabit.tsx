@@ -1,62 +1,52 @@
 import React from 'react';
-import { Animated } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { PlusIcon } from '@src/assets/svgs';
 import { LeftAction, LeftActionText } from '../habit_list_styles';
-import { compose } from 'react-apollo';
 import _ from 'lodash';
-import { CompleteHabit } from '@src/data';
+import { useMutation, gql } from '@apollo/client';
 
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
-
-export class CompleteHabitButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.submitCompletion = this.submitCompletion.bind(this);
-    this.handleCompletion = this.handleCompletion.bind(this);
+const COMPLETE_HABIT = gql`
+  mutation completeHabit($item_id: String!, $recurrence: String!) {
+    completeHabit(item_id: $item_id, recurrence: $recurrence)
   }
+`;
 
-  handleCompletion() {
-    this.props.handleCompletion(this.props.habit.habit_id);
-    this.submitCompletion();
-  }
+const CompleteHabitButton = ({ habit, handleCompletion, scale }) => {
+  const [completeHabit, { data, loading, error }] = useMutation(COMPLETE_HABIT);
 
-  async submitCompletion() {
-    const completeHabit = {
+  const submitCompletion = async () => {
+    const completedHabit = {
       variables: {
-        item_id: _.get(this.props.habit, 'habit_id', ''),
-        recurrence: _.get(this.props.habit, 'recurrence', ''),
+        item_id: _.get(habit, 'habit_id', ''),
+        recurrence: _.get(habit, 'recurrence', ''),
       },
     };
 
     try {
-      await this.props.mutate(completeHabit);
+      await completeHabit(completedHabit);
+      handleCompletion(habit.habit_id);
     } catch (err) {
-      console.error(err);
+      console.tron.log('Complete Habit Error: ', err, error);
     }
-  }
+  };
 
-  render() {
-    const { scale } = this.props;
+  // const handleCompletionCallback = useCallback(() => , []);
 
-    return (
-      <LeftAction onPress={this.handleCompletion}>
-        <AnimatedIcon
-          name="archive"
-          size={30}
-          color="#fff"
-          style={{
-            transform: [{ scale }],
-            width: 30,
-            marginHorizontal: 10,
-            alignSelf: 'center',
-            marginLeft: 20,
-          }}
-        />
-        <LeftActionText>complete habit</LeftActionText>
-      </LeftAction>
-    );
-  }
-}
+  return (
+    <LeftAction onPress={submitCompletion}>
+      <PlusIcon
+        name="archive"
+        width={30}
+        color="#fff"
+        style={{
+          width: 30,
+          marginHorizontal: 10,
+          alignSelf: 'center',
+          marginLeft: 20,
+        }}
+      />
+      <LeftActionText>complete habit</LeftActionText>
+    </LeftAction>
+  );
+};
 
-export default compose(CompleteHabit)(CompleteHabitButton);
+export default CompleteHabitButton;
