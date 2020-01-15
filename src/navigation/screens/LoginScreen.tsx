@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LocalAuthentication } from 'expo';
 
-import { LoginForm } from '../../components';
+import { LoginForm } from '@src/components';
 import { Logo } from '../../components/basic';
 import { Container } from '../../components/LoginForm/login_styles';
 
