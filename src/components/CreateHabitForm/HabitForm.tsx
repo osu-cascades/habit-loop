@@ -27,6 +27,14 @@ export const HabitForm = props => {
         error={props.touched.type && props.errors.type}
       />
       <Picker
+        placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
+        values={'timeTrained'}
+        onValueChange={props.handleChange('timeTrained')}
+        selectedValue={props.values.timeTrained}
+        mode={'dropdown'}
+        error={props.touched.timeTrained && props.errors.timeTrained}
+      />
+      <Picker
         placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
         values={'recurrences'}
         onValueChange={props.handleChange('recurrence')}
