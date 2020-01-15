@@ -24,13 +24,21 @@ export default EditHabitForm = props => (
           ref={input => this.typeInput = input}
           error={props.touched.type && props.errors.type}
       />
+      <Picker
+          placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
+          values={'timeTrained'}
+          onValueChange={props.handleChange('timeTrained')}
+          value={props.values.timeTrained}
+          mode={'dropdown'}
+          error={props.touched.timeTrained && props.errors.timeTrained}
+      />
       <Picker 
-            placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
-            values={'recurrences'}
-            onValueChange={props.handleChange('recurrence')}
-            value={props.values.recurrence}
-            mode={'dropdown'}
-            error={props.touched.recurrence && props.errors.recurrence}
+          placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
+          values={'recurrences'}
+          onValueChange={props.handleChange('recurrence')}
+          value={props.values.recurrence}
+          mode={'dropdown'}
+          error={props.touched.recurrence && props.errors.recurrence}
         />
       <Button
           onPress={props.handleSubmit}
