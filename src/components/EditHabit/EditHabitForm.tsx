@@ -26,11 +26,11 @@ export default EditHabitForm = props => (
       />
       <Picker
           placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
-          values={'timeTrained'}
-          onValueChange={props.handleChange('timeTrained')}
-          value={props.values.timeTrained}
+          values={'trainedFor'}
+          onValueChange={props.handleChange('trainedFor')}
+          value={props.values.trainedFor}
           mode={'dropdown'}
-          error={props.touched.timeTrained && props.errors.timeTrained}
+          error={props.touched.trainedFor && props.errors.trainedFor}
       />
       <Picker 
           placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}

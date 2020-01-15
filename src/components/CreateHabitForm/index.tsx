@@ -24,7 +24,7 @@ export class CreateHabitForm extends Component {
         input: {
           habit_name: values.name,
           type: values.type,
-          timeTrained: values.timeTrained,
+          trainedFor: values.trainedFor,
           recurrence: values.recurrence,
         },
       },
@@ -59,14 +59,14 @@ export class CreateHabitForm extends Component {
         initialValues={{
           name: '',
           type: '',
-          timeTrained: '',
+          trainedFor: '',
           recurrence: '',
         }}
         onSubmit={this.submitNewHabit}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
           type: yup.string().required(),
-          timeTrained: yup.number().required(),
+          trainedFor: yup.number().required(),
           recurrence: yup.string().required(),
         })}>
         {props => <HabitForm {...props} pressed={this.state.pressed} />}

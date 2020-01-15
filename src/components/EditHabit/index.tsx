@@ -31,7 +31,7 @@ class EditHabit extends Component {
           item_id: this.props.habit.habit_id,
           user_id: this.props.habit.user_id,
           recurrence: values.recurrence,
-          timeTrained: values.timeTrained
+          trainedFor: values.trainedFor
         },
       },
     };
@@ -55,14 +55,14 @@ class EditHabit extends Component {
           name: this.props.habit.name,
           type: this.props.habit.type,
           recurrence: this.props.habit.recurrence,
-          timeTrained: this.props.habit.timeTrained
+          trainedFor: this.props.habit.trainedFor
         }}
         onSubmit={this.submitUpdatedHabit}
         render={props => <EditHabitForm {...props} />}
         validationSchema={yup.object().shape({
           name: yup.string().required(),
           type: yup.string().required(),
-          timeTrained: yup.number().required()
+          trainedFor: yup.number().required()
         })}
       />
     );
