@@ -49,12 +49,12 @@ const EditHabit = ({ habit, refetch }) => {
   return (
     <Formik
       initialValues={{
-        name: this.props.habit.name,
-        type: this.props.habit.type,
-        recurrence: this.props.habit.recurrence,
-        trainedFor: this.props.habit.trainedFor
+        name: habit.name,
+        type: habit.type,
+        recurrence: habit.recurrence,
+        trainedFor: habit.trainedFor
       }}
-      onSubmit={this.submitUpdatedHabit}
+      onSubmit={submitUpdatedHabit}
       render={props => <EditHabitForm {...props} />}
       validationSchema={yup.object().shape({
         name: yup.string().required(),
