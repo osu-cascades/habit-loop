@@ -28,6 +28,7 @@ const CreateHabitForm = ({ refetch }) => {
           type: values.type,
           trainedFor: values.trainedFor,
           recurrence: values.recurrence,
+          links: values.links,
         },
       },
     };
@@ -62,6 +63,7 @@ const CreateHabitForm = ({ refetch }) => {
         type: '',
         trainedFor: '',
         recurrence: '',
+        links: '',
       }}
       onSubmit={submitNewHabit}
       validationSchema={yup.object().shape({
@@ -69,6 +71,7 @@ const CreateHabitForm = ({ refetch }) => {
         type: yup.string().required(),
         trainedFor: yup.number().required(),
         recurrence: yup.string().required(),
+        links: yup.string().required(),
       })}>
       {props => <HabitForm {...props} pressed={pressed} />}
     </Formik>

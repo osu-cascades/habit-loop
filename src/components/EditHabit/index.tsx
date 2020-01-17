@@ -30,7 +30,8 @@ const EditHabit = ({ habit, refetch }) => {
           item_id: habit.habit_id,
           user_id: habit.user_id,
           recurrence: values.recurrence,
-          trainedFor: values.trainedFor
+          trainedFor: values.trainedFor,
+          links: values.links,
         },
       },
     };
@@ -52,14 +53,16 @@ const EditHabit = ({ habit, refetch }) => {
         name: habit.name,
         type: habit.type,
         recurrence: habit.recurrence,
-        trainedFor: habit.trainedFor
+        trainedFor: habit.trainedFor,
+        links: habit.links,
       }}
       onSubmit={submitUpdatedHabit}
       render={props => <EditHabitForm {...props} />}
       validationSchema={yup.object().shape({
         name: yup.string().required(),
         type: yup.string().required(),
-        trainedFor: yup.number().required()
+        trainedFor: yup.number().required(),
+        links: yup.string().required(),
       })}
     />
   );
