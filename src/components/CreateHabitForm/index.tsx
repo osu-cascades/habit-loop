@@ -39,7 +39,6 @@ const CreateHabitForm = ({ refetch }) => {
       // Wait for server to return result before refetching and going back
       try {
         await createHabit(newHabit);
-
         // refetch then go back if the mutation was successful
         // for future reference we don't even need to refetch
         // it could just update in the app itself without making any requests
@@ -76,7 +75,7 @@ const CreateHabitForm = ({ refetch }) => {
       {props => <HabitForm {...props} pressed={pressed} />}
     </Formik>
   );
-}
+};
 
 const styles = StyleSheet.create({
   addHabitForm: {

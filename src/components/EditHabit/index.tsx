@@ -66,6 +66,6 @@ const EditHabit = ({ habit, refetch }) => {
       })}
     />
   );
-}
+};
 
 export default EditHabit;
