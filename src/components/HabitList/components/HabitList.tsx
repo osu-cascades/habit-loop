@@ -44,6 +44,8 @@ const GET_HABITS = gql`
       user_id
       completed_today
       recurrence
+      links
+      trainedFor
     }
   }
 `;
@@ -95,6 +97,8 @@ const HabitList = ({ updateHabits, ...props }) => {
         completed_today: item.completed_today || false,
         recurrence: item.recurrence,
         user_id: item.user_id,
+        trainedFor: item.trainedFor,
+        links: item.links,
       }));
 
       setHabits(mappedHabits);

@@ -12,7 +12,7 @@ export const HabitForm = props => {
         returnKeyType="next"
         onBlur={() => props.setFieldTouched('name')}
         onChangeText={props.handleChange('name')}
-        onSubmitEditing={() => this.typeInput.focus()}
+        onSubmitEditing={() => typeInput.focus()}
         error={props.touched.name && props.errors.name}
       />
       <Input
@@ -22,9 +22,17 @@ export const HabitForm = props => {
         returnKeyType="go"
         onBlur={() => props.setFieldTouched('type')}
         onChangeText={props.handleChange('type')}
-        ref={input => (this.typeInput = input)}
-        onSubmitEditing={() => this.recurrenceInput.focus()}
+        ref={input => (typeInput = input)}
+        onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.type && props.errors.type}
+      />
+      <Picker
+        placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
+        values={'trainedFor'}
+        onValueChange={props.handleChange('trainedFor')}
+        selectedValue={props.values.trainedFor}
+        mode={'dropdown'}
+        error={props.touched.trainedFor && props.errors.trainedFor}
       />
       <Picker
         placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
@@ -33,6 +41,16 @@ export const HabitForm = props => {
         selectedValue={props.values.recurrence}
         mode={'dropdown'}
         error={props.touched.recurrence && props.errors.recurrence}
+      />
+      <Input
+        placeholder="Links"
+        placeholderTextColor="#666"
+        value={props.values.links}
+        returnKeyType="go"
+        onBlur={() => props.setFieldTouched('links')}
+        onChangeText={props.handleChange('links')}
+        ref={input => (typeInput = input)}
+        error={props.touched.links && props.errors.links}
       />
       <AddButton onPress={props.handleSubmit} disabled={!props.isValid}>
         <ButtonText>Create New Habit</ButtonText>

@@ -26,7 +26,9 @@ const CreateHabitForm = ({ refetch }) => {
         input: {
           habit_name: values.name,
           type: values.type,
+          trainedFor: values.trainedFor,
           recurrence: values.recurrence,
+          links: values.links,
         },
       },
     };
@@ -37,7 +39,6 @@ const CreateHabitForm = ({ refetch }) => {
       // Wait for server to return result before refetching and going back
       try {
         await createHabit(newHabit);
-
         // refetch then go back if the mutation was successful
         // for future reference we don't even need to refetch
         // it could just update in the app itself without making any requests
@@ -59,13 +60,17 @@ const CreateHabitForm = ({ refetch }) => {
       initialValues={{
         name: '',
         type: '',
+        trainedFor: '',
         recurrence: '',
+        links: '',
       }}
       onSubmit={submitNewHabit}
       validationSchema={yup.object().shape({
         name: yup.string().required(),
         type: yup.string().required(),
+        trainedFor: yup.number().required(),
         recurrence: yup.string().required(),
+        links: yup.string().required(),
       })}>
       {props => <HabitForm {...props} pressed={pressed} />}
     </Formik>
