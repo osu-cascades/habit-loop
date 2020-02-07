@@ -8,8 +8,8 @@ export const HabitStack = () => {
   return (
     <Navigator>
       <Screen name="Habits" component={HabitScreen} />
-      <Screen name="CreateHabit" component={CreateHabitScreen} />
-      <Screen name="UserHabit" component={UserHabitScreen} />
+      <Screen name="CreateHabit" component={CreateHabitScreen} options={{ title: 'Create Habits' }} />
+      <Screen name="UserHabit" component={UserHabitScreen} options={{ title: 'Edit Habit' }} />
     </Navigator>
   );
 };
