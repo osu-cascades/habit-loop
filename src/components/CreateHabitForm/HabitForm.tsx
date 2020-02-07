@@ -26,12 +26,15 @@ export const HabitForm = props => {
         onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.type && props.errors.type}
       />
-      <Picker
-        placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
-        values={'trainedFor'}
-        onValueChange={props.handleChange('trainedFor')}
-        selectedValue={props.values.trainedFor}
-        mode={'dropdown'}
+      <Input
+        placeholder="Trained For (Minutes)"
+        placeholderTextColor="#666"
+        value={props.values.trainedFor}
+        returnKeyType="go"
+        onBlur={() => props.setFieldTouched('trainedFor')}
+        onChangeText={props.handleChange('trainedFor')}
+        ref={input => (typeInput = input)}
+        onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.trainedFor && props.errors.trainedFor}
       />
       <Picker
