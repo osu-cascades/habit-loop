@@ -4,8 +4,10 @@ import { StyleSheet } from 'react-native';
 import _ from 'lodash';
 import * as yup from 'yup';
 import { HabitForm } from './HabitForm';
+import { AdminHabitForm } from './AdminHabitForm';
 import { useMutation, gql } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
+import { Tab, Tabs } from 'native-base';
 
 const CREATE_HABIT = gql`
   mutation createHabit($input: HabitInput) {
@@ -55,25 +57,50 @@ const CreateHabitForm = ({ refetch }) => {
   };
 
   return (
-    <Formik
-      style={styles.addHabitForm}
-      initialValues={{
-        name: '',
-        type: '',
-        trainedFor: '',
-        recurrence: '',
-        links: '',
-      }}
-      onSubmit={submitNewHabit}
-      validationSchema={yup.object().shape({
-        name: yup.string().required(),
-        type: yup.string().required(),
-        trainedFor: yup.number().required(),
-        recurrence: yup.string().required(),
-        links: yup.string().required(),
-      })}>
-      {props => <HabitForm {...props} pressed={pressed} />}
-    </Formik>
+    <Tabs>
+      <Tab heading="Create Habit">
+        <Formik
+          style={styles.addHabitForm}
+          initialValues={{
+            name: '',
+            type: '',
+            trainedFor: '',
+            recurrence: '',
+            links: '',
+          }}
+          onSubmit={submitNewHabit}
+          validationSchema={yup.object().shape({
+            name: yup.string().required(),
+            type: yup.string().required(),
+            trainedFor: yup.number().required(),
+            recurrence: yup.string().required(),
+            links: yup.string().required(),
+          })}>
+          {props => <HabitForm {...props} pressed={pressed} />}
+        </Formik>
+      </Tab>
+      <Tab heading="Create Group Habit">
+        <Formik
+          style={styles.addHabitForm}
+          initialValues={{
+            name: '',
+            type: '',
+            trainedFor: '',
+            recurrence: '',
+            links: '',
+          }}
+          onSubmit={submitNewHabit}
+          validationSchema={yup.object().shape({
+            name: yup.string().required(),
+            type: yup.string().required(),
+            trainedFor: yup.number().required(),
+            recurrence: yup.string().required(),
+            links: yup.string().required(),
+          })}>
+          {props => <AdminHabitForm {...props} pressed={pressed} />}
+        </Formik>
+      </Tab>
+    </Tabs>
   );
 };
 
