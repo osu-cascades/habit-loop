@@ -26,7 +26,7 @@ const CreateHabitForm = ({ refetch }) => {
         input: {
           habit_name: values.name,
           type: values.type,
-          trainedFor: values.trainedFor,
+          trainedFor: values.trainedFor * 60,
           recurrence: values.recurrence,
           links: values.links,
         },
