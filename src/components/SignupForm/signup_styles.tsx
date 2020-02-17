@@ -30,10 +30,26 @@ export const SignupInput = styled.TextInput`
 `;
 
 export const Button = styled.TouchableOpacity`
-    background-color: #E6B43C;
-    padding-vertical: 10;
-    width: 200;
+    padding-vertical: 15;
+    width: 335;
     margin: 0 auto;
     margin-top: 10;
-    border-radius: 5;
+    border: 3px solid #E6B43C;
+    border-radius: 100;
+`;
+
+export const ButtonText = styled.Text`
+    text-align: center;
+    font-family: Avenir Next;
+    color: #E6B43C;
+    font-weight: 700;
+`;
+
+export const SButton = styled.TouchableOpacity`
+    background-color: #E6B43C;
+    padding-vertical: 15;
+    width: 335;
+    margin: 0 auto;
+    margin-top: 10;
+    border-radius: 100;
 `;

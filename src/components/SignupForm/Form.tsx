@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonText, Logo } from '../basic';
-import { Button, SignupContainer, SignupText, SignupView, SignupInput } from './signup_styles';
+import { Button, SignupContainer, SignupText, SignupView, SignupInput, SButton } from './signup_styles';
 import { FormLabel } from '../basic/form_label';
 
 export default SignupComponent = props => (
@@ -46,12 +46,12 @@ export default SignupComponent = props => (
                 ref={input => this.passwordInput = input}
                 error={props.touched.password && props.errors.password}
             />
-            <Button 
+            <SButton
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
             >
                 <ButtonText>SIGN UP</ButtonText>
-            </Button>
+            </SButton>
         </SignupView>
     </SignupContainer>
 );

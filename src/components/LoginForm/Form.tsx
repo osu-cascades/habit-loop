@@ -13,7 +13,6 @@ export default LoginForm = props => {
 
   return (
     <LoginView>
-      <FormLabel>Email</FormLabel>
       <LoginInput
         placeholder="email"
         placeholderTextColor="#666"
@@ -27,7 +26,6 @@ export default LoginForm = props => {
         onSubmitEditing={() => setNextInput(passwordElement)}
         error={props.touched.email && props.errors.email}
       />
-      <FormLabel>Password</FormLabel>
       <LoginInput
         placeholder="password"
         placeholderTextColor="#666"
@@ -40,14 +38,15 @@ export default LoginForm = props => {
         ref={passwordElement}
         error={props.touched.password && props.errors.password}
       />
+      <SignupButton />
       <InvalidLoginText>{props.loginError && 'Invalid username/password.'}</InvalidLoginText>
       <LoginButton
         onPress={props.handleSubmit}
-        // disabled={!props.isValid}
+      // disabled={!props.isValid}
       >
         <ButtonText>LOG IN</ButtonText>
       </LoginButton>
-      <SignupButton />
+
     </LoginView>
   );
 };
