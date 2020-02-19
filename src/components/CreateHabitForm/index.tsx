@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import _ from 'lodash';
 import * as yup from 'yup';
 import { HabitForm } from './HabitForm';
 import { AdminHabitForm } from './AdminHabitForm';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, useQuery, gql } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { Tab, Tabs } from 'native-base';
 
@@ -17,10 +17,26 @@ const CREATE_HABIT = gql`
   }
 `;
 
+const ME = gql`
+  query ME {
+    me {
+      role
+    }
+  }
+`;
+
 const CreateHabitForm = ({ refetch }) => {
   const [pressed, setPressed] = useState(false);
   const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
   const { goBack } = useNavigation();
+
+  const getRole = () => {
+    const { data: userData, loading, refetch } = useQuery(ME);
+    refetch();
+    if (!loading) {
+      return userData.me.role[0];
+    }
+  };
 
   const submitNewHabit = async values => {
     const newHabit = {
@@ -79,27 +95,29 @@ const CreateHabitForm = ({ refetch }) => {
           {props => <HabitForm {...props} pressed={pressed} />}
         </Formik>
       </Tab>
-      <Tab heading="Create Group Habit">
-        <Formik
-          style={styles.addHabitForm}
-          initialValues={{
-            name: '',
-            type: '',
-            trainedFor: '',
-            recurrence: '',
-            links: '',
-          }}
-          onSubmit={submitNewHabit}
-          validationSchema={yup.object().shape({
-            name: yup.string().required(),
-            type: yup.string().required(),
-            trainedFor: yup.number().required(),
-            recurrence: yup.string().required(),
-            links: yup.string().required(),
-          })}>
-          {props => <AdminHabitForm {...props} pressed={pressed} />}
-        </Formik>
-      </Tab>
+      {getRole() === 'ADMIN' ? (
+        <Tab heading="Create Group Habit">
+          <Formik
+            style={styles.addHabitForm}
+            initialValues={{
+              name: '',
+              type: '',
+              trainedFor: '',
+              recurrence: '',
+              links: '',
+            }}
+            onSubmit={submitNewHabit}
+            validationSchema={yup.object().shape({
+              name: yup.string().required(),
+              type: yup.string().required(),
+              trainedFor: yup.number().required(),
+              recurrence: yup.string().required(),
+              links: yup.string().required(),
+            })}>
+            {props => <AdminHabitForm {...props} pressed={pressed} />}
+          </Formik>
+        </Tab>
+      ) : null}
     </Tabs>
   );
 };
