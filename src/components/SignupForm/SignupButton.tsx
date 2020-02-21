@@ -8,7 +8,7 @@ const SignupButton = () => {
 
   return (
     <Button onPress={() => navigate('Signup')}>
-      <ButtonText>SIGNUP</ButtonText>
+      <ButtonText>Sign Up</ButtonText>
     </Button>
   );
 };

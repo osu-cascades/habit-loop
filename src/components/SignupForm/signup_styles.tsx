@@ -20,16 +20,6 @@ export const SignupView = styled.View`
     background-color: #FFFFFF;
 `;
 
-// export const SignupInput = styled.TextInput`
-//     height: 40;
-//     background-color: #E9E9E9;
-//     margin-bottom: 10;
-//     padding-horizontal: 10;
-//     font-family: Avenir Next;
-//     border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
-//     border-radius: 4px;
-// `;
-
 export const SectionStyle = styled.View`
     height: 40;
     margin: 10px;
