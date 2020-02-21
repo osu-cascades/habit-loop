@@ -17,7 +17,7 @@ export const LoginView = styled.View`
 
 export const LoginInput = styled.TextInput`
     height: 40;
-    margin-bottom: 25;
+    margin-bottom: 35;
     padding-horizontal: 10;
     font-family: Avenir Next;
     border-bottom-width: ${props => (props.error ? '2px' : '2px')}

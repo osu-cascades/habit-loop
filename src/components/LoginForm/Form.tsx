@@ -14,13 +14,13 @@ export default LoginForm = props => {
   return (
     <LoginView>
       <LoginInput
-        placeholder="email"
+        placeholder="email@cbtnuggets.com"
         placeholderTextColor="#666"
         onChangeText={props.handleChange('email')}
         onBlur={() => props.setFieldTouched('email')}
         keyboardType="email-address"
         returnKeyType="next"
-        value={props.values.email}
+        // value={props.values.email}
         autoCapitalize="none"
         autoCorrect={false}
         onSubmitEditing={() => setNextInput(passwordElement)}
@@ -31,15 +31,15 @@ export default LoginForm = props => {
         placeholderTextColor="#666"
         onChangeText={props.handleChange('password')}
         onBlur={() => props.setFieldTouched('password')}
-        value={props.values.password}
+        // value={props.values.password}
         textContentType="password"
         returnKeyType="done"
         secureTextEntry
         ref={passwordElement}
         error={props.touched.password && props.errors.password}
       />
-      <SignupButton />
       <InvalidLoginText>{props.loginError && 'Invalid username/password.'}</InvalidLoginText>
+      <SignupButton />
       <LoginButton
         onPress={props.handleSubmit}
       // disabled={!props.isValid}
