@@ -30,13 +30,28 @@ export const SignupView = styled.View`
 //     border-radius: 4px;
 // `;
 
-export const SignupInput = styled.TextInput`
+export const SectionStyle = styled.View`
     height: 40;
-    margin-bottom: 10;
+    margin: 10px;
+    flex-direction: row;
+    justifyContent: center;
+    align-items: center;
+    border-bottom-width: ${props => (props.error ? '2px' : '2px')}
+    border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
+`;
+
+export const IconForm = styled.Image`
+    height: 100;
+    width: 15;
+    resize-mode: contain;
+    align-items: center;
+`;
+
+export const SignupInput = styled.TextInput`
+    flex: 1;
+    height: 40;
     padding-horizontal: 10;
     font-family: Avenir Next;
-    border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
-    border-radius: 4px;
 `;
 
 export const Button = styled.TouchableOpacity`
