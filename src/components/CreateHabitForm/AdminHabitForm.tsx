@@ -38,6 +38,14 @@ export const AdminHabitForm = props => {
         error={props.touched.trainedFor && props.errors.trainedFor}
       />
       <Picker
+        placeholder={{ label: 'Groups', value: 'null', color: '#9EA0A4' }}
+        values={'groups'}
+        onValueChange={props.handleChange('groups')}
+        selectedValue={props.values.groups}
+        mode={'dropdown'}
+        error={props.touched.groups && props.errors.groups}
+      />
+      <Picker
         placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
         values={'recurrences'}
         onValueChange={props.handleChange('recurrence')}
