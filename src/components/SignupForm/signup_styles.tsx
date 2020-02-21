@@ -4,24 +4,34 @@ export const SignupContainer = styled.KeyboardAvoidingView`
     padding: 20px;
     flex: 1;
     justify-content: center;
-    background-color: #E9E9E9;
+    background-color: #FFF;
 `;
 
 export const SignupText = styled.Text`
-    margin-bottom: 10;
-    text-align: center;
+text-align: center;
+align-self: center;
+font-weight: bold;
+font-size: 16px;
     font-family: Avenir Next;
 `;
 
 export const SignupView = styled.View`
     padding: 20px;
-    border-radius: 5;
-    background-color: #666;
+    background-color: #FFFFFF;
 `;
+
+// export const SignupInput = styled.TextInput`
+//     height: 40;
+//     background-color: #E9E9E9;
+//     margin-bottom: 10;
+//     padding-horizontal: 10;
+//     font-family: Avenir Next;
+//     border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
+//     border-radius: 4px;
+// `;
 
 export const SignupInput = styled.TextInput`
     height: 40;
-    background-color: #E9E9E9;
     margin-bottom: 10;
     padding-horizontal: 10;
     font-family: Avenir Next;
@@ -49,6 +59,5 @@ export const SButton = styled.TouchableOpacity`
     padding-vertical: 15;
     width: 335;
     margin: 0 auto;
-    margin-top: 10;
     border-radius: 100;
 `;

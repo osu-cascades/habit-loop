@@ -1,27 +1,48 @@
 import styled from 'styled-components/native';
 
 export const LoginButton = styled.TouchableOpacity`
-    background-color: #E6B43C;
-    padding-vertical: 15;
-    width: 335;
-    margin: 0 auto;
-    margin-top: 10;
-    border-radius: 100;
+  background-color: #E6B43C;
+  padding-vertical: 15;
+  width: 335;
+  margin: 0 auto;
+  margin-top: 10;
+  border-radius: 100;
 `;
 
 export const LoginView = styled.View`
-    padding: 20px;
-    border-radius: 5;
-    background-color: #FFFFFF;
+  padding: 20px;
+  background-color: #FFFFFF;
+`;
+
+export const TitleText = styled.Text`
+  text-align: center;
+  align-self: center;
+  font-weight: bold;
+  font-size: 16px;
 `;
 
 export const LoginInput = styled.TextInput`
-    height: 40;
-    margin-bottom: 35;
-    padding-horizontal: 10;
-    font-family: Avenir Next;
-    border-bottom-width: ${props => (props.error ? '2px' : '2px')}
-    border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
+  flex: 1;
+  height: 40;
+  padding-horizontal: 10;
+  font-family: Avenir Next;
+`;
+
+export const IconForm = styled.Image`
+  height: 100;
+  width: 15;
+  resize-mode: contain;
+  align-items: center;
+`;
+
+export const SectionStyle = styled.View`
+  height: 40;
+  margin: 10px;
+  flex-direction: row;
+  justifyContent: center;
+  align-items: center;
+  border-bottom-width: ${props => (props.error ? '2px' : '2px')}
+  border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
 `;
 
 export const Container = styled.KeyboardAvoidingView`

@@ -5,8 +5,8 @@ import { FormLabel } from '../basic/form_label';
 
 export default SignupComponent = props => (
     <SignupContainer behavior='padding'>
-        <Logo source={require('../../assets/images/lt.png')} />
-        <SignupText>Sign up for a new CBT Habit Tracker Account!</SignupText>
+        <Logo source={require('../../assets/images/logo.jpg')} />
+        <SignupText>Sign Up</SignupText>
         <SignupView>
             <FormLabel>Username</FormLabel>
             <SignupInput
