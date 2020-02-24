@@ -7,7 +7,7 @@ const CreateGroupButton = () => {
   const { navigate } = useNavigation();
 
   return (
-    <CreateGroupb onPress={() => navigate('CreateGroup')}   >
+    <CreateGroupb onPress={() => navigate('CreateGroup')}>
       <ButtonText>Create Group</ButtonText>
     </CreateGroupb>
   );
