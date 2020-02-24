@@ -1,10 +1,10 @@
 import React from 'react';
 import { ButtonText, Input } from '@src/components';
-import { Container, Button } from './create_group_styles';
+import { Container, Button, CreateInput } from './create_group_styles';
 
 export const CreateGroupForm = props => (
     <Container>
-        <Input
+        <CreateInput
             placeholder="Group Name"
             placeholderTextColor="#666"
             value={props.values.group_name}

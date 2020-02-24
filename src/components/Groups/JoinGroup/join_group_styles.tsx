@@ -6,7 +6,10 @@ export const Container = styled.KeyboardAvoidingView`
 `;
 
 export const Button = styled.TouchableOpacity`
-    background: #E6B43C;
-    padding: 12px;
-    border-radius: 4px;
+background-color: #E6B43C;
+padding-vertical: 15;
+width: 90%;
+margin: 0 auto;
+margin-top: 20;
+border-radius: 100;
 `;

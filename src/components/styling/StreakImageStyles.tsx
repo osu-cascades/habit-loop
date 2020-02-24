@@ -15,19 +15,12 @@ export const FlameImgBg = styled.ImageBackground`
     left: -30;
 `;
 
-// export const Text = styled.Text`
-//     font-size: 25px;
-//     text-align: center;
-//     align-self: center;
-//     margin-top: 78px;
-//     color: #FFF;
-// `;
-
 export const Text = styled.Text`
-    font-size: 25px;
+    font-size: 40px;
+    font-weight: bold;
     color: #FFFFFF;
     align-self: center;
     position; absolute;
-    top: 95;
+    top: 85;
     left: 25;
 `;

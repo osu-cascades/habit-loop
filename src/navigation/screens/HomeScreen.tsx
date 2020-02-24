@@ -4,15 +4,17 @@ import { Container } from 'native-base';
 import Constants from 'expo-constants';
 import { PushNotifications, SignoutButton, PriorityHabit, StreakImage } from '@src/components';
 import { CreateGroupButton, JoinGroupButton } from '@src/components/Groups';
-import { Logo } from '../../components/basic';
 import Groups from '../../components/LeaderboardTabs'
+import { ButtonContainer } from '../../components/styling/HomeStyles';
 
 export const HomeScreen = () => {
   return (
     <Container style={styles.container}>
       <StreakImage />
-      <CreateGroupButton />
-      <JoinGroupButton />
+      <ButtonContainer>
+        <CreateGroupButton />
+        <JoinGroupButton />
+      </ButtonContainer>
       <Groups />
       {/* <PriorityHabit /> */}
       {/* <PushNotifications /> */}
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     height: '100%',
     // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#FFF',
-    padding: 8,
+    paddingTop: 10,
 
   },
   intro: {
