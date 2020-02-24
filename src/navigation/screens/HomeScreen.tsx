@@ -10,15 +10,14 @@ import Groups from '../../components/LeaderboardTabs'
 export const HomeScreen = () => {
   return (
     <Container style={styles.container}>
-        <Text style={styles.intro}>Welcome to the CBT Nuggets Habit Loop!</Text>
-        <StreakImage />
-        <CreateGroupButton />
-        <JoinGroupButton />
-        <Groups />
-        {/* <PriorityHabit /> */}
-        {/* <PushNotifications /> */}
+      <StreakImage />
+      <CreateGroupButton />
+      <JoinGroupButton />
+      <Groups />
+      {/* <PriorityHabit /> */}
+      {/* <PushNotifications /> */}
 
-      </Container >
+    </Container >
   );
 };
 
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     // paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#FFF',
     padding: 8,
 
   },

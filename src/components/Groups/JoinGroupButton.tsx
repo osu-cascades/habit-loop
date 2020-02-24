@@ -1,23 +1,16 @@
 import React from 'react';
 import { Button, ButtonText } from '../basic';
-import { StyleSheet } from 'react-native';
-
 import { useNavigation } from '@react-navigation/core';
+import { JoinGroupb } from './JoinGroupButtonStyles';
 
 const JoinGroupButton = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Button onPress={() => navigate('JoinGroup')} style={styles.joinGroupb}>
+    <JoinGroupb onPress={() => navigate('JoinGroup')} >
       <ButtonText>Join Group</ButtonText>
-    </Button>
+    </JoinGroupb>
   );
 };
-
-const styles = StyleSheet.create({
-  joinGroupb: {
-    backgroundColor: '#E6B43C',
-  },
-});
 
 export default JoinGroupButton;

@@ -65,4 +65,5 @@ export const SButton = styled.TouchableOpacity`
     width: 335;
     margin: 0 auto;
     border-radius: 100;
+    margin-top: 20;
 `;

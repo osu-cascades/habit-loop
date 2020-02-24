@@ -56,7 +56,7 @@ export default SignupComponent = props => (
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
             >
-                <ButtonText>SIGN UP</ButtonText>
+                <ButtonText>Sign Up</ButtonText>
             </SButton>
         </SignupView>
     </SignupContainer>
