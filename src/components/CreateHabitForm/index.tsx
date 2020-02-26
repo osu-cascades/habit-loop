@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import _ from 'lodash';
 import * as yup from 'yup';
 import { HabitForm } from './HabitForm';
-import { AdminHabitForm } from './AdminHabitForm';
+import { AdminCreateHabitForm } from './AdminCreateHabitForm';
 import { useMutation, useQuery, gql } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { Tab, Tabs } from 'native-base';
@@ -114,7 +114,7 @@ const CreateHabitForm = ({ refetch }) => {
               recurrence: yup.string().required(),
               links: yup.string().required(),
             })}>
-            {props => <AdminHabitForm {...props} pressed={pressed} />}
+            {props => <AdminCreateHabitForm {...props} pressed={pressed} />}
           </Formik>
         </Tab>
       ) : null}
