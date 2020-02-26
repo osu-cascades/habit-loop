@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonText, Input, Picker } from '../basic';
 import { Container, AddButton } from './create_habit_styles';
 
-export const AdminHabitForm = props => {
+export const AdminCreateHabitForm = props => {
   return (
     <Container>
       <Input
