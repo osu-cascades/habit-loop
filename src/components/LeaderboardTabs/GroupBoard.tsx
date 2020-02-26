@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   streakBadge: {
     backgroundColor: '#E6B43C',
-    marginLeft: '15%',
+    marginLeft: 'auto',
   },
 });
 

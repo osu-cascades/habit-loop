@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ListItem, Badge } from 'native-base';
+import { Text, ListItem, Badge, Right } from 'native-base';
 import { FlatList, StyleSheet } from 'react-native';
 
 export const TopStreakBoard = props => (
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
   },
   streakBadge: {
     backgroundColor: '#E6B43C',
-    marginLeft: '15%',
+    marginLeft: 'auto',
   },
 });
