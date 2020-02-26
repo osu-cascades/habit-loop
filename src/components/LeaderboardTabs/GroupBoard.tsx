@@ -20,7 +20,6 @@ export const GroupBoard = ({ itemId }) => {
     variables: { item_id: itemId },
   });
 
-  console.log(data);
   if (loading) return <Loading />;
   if (error) return <Text>`Error loading data! ${error.message}`</Text>;
 
