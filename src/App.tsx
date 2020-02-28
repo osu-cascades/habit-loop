@@ -14,7 +14,8 @@ import { NavigationNativeContainer } from '@react-navigation/native';
 
 const client = new ApolloClient({
   // uri: 'https://8tntvz34m4.execute-api.us-east-1.amazonaws.com/qa/graphql',
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://8n4s5ygsif.execute-api.us-east-1.amazonaws.com/qa/graphql',
+  //uri: 'http://localhost:3000/graphql',
   // uri: "http://192.168.0.11:3000/graphql",
   request: async operation => {
     const token = await AsyncStorage.getItem('userToken');
