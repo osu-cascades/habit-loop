@@ -19,6 +19,7 @@ export const TitleText = styled.Text`
   align-self: center;
   font-weight: bold;
   font-size: 16px;
+  font-family: Avenir Next;
 `;
 
 export const LoginInput = styled.TextInput`

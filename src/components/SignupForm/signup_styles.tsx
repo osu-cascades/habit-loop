@@ -8,10 +8,10 @@ export const SignupContainer = styled.KeyboardAvoidingView`
 `;
 
 export const SignupText = styled.Text`
-text-align: center;
-align-self: center;
-font-weight: bold;
-font-size: 16px;
+    text-align: center;
+    align-self: center;
+    font-weight: bold;
+    font-size: 16px;
     font-family: Avenir Next;
 `;
 
