@@ -46,7 +46,7 @@ export const SignupInput = styled.TextInput`
 
 export const Button = styled.TouchableOpacity`
     padding-vertical: 15;
-    width: 335;
+    width: 95%;
     margin: 0 auto;
     border: 3px solid #E6B43C;
     border-radius: 100;
@@ -62,7 +62,7 @@ export const ButtonText = styled.Text`
 export const SButton = styled.TouchableOpacity`
     background-color: #E6B43C;
     padding-vertical: 15;
-    width: 335;
+    width: 95%;
     margin: 0 auto;
     border-radius: 100;
     margin-top: 20;

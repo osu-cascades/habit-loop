@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const LoginButton = styled.TouchableOpacity`
   background-color: #E6B43C;
   padding-vertical: 15;
-  width: 335;
+  width: 95%;
   margin: 0 auto;
   margin-top: 10;
   border-radius: 100;
