@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.KeyboardAvoidingView`
     padding: 20px;
     background-color: #ffffff;
+    height: 100%;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -20,4 +21,9 @@ export const CreateInput = styled.TextInput`
     height: 40;
     padding-horizontal: 10;
     font-family: Avenir Next;
+`;
+
+export const FormContainer = styled.View`
+    position: relative;
+    top: 50%;
 `;
