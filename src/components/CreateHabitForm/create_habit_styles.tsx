@@ -8,11 +8,14 @@ export const Container = styled.KeyboardAvoidingView`
 `;
 
 export const AddButton = styled.TouchableOpacity`
+  background-color: #E6B43C;
   padding-vertical: 15;
+  width: 95%;
+  margin: 0 auto;
   margin-top: 10;
-  border-radius: 5;
-  background-color: #F78E2A;
+  border-radius: 100;
 `;
+
 
 export const CreateInput = styled.TextInput`
   border-bottom-width: ${props => (props.error ? '2px' : '2px')}
