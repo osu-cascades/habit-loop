@@ -13,3 +13,12 @@ export const AddButton = styled.TouchableOpacity`
   border-radius: 5;
   background-color: #F78E2A;
 `;
+
+export const CreateInput = styled.TextInput`
+  border-bottom-width: ${props => (props.error ? '2px' : '2px')}
+  border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
+  height: 40;
+  padding-horizontal: 10;
+  font-family: Avenir Next;
+  margin-top: 20;
+`;

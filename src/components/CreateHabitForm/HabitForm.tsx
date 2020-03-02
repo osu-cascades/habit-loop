@@ -1,11 +1,11 @@
 import React from 'react';
 import { ButtonText, Input, Picker } from '../basic';
-import { Container, AddButton } from './create_habit_styles';
+import { Container, AddButton, CreateInput } from './create_habit_styles';
 
 export const HabitForm = props => {
   return (
     <Container>
-      <Input
+      <CreateInput
         placeholder="Name"
         placeholderTextColor="#666"
         value={props.values.name}
@@ -15,7 +15,7 @@ export const HabitForm = props => {
         onSubmitEditing={() => typeInput.focus()}
         error={props.touched.name && props.errors.name}
       />
-      <Input
+      <CreateInput
         placeholder="Type"
         placeholderTextColor="#666"
         value={props.values.type}
@@ -25,6 +25,17 @@ export const HabitForm = props => {
         ref={input => (typeInput = input)}
         onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.type && props.errors.type}
+      />
+
+      <CreateInput
+        placeholder="Links"
+        placeholderTextColor="#666"
+        value={props.values.links}
+        returnKeyType="go"
+        onBlur={() => props.setFieldTouched('links')}
+        onChangeText={props.handleChange('links')}
+        ref={input => (typeInput = input)}
+        error={props.touched.links && props.errors.links}
       />
       <Picker
         placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
@@ -41,16 +52,6 @@ export const HabitForm = props => {
         selectedValue={props.values.recurrence}
         mode={'dropdown'}
         error={props.touched.recurrence && props.errors.recurrence}
-      />
-      <Input
-        placeholder="Links"
-        placeholderTextColor="#666"
-        value={props.values.links}
-        returnKeyType="go"
-        onBlur={() => props.setFieldTouched('links')}
-        onChangeText={props.handleChange('links')}
-        ref={input => (typeInput = input)}
-        error={props.touched.links && props.errors.links}
       />
       <AddButton onPress={props.handleSubmit} disabled={!props.isValid}>
         <ButtonText>Create New Habit</ButtonText>
