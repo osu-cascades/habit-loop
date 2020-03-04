@@ -11,7 +11,7 @@ const GET_ALL_GROUPS = gql`
   query getAllGroups {
     getAllGroups {
       group_name
-      item_id
+      group_id: user_id
     }
   }
 `;
@@ -61,7 +61,7 @@ export const Picker = props => {
   } else {
     const groups = data.getAllGroups.map(group => ({
       label: group.group_name,
-      value: group.group_name.toUpperCase(),
+      value: group.group_id,
     }));
 
     const pickerItems = {

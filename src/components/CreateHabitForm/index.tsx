@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Formik } from 'formik';
+import React, { useState, useEffect, useRef } from 'react';
+import { Formik, yupToFormErrors } from 'formik';
 import { StyleSheet } from 'react-native';
 import _ from 'lodash';
 import * as yup from 'yup';
 import { HabitForm } from './HabitForm';
 import { AdminCreateHabitForm } from './AdminCreateHabitForm';
-import { useMutation, useQuery, gql } from '@apollo/client';
+import { useMutation, useQuery, useLazyQuery, gql } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import { Tab, Tabs } from 'native-base';
 
@@ -25,9 +25,18 @@ const ME = gql`
   }
 `;
 
+const CREATE_GROUP_HABIT = gql`
+  mutation CREATE_GROUP_HABIT($group_id: String, $input: HabitInput) {
+    createGroupHabit(group_id: $group_id, input: $input) {
+      habit_name
+    }
+  }
+`;
+
 const CreateHabitForm = ({ refetch }) => {
   const [pressed, setPressed] = useState(false);
   const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
+  const [createGroupHabit, { data: gData, loading: gLoading, error: gError }] = useMutation(CREATE_GROUP_HABIT);
   const { goBack } = useNavigation();
 
   const getRole = () => {
@@ -72,6 +81,34 @@ const CreateHabitForm = ({ refetch }) => {
     }
   };
 
+  const submitNewGroupHabit = async values => {
+    const params = {
+      variables: {
+        group_id: values.group,
+        input: {
+          habit_name: values.name,
+          type: values.type,
+          trainedFor: values.trainedFor * 60,
+          recurrence: values.recurrence,
+          links: values.links,
+        },
+      },
+    };
+
+    if (!pressed) {
+      setPressed(true);
+      try {
+        await createGroupHabit(params);
+        refetch();
+        goBack();
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setPressed(false);
+      }
+    }
+  };
+
   return (
     <Tabs>
       <Tab heading="Create Habit">
@@ -103,14 +140,16 @@ const CreateHabitForm = ({ refetch }) => {
               name: '',
               type: '',
               trainedFor: '',
+              group: '',
               recurrence: '',
               links: '',
             }}
-            onSubmit={submitNewHabit}
+            onSubmit={submitNewGroupHabit}
             validationSchema={yup.object().shape({
               name: yup.string().required(),
               type: yup.string().required(),
               trainedFor: yup.number().required(),
+              group: yup.string().required(),
               recurrence: yup.string().required(),
               links: yup.string().required(),
             })}>
