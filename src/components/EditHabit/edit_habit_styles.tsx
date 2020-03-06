@@ -7,15 +7,6 @@ export const Container = styled.KeyboardAvoidingView`
     height: 100%;
 `;
 
-export const EditInput = styled.TextInput`
-    border-bottom-width: ${props => (props.error ? '2px' : '2px')}
-    border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
-    height: 40;
-    padding-horizontal: 10;
-    font-family: Avenir Next;
-    margin-top: 20;
-`;
-
 export const UpdateButton = styled.TouchableOpacity`
   background-color: #E6B43C;
   padding-vertical: 15;

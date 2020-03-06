@@ -5,7 +5,7 @@ import { Container, AddButton, CreateInput } from './create_habit_styles';
 export const HabitForm = props => {
   return (
     <Container>
-      <CreateInput
+      <Input
         placeholder="Name"
         placeholderTextColor="#666"
         value={props.values.name}
@@ -15,7 +15,7 @@ export const HabitForm = props => {
         onSubmitEditing={() => typeInput.focus()}
         error={props.touched.name && props.errors.name}
       />
-      <CreateInput
+      <Input
         placeholder="Type"
         placeholderTextColor="#666"
         value={props.values.type}
@@ -27,7 +27,7 @@ export const HabitForm = props => {
         error={props.touched.type && props.errors.type}
       />
 
-      <CreateInput
+      <Input
         placeholder="Links"
         placeholderTextColor="#666"
         value={props.values.links}

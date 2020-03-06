@@ -4,7 +4,7 @@ import { Container, EditInput, UpdateButton } from './edit_habit_styles';
 
 export default EditHabitForm = props => (
   <Container>
-    <EditInput
+    <Input
       placeholder="Name"
       placeholderTextColor="#666"
       value={props.values.name}
@@ -14,7 +14,7 @@ export default EditHabitForm = props => (
       onSubmitEditing={() => typeInput.focus()}
       error={props.touched.name && props.errors.name}
     />
-    <EditInput
+    <Input
       placeholder="Type"
       placeholderTextColor="#666"
       value={props.values.type}
@@ -24,7 +24,7 @@ export default EditHabitForm = props => (
       ref={input => (typeInput = input)}
       error={props.touched.type && props.errors.type}
     />
-    <EditInput
+    <Input
       placeholder="Links"
       placeholderTextColor="#666"
       value={props.values.links}
