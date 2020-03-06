@@ -12,7 +12,7 @@ export const TopStreakBoard = props => (
         <Badge style={styles.badge}>
           <Text>{item.index + 1}</Text>
         </Badge>
-        <Text style={styles.listItemText}>{item.item.username}</Text>
+        <Text>{item.item.username}</Text>
         <Badge style={styles.streakBadge}>
           <Text>Streak {item.item.score}</Text>
         </Badge>
@@ -33,15 +33,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 5,
   },
   badge: {
-    backgroundColor: '#F78E2A',
+    backgroundColor: '#E6B43C',
     marginRight: '5%',
-  },
-  listItemText: {
-    alignSelf: 'flex-start',
   },
   streakBadge: {
     backgroundColor: '#E6B43C',
-    marginLeft: '5%',
+    marginLeft: 'auto',
   },
 
 });

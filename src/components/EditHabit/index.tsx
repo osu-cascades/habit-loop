@@ -30,7 +30,7 @@ const EditHabit = ({ habit, refetch }) => {
           item_id: habit.habit_id,
           user_id: habit.user_id,
           recurrence: values.recurrence,
-          trainedFor: values.trainedFor,
+          trainedFor: values.trainedFor * 60,
           links: values.links,
         },
       },
@@ -53,7 +53,7 @@ const EditHabit = ({ habit, refetch }) => {
         name: habit.name,
         type: habit.type,
         recurrence: habit.recurrence,
-        trainedFor: habit.trainedFor,
+        trainedFor: (habit.trainedFor / 60).toString(),
         links: habit.links,
       }}
       onSubmit={submitUpdatedHabit}

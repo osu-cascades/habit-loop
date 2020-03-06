@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import { StyleSheet } from 'react-native';
 import _ from 'lodash';
 import * as yup from 'yup';
 import { HabitForm } from './HabitForm';
-import { useMutation, gql } from '@apollo/client';
+import { AdminHabitForm } from './AdminHabitForm';
+import { useMutation, useQuery, gql } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
+import { Tab, Tabs } from 'native-base';
 
 const CREATE_HABIT = gql`
   mutation createHabit($input: HabitInput) {
@@ -15,10 +17,26 @@ const CREATE_HABIT = gql`
   }
 `;
 
+const ME = gql`
+  query ME {
+    me {
+      role
+    }
+  }
+`;
+
 const CreateHabitForm = ({ refetch }) => {
   const [pressed, setPressed] = useState(false);
   const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
   const { goBack } = useNavigation();
+
+  const getRole = () => {
+    const { data: userData, loading, refetch } = useQuery(ME);
+    refetch();
+    if (!loading) {
+      return userData.me.role[0];
+    }
+  };
 
   const submitNewHabit = async values => {
     const newHabit = {
@@ -26,7 +44,7 @@ const CreateHabitForm = ({ refetch }) => {
         input: {
           habit_name: values.name,
           type: values.type,
-          trainedFor: values.trainedFor,
+          trainedFor: values.trainedFor * 60,
           recurrence: values.recurrence,
           links: values.links,
         },
@@ -55,25 +73,52 @@ const CreateHabitForm = ({ refetch }) => {
   };
 
   return (
-    <Formik
-      style={styles.addHabitForm}
-      initialValues={{
-        name: '',
-        type: '',
-        trainedFor: '',
-        recurrence: '',
-        links: '',
-      }}
-      onSubmit={submitNewHabit}
-      validationSchema={yup.object().shape({
-        name: yup.string().required(),
-        type: yup.string().required(),
-        trainedFor: yup.number().required(),
-        recurrence: yup.string().required(),
-        links: yup.string().required(),
-      })}>
-      {props => <HabitForm {...props} pressed={pressed} />}
-    </Formik>
+    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#E6B43C' }}>
+      <Tab heading="Create Habit" tabStyle={{ backgroundColor: '#fff' }} activeTabStyle={{ backgroundColor: '#fff' }} activeTextStyle={{ color: '#000' }}>
+        <Formik
+          style={styles.addHabitForm}
+          initialValues={{
+            name: '',
+            type: '',
+            trainedFor: '',
+            recurrence: '',
+            links: '',
+          }}
+          onSubmit={submitNewHabit}
+          validationSchema={yup.object().shape({
+            name: yup.string().required(),
+            type: yup.string().required(),
+            trainedFor: yup.number().required(),
+            recurrence: yup.string().required(),
+            links: yup.string().required(),
+          })}>
+          {props => <HabitForm {...props} pressed={pressed} />}
+        </Formik>
+      </Tab>
+      {getRole() === 'ADMIN' ? (
+        <Tab heading="Create Group Habit" tabStyle={{ backgroundColor: '#fff' }} activeTabStyle={{ backgroundColor: '#fff' }} activeTextStyle={{ color: '#000' }}>
+          <Formik
+            style={styles.addHabitForm}
+            initialValues={{
+              name: '',
+              type: '',
+              trainedFor: '',
+              recurrence: '',
+              links: '',
+            }}
+            onSubmit={submitNewHabit}
+            validationSchema={yup.object().shape({
+              name: yup.string().required(),
+              type: yup.string().required(),
+              trainedFor: yup.number().required(),
+              recurrence: yup.string().required(),
+              links: yup.string().required(),
+            })}>
+            {props => <AdminHabitForm {...props} pressed={pressed} />}
+          </Formik>
+        </Tab>
+      ) : null}
+    </Tabs>
   );
 };
 

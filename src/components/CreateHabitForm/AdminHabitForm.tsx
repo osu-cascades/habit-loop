@@ -1,8 +1,8 @@
 import React from 'react';
 import { ButtonText, Input, Picker } from '../basic';
-import { Container, AddButton, CreateInput } from './create_habit_styles';
+import { Container, AddButton } from './create_habit_styles';
 
-export const HabitForm = props => {
+export const AdminHabitForm = props => {
   return (
     <Container>
       <Input
@@ -26,18 +26,6 @@ export const HabitForm = props => {
         onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.type && props.errors.type}
       />
-
-      <Input
-        placeholder="Links"
-        placeholderTextColor="#666"
-        value={props.values.links}
-        returnKeyType="go"
-        onBlur={() => props.setFieldTouched('links')}
-        onChangeText={props.handleChange('links')}
-        ref={input => (typeInput = input)}
-        error={props.touched.links && props.errors.links}
-      />
-
       <Input
         placeholder="Trained For (Minutes)"
         placeholderTextColor="#666"
@@ -57,8 +45,18 @@ export const HabitForm = props => {
         mode={'dropdown'}
         error={props.touched.recurrence && props.errors.recurrence}
       />
+      <Input
+        placeholder="Links"
+        placeholderTextColor="#666"
+        value={props.values.links}
+        returnKeyType="go"
+        onBlur={() => props.setFieldTouched('links')}
+        onChangeText={props.handleChange('links')}
+        ref={input => (typeInput = input)}
+        error={props.touched.links && props.errors.links}
+      />
       <AddButton onPress={props.handleSubmit} disabled={!props.isValid}>
-        <ButtonText>Create New Habit</ButtonText>
+        <ButtonText>Create New Group Habit</ButtonText>
       </AddButton>
     </Container>
   );

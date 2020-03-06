@@ -40,29 +40,9 @@ const priority = [
   },
 ];
 
-const trainedFor = [
-  {
-    label: '30 Minutes',
-    value: 1800,
-  },
-  {
-    label: '60 Minutes',
-    value: 3600,
-  },
-  {
-    label: '90 Minutes',
-    value: 5400,
-  },
-  {
-    label: '120 Minutes',
-    value: 7200,
-  },
-];
-
 const pickerItems = {
   recurrences,
   priority,
-  trainedFor,
 };
 
 export const Picker = props => (
