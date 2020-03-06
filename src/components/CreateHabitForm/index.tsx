@@ -36,7 +36,10 @@ const CREATE_GROUP_HABIT = gql`
 const CreateHabitForm = ({ refetch }) => {
   const [pressed, setPressed] = useState(false);
   const [createHabit, { data, loading, error }] = useMutation(CREATE_HABIT);
-  const [createGroupHabit, { data: gData, loading: gLoading, error: gError }] = useMutation(CREATE_GROUP_HABIT);
+  const [
+    createGroupHabit,
+    { data: createGroupData, loading: createGroupLoading, error: createGroupError },
+  ] = useMutation(CREATE_GROUP_HABIT);
   const { goBack } = useNavigation();
 
   const getRole = () => {
