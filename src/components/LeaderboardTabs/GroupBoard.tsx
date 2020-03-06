@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, ListItem, Badge } from 'native-base';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Group } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 
 import { Loading } from '@src/components';

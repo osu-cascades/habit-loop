@@ -2,8 +2,19 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { default as PickerComponent } from 'react-native-picker-select';
+import { useQuery, gql } from '@apollo/client';
+import { Loading } from '@src/components';
 import { ArrowDownIcon } from '@src/assets/svgs';
 import _ from 'lodash';
+
+const GET_ALL_GROUPS = gql`
+  query getAllGroups {
+    getAllGroups {
+      group_name
+      group_id: user_id
+    }
+  }
+`;
 
 export const Input = styled.TextInput`
   border-bottom-width: ${props => (props.error ? '2px' : '2px')}
@@ -40,19 +51,33 @@ const priority = [
   },
 ];
 
-const pickerItems = {
-  recurrences,
-  priority,
-};
+export const Picker = props => {
+  const { data, loading } = useQuery(GET_ALL_GROUPS);
 
-export const Picker = props => (
-  <PickerComponent
-    style={styles}
-    items={pickerItems[props.values]}
-    // Icon={() => <ArrowDownIcon width={24} />} // curently bugged
-    {...props}
-  />
-);
+  if (loading) {
+    return <Loading />;
+  } else {
+    const groups = data.getAllGroups.map(group => ({
+      label: group.group_name,
+      value: group.group_id,
+    }));
+
+    const pickerItems = {
+      recurrences,
+      priority,
+      groups,
+    };
+
+    return (
+      <PickerComponent
+        style={styles}
+        items={pickerItems[props.values]}
+        // Icon={() => <ArrowDownIcon width={24} />} // curently bugged
+        {...props}
+      />
+    );
+  }
+};
 
 const styles = StyleSheet.create({
   inputIOS: {

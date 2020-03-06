@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonText, Input, Picker } from '../basic';
 import { Container, AddButton } from './create_habit_styles';
 
-export const AdminHabitForm = props => {
+export const AdminCreateHabitForm = props => {
   return (
     <Container>
       <Input
@@ -36,6 +36,14 @@ export const AdminHabitForm = props => {
         ref={input => (typeInput = input)}
         onSubmitEditing={() => recurrenceInput.focus()}
         error={props.touched.trainedFor && props.errors.trainedFor}
+      />
+      <Picker
+        placeholder={{ label: 'Group', value: 'null', color: '#9EA0A4' }}
+        values={'groups'}
+        onValueChange={props.handleChange('group')}
+        selectedValue={props.values.group}
+        mode={'dropdown'}
+        error={props.touched.group && props.errors.group}
       />
       <Picker
         placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
