@@ -87,7 +87,7 @@ const HabitList = ({ updateHabits, ...props }) => {
 
   // componentDidUpdate
   useEffect(() => {
-    if (data?.getHabits) {
+    if (data ?.getHabits) {
       const mappedHabits = data.getHabits.map(item => ({
         name: item.habit_name,
         created_at: item.created_at,

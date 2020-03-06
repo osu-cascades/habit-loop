@@ -39,8 +39,8 @@ export const GroupBoard = ({ itemId }) => {
           <Badge style={styles.badge}>
             <Text>{row.index + 1}</Text>
           </Badge>
-          <Text style={styles.listItemText}>{row.item.username}</Text>
-          <Badge>
+          <Text>{row.item.username}</Text>
+          <Badge style={styles.streakBadge}>
             <Text>Streak {row.item.score}</Text>
           </Badge>
         </ListItem>
@@ -62,11 +62,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 5,
   },
   badge: {
-    backgroundColor: '#F78E2A',
+    backgroundColor: '#E6B43C',
     marginRight: '5%',
   },
-  listItemText: {
-    alignSelf: 'flex-start',
+  streakBadge: {
+    backgroundColor: '#E6B43C',
+    marginLeft: 'auto',
   },
 });
 

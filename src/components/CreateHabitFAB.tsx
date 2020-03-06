@@ -27,7 +27,7 @@ const CreateButtonFAB = ({ refetch }) => {
 
 const styles = StyleSheet.create({
   fab: {
-    backgroundColor: '#5067FF',
+    backgroundColor: '#E6B43C',
   },
 });
 
