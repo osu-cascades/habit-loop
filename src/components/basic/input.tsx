@@ -11,7 +11,7 @@ export const Input = styled.TextInput`
   height: 40;
   padding-horizontal: 10;
   font-family: Avenir Next;
-  margin-top: 20;
+  margin-bottom: 20;
 `;
 
 const recurrences = [
