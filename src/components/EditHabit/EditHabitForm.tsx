@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonText, Input, Picker } from '../basic';
-import { Container } from './edit_habit_styles';
+import { Container, EditInput, UpdateButton } from './edit_habit_styles';
 
 export default EditHabitForm = props => (
   <Container>
@@ -25,6 +25,16 @@ export default EditHabitForm = props => (
       error={props.touched.type && props.errors.type}
     />
     <Input
+      placeholder="Links"
+      placeholderTextColor="#666"
+      value={props.values.links}
+      returnKeyType="go"
+      onBlur={() => props.setFieldTouched('links')}
+      onChangeText={props.handleChange('links')}
+      ref={input => (typeInput = input)}
+      error={props.touched.links && props.errors.links}
+    />
+    <Input
       placeholder="Trained For (Minutes)"
       placeholderTextColor="#666"
       value={props.values.trainedFor}
@@ -43,18 +53,8 @@ export default EditHabitForm = props => (
       mode={'dropdown'}
       error={props.touched.recurrence && props.errors.recurrence}
     />
-    <Input
-      placeholder="Links"
-      placeholderTextColor="#666"
-      value={props.values.links}
-      returnKeyType="go"
-      onBlur={() => props.setFieldTouched('links')}
-      onChangeText={props.handleChange('links')}
-      ref={input => (typeInput = input)}
-      error={props.touched.links && props.errors.links}
-    />
-    <Button onPress={props.handleSubmit} disabled={!props.isValid}>
+    <UpdateButton onPress={props.handleSubmit} disabled={!props.isValid}>
       <ButtonText>UPDATE</ButtonText>
-    </Button>
+    </UpdateButton>
   </Container>
 );

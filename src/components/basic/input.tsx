@@ -17,14 +17,12 @@ const GET_ALL_GROUPS = gql`
 `;
 
 export const Input = styled.TextInput`
-    height: 40;
-    background-color: rgba(255,255,255,0.2);
-    margin-bottom: 5;
-    margin-top: 5;
-    padding-horizontal: 10;
-    font-family: Avenir Next;
-    border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
-    border-radius: 4px;
+  border-bottom-width: ${props => (props.error ? '2px' : '2px')}
+  border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
+  height: 40;
+  padding-horizontal: 10;
+  font-family: Avenir Next;
+  margin-bottom: 20;
 `;
 
 const recurrences = [

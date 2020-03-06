@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import HabitList from './components/HabitList';
-
 import { CreateHabitFAB } from '../';
 
 class HabitListContainer extends React.Component {

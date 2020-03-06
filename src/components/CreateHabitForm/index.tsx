@@ -113,8 +113,8 @@ const CreateHabitForm = ({ refetch }) => {
   };
 
   return (
-    <Tabs>
-      <Tab heading="Create Habit">
+    <Tabs tabBarUnderlineStyle={{ backgroundColor: '#E6B43C' }}>
+      <Tab heading="Create Habit" tabStyle={{ backgroundColor: '#fff' }} activeTabStyle={{ backgroundColor: '#fff' }} activeTextStyle={{ color: '#000' }}>
         <Formik
           style={styles.addHabitForm}
           initialValues={{
@@ -136,7 +136,7 @@ const CreateHabitForm = ({ refetch }) => {
         </Formik>
       </Tab>
       {getRole() === 'ADMIN' ? (
-        <Tab heading="Create Group Habit">
+        <Tab heading="Create Group Habit" tabStyle={{ backgroundColor: '#fff' }} activeTabStyle={{ backgroundColor: '#fff' }} activeTextStyle={{ color: '#000' }}>
           <Formik
             style={styles.addHabitForm}
             initialValues={{

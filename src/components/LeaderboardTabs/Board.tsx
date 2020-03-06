@@ -40,4 +40,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#E6B43C',
     marginLeft: 'auto',
   },
+
 });
