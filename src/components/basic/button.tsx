@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 export const Button = styled.TouchableOpacity`
-  background-color: #999999;
+  background-color: #e6b43c;
   padding-vertical: 15;
+  width: 95%;
+  margin: 0 auto;
   margin-top: 10;
-  border-radius: 5;
+  border-radius: 100;
 `;
 
 export const ButtonText = styled.Text`
