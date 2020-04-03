@@ -8,18 +8,20 @@ import LoginForm from './LoginForm';
 import SignupButton from './SignupForm/SignupButton';
 import Streak from './Streak';
 import StreakImage from './StreakImage';
+import PromoteForm from './PromoteForm';
 
 export {
-    Streak,
-    Loading,
-    LoginForm,
-    SignupForm,
-    SignupButton,
-    SignoutButton,
-    PriorityHabit,
-    CreateHabitFAB,
-    PushNotifications,
-    StreakImage,
+  Streak,
+  Loading,
+  LoginForm,
+  SignupForm,
+  SignupButton,
+  SignoutButton,
+  PriorityHabit,
+  CreateHabitFAB,
+  PushNotifications,
+  StreakImage,
+  PromoteForm,
 };
 
 export * from './basic';
