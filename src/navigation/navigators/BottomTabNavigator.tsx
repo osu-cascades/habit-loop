@@ -37,6 +37,12 @@ export const BottomTabNavigator = () => {
       screenOptions={handleAppScreenOptions}
       tabBarOptions={{
         inactiveTintColor: 'gray',
+        activeTintColor: '#E6B43C',
+        labelStyle: {
+          fontWeight: "bold",
+          fontSize: 13,
+        }
+
       }}>
       <Screen
         name="Home"

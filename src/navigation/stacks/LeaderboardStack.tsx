@@ -7,7 +7,8 @@ const { Navigator, Screen } = createStackNavigator();
 export const LeaderboardStack = () => {
   return (
     <Navigator>
-      <Screen name="Leaderboard" component={LeaderboardScreen} />
+      {/* <Screen name="Leaderboard" component={LeaderboardScreen} /> */}
+      <Screen name="" component={LeaderboardScreen} />
     </Navigator>
   );
 };
