@@ -2,7 +2,6 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen, CreateGroupScreen, JoinGroupScreen } from '@src/navigation/screens';
 import { Image } from 'react-native';
-import ActionBarImage from './ActionBarImage.js';
 
 const { Navigator, Screen } = createStackNavigator();
 
