@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ButtonText, Input, Picker } from '../basic';
-import { Container } from './edit_habit_styles';
+import { Container, EditInput, UpdateButton } from './edit_habit_styles';
 
 export default EditHabitForm = props => (
   <Container>
@@ -24,22 +24,6 @@ export default EditHabitForm = props => (
       ref={input => (typeInput = input)}
       error={props.touched.type && props.errors.type}
     />
-    <Picker
-      placeholder={{ label: 'Time Trained', value: 'null', color: '#9EA0A4' }}
-      values={'trainedFor'}
-      onValueChange={props.handleChange('trainedFor')}
-      value={props.values.trainedFor}
-      mode={'dropdown'}
-      error={props.touched.trainedFor && props.errors.trainedFor}
-    />
-    <Picker
-      placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
-      values={'recurrences'}
-      onValueChange={props.handleChange('recurrence')}
-      value={props.values.recurrence}
-      mode={'dropdown'}
-      error={props.touched.recurrence && props.errors.recurrence}
-    />
     <Input
       placeholder="Links"
       placeholderTextColor="#666"
@@ -50,8 +34,27 @@ export default EditHabitForm = props => (
       ref={input => (typeInput = input)}
       error={props.touched.links && props.errors.links}
     />
-    <Button onPress={props.handleSubmit} disabled={!props.isValid}>
+    <Input
+      placeholder="Trained For (Minutes)"
+      placeholderTextColor="#666"
+      value={props.values.trainedFor}
+      returnKeyType="go"
+      onBlur={() => props.setFieldTouched('trainedFor')}
+      onChangeText={props.handleChange('trainedFor')}
+      ref={input => (typeInput = input)}
+      onSubmitEditing={() => recurrenceInput.focus()}
+      error={props.touched.trainedFor && props.errors.trainedFor}
+    />
+    <Picker
+      placeholder={{ label: 'Recurrence', value: 'null', color: '#9EA0A4' }}
+      values={'recurrences'}
+      onValueChange={props.handleChange('recurrence')}
+      value={props.values.recurrence}
+      mode={'dropdown'}
+      error={props.touched.recurrence && props.errors.recurrence}
+    />
+    <UpdateButton onPress={props.handleSubmit} disabled={!props.isValid}>
       <ButtonText>UPDATE</ButtonText>
-    </Button>
+    </UpdateButton>
   </Container>
 );

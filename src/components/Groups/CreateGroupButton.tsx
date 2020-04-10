@@ -1,22 +1,16 @@
 import React from 'react';
 import { Button, ButtonText } from '../basic';
-import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import { CreateGroupb } from './CreateGroupButtonStyles';
 
 const CreateGroupButton = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Button onPress={() => navigate('CreateGroup')} style={styles.createGroupb}>
+    <CreateGroupb onPress={() => navigate('CreateGroup')}>
       <ButtonText>Create Group</ButtonText>
-    </Button>
+    </CreateGroupb>
   );
 };
-
-const styles = StyleSheet.create({
-  createGroupb: {
-    backgroundColor: '#E6B43C',
-  },
-});
 
 export default CreateGroupButton;

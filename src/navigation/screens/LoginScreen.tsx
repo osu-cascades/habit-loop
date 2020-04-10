@@ -17,7 +17,8 @@ export const LoginScreen = () => {
 
   return (
     <Container behavior="padding">
-      <Logo source={require('../../assets/images/lt.png')} />
+      {/* <Logo source={require('../../assets/images/lt.png')} /> */}
+      <Logo source={require('../../assets/images/logo.jpg')} />
       <LoginForm />
     </Container>
   );

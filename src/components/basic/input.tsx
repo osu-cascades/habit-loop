@@ -2,18 +2,27 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { default as PickerComponent } from 'react-native-picker-select';
+import { useQuery, gql } from '@apollo/client';
+import { Loading } from '@src/components';
 import { ArrowDownIcon } from '@src/assets/svgs';
 import _ from 'lodash';
 
+const GET_ALL_GROUPS = gql`
+  query getAllGroups {
+    getAllGroups {
+      group_name
+      group_id: user_id
+    }
+  }
+`;
+
 export const Input = styled.TextInput`
-    height: 40;
-    background-color: rgba(255,255,255,0.2);
-    margin-bottom: 5;
-    margin-top: 5;
-    padding-horizontal: 10;
-    font-family: Avenir Next;
-    border: ${props => (props.error ? '1px solid tomato' : '1px solid #999999')}
-    border-radius: 4px;
+  border-bottom-width: ${props => (props.error ? '2px' : '2px')}
+  border-bottom-color: ${props => (props.error ? 'tomato' : '#999999')}
+  height: 40;
+  padding-horizontal: 10;
+  font-family: Avenir Next;
+  margin-bottom: 20;
 `;
 
 const recurrences = [
@@ -42,39 +51,33 @@ const priority = [
   },
 ];
 
-const trainedFor = [
-  {
-    label: '30 Minutes',
-    value: 1800,
-  },
-  {
-    label: '60 Minutes',
-    value: 3600,
-  },
-  {
-    label: '90 Minutes',
-    value: 5400,
-  },
-  {
-    label: '120 Minutes',
-    value: 7200,
-  },
-];
+export const Picker = props => {
+  const { data, loading } = useQuery(GET_ALL_GROUPS);
 
-const pickerItems = {
-  recurrences,
-  priority,
-  trainedFor,
+  if (loading) {
+    return <Loading />;
+  } else {
+    const groups = data.getAllGroups.map(group => ({
+      label: group.group_name,
+      value: group.group_id,
+    }));
+
+    const pickerItems = {
+      recurrences,
+      priority,
+      groups,
+    };
+
+    return (
+      <PickerComponent
+        style={styles}
+        items={pickerItems[props.values]}
+        // Icon={() => <ArrowDownIcon width={24} />} // curently bugged
+        {...props}
+      />
+    );
+  }
 };
-
-export const Picker = props => (
-  <PickerComponent
-    style={styles}
-    items={pickerItems[props.values]}
-    // Icon={() => <ArrowDownIcon width={24} />} // curently bugged
-    {...props}
-  />
-);
 
 const styles = StyleSheet.create({
   inputIOS: {
