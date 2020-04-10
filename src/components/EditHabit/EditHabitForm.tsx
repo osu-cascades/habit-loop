@@ -54,7 +54,7 @@ export default EditHabitForm = props => (
       error={props.touched.recurrence && props.errors.recurrence}
     />
     <UpdateButton onPress={props.handleSubmit} disabled={!props.isValid}>
-      <ButtonText>UPDATE</ButtonText>
+      <ButtonText>Update Habit</ButtonText>
     </UpdateButton>
   </Container>
 );
