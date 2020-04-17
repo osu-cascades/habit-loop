@@ -30,7 +30,9 @@ const registerForPushNotificationsAsync = async props => {
 
 const REGISTER_PUSH_NOTIFICATION = gql`
   mutation registerPushNotification($push_token: String!) {
-    registerPushNotification(push_token: $push_token)
+    registerPushNotification(push_token: $push_token) {
+      reminder
+    }
   }
 `;
 
@@ -40,9 +42,9 @@ const PushNotification = props => {
   const [registerToken, { data, loading, error }] = useMutation(REGISTER_PUSH_NOTIFICATION);
 
   const userToken = async () => {
-    const push_token = await registerForPushNotificationsAsync(props);
-    if (push_token) {
-      const token = push_token.variables.token;
+    const push_notification = await registerForPushNotificationsAsync(props);
+    if (push_notification) {
+      const token = push_notification.variables.token;
       const params = {
         variables: {
           push_token: token,
