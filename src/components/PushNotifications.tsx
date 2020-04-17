@@ -50,7 +50,6 @@ const PushNotification = props => {
           push_token: token,
         },
       };
-      console.log(token);
       try {
         await registerToken(params);
         console.log(`Successfully submitted new token ${token}`);
