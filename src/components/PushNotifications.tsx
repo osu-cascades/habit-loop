@@ -4,7 +4,7 @@ import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
 import { useMutation, gql } from '@apollo/client';
 
-const registerForPushNotificationsAsync = async (props) => {
+const registerForPushNotificationsAsync = async props => {
   const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
   let finalStatus = existingStatus;
@@ -26,27 +26,31 @@ const registerForPushNotificationsAsync = async (props) => {
   };
 
   return registerToken;
-}
+};
 
 const REGISTER_PUSH_NOTIFICATION = gql`
-    mutation registerPushNotification($token: String!){
-        registerPushNotification(token: $token)
-    }
+  mutation registerPushNotification($push_token: String!) {
+    registerPushNotification(push_token: $push_token)
+  }
 `;
 
-const PushNotification = (props) => {
-
-  console.log(props);
-
+const PushNotification = props => {
   const [notification, setNotification] = useState({});
   const [user, setUser] = useState(props.user);
   const [registerToken, { data, loading, error }] = useMutation(REGISTER_PUSH_NOTIFICATION);
 
   const userToken = async () => {
-    const token = await registerForPushNotificationsAsync(props);
-    if (token) {
+    const push_token = await registerForPushNotificationsAsync(props);
+    if (push_token) {
+      const token = push_token.variables.token;
+      const params = {
+        variables: {
+          push_token: token,
+        },
+      };
+      console.log(token);
       try {
-        await registerToken(token);
+        await registerToken(params);
         console.log(`Successfully submitted new token ${token}`);
       } catch (err) {
         console.error(`Error submitting new token: ${err}`);
@@ -56,21 +60,15 @@ const PushNotification = (props) => {
   };
 
   useEffect(() => {
-    userToken()
-  }, []
-  );
+    userToken();
+  }, []);
 
   const _handleNotification = notification => {
     //this.setState({ notification });
     setNotification(notification);
   };
 
-  return (
-    <View>
-      <Text>Origin: {setNotification.origin}</Text>
-      <Text>Data: {JSON.stringify(setNotification.data)}</Text>
-    </View>
-  );
-}
+  return null;
+};
 
 export default PushNotification;
