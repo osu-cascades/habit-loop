@@ -16,7 +16,7 @@ export const HomeScreen = () => {
       </ButtonContainer>
       <Groups />
       {/* <PriorityHabit /> */}
-      {/* <PushNotifications /> */}
+      <PushNotifications />
     </HomeContainer>
   );
 };
