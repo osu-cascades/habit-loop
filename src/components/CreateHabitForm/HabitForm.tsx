@@ -58,7 +58,7 @@ export const HabitForm = props => {
         error={props.touched.recurrence && props.errors.recurrence}
       />
       <AddButton onPress={props.handleSubmit} disabled={!props.isValid}>
-        <ButtonText>Create New Habit</ButtonText>
+        <ButtonText>Create Habit</ButtonText>
       </AddButton>
     </Container>
   );
