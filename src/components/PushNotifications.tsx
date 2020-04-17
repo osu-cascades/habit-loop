@@ -1,29 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import { Permissions, Notifications } from 'expo';
-import { compose } from 'react-apollo';
-import { RegisterPushNotifications } from '../data';
+import * as Permissions from 'expo-permissions';
+import { Notifications } from 'expo';
+import { useMutation, gql } from '@apollo/client';
 
-async function registerForPushNotificationsAsync(props) {
+const registerForPushNotificationsAsync = async props => {
   const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
   let finalStatus = existingStatus;
 
-  // only ask if permissions have not already been determined, because
-  // iOS won't necessarily prompt the user a second time.
   if (existingStatus !== 'granted') {
-    // Android remote notification permissions are granted during the app
-    // install, so this will only ask on iOS
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
     finalStatus = status;
   }
 
-  // Stop here if the user did not grant permissions
   if (finalStatus !== 'granted') {
     return;
   }
 
-  // Get the token that uniquely identifies this device
   let token = await Notifications.getExpoPushTokenAsync();
   const registerToken = {
     variables: {
@@ -32,42 +26,50 @@ async function registerForPushNotificationsAsync(props) {
   };
 
   return registerToken;
-}
+};
 
-class PushNotification extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      notification: {},
-      user: props.user,
-    };
+const REGISTER_PUSH_NOTIFICATION = gql`
+  mutation registerPushNotification($push_token: String!) {
+    registerPushNotification(push_token: $push_token) {
+      reminder
+    }
   }
+`;
 
-  async componentDidMount() {
-    const token = await registerForPushNotificationsAsync(this.props);
-    if (token) {
+const PushNotification = props => {
+  const [notification, setNotification] = useState({});
+  const [user, setUser] = useState(props.user);
+  const [registerToken, { data, loading, error }] = useMutation(REGISTER_PUSH_NOTIFICATION);
+
+  const userToken = async () => {
+    const push_notification = await registerForPushNotificationsAsync(props);
+    if (push_notification) {
+      const token = push_notification.variables.token;
+      const params = {
+        variables: {
+          push_token: token,
+        },
+      };
       try {
-        await this.props.mutate(token);
+        await registerToken(params);
         console.log(`Successfully submitted new token ${token}`);
       } catch (err) {
         console.error(`Error submitting new token: ${err}`);
       }
     }
-    this._notificationSubscription = Notifications.addListener(this._handleNotification);
-  }
-
-  _handleNotification = notification => {
-    this.setState({ notification });
+    Notifications.addListener(_handleNotification);
   };
 
-  render() {
-    return (
-      <View>
-        <Text>Origin: {this.state.notification.origin}</Text>
-        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
-      </View>
-    );
-  }
-}
+  useEffect(() => {
+    userToken();
+  }, []);
 
-export default compose(RegisterPushNotifications)(PushNotification);
+  const _handleNotification = notification => {
+    //this.setState({ notification });
+    setNotification(notification);
+  };
+
+  return null;
+};
+
+export default PushNotification;
