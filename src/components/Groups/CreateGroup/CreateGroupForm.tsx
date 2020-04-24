@@ -16,7 +16,7 @@ export const CreateGroupForm = props => (
                 error={props.touched.group_name && props.errors.group_name}
             />
             <Button onPress={props.handleSubmit} disabled={!props.isValid}>
-                <ButtonText>CREATE</ButtonText>
+                <ButtonText>Create Group</ButtonText>
             </Button>
         </FormContainer>
     </Container>

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, ButtonText, Input, Picker } from '../basic';
+import { ButtonText, Input, Picker } from '../basic';
 import { Container, ContainerContent, UpdateButton, Title, TitleContainer } from './edit_habit_styles';
-import { Text, StyleSheet, View } from 'react-native'
 
 export default EditHabitForm = props => (
   <Container>
@@ -64,10 +63,3 @@ export default EditHabitForm = props => (
     </ContainerContent>
   </Container>
 );
-
-// var styles = StyleSheet.create({
-//   textcont: {
-//     borderBottomWidth: 4,
-//     borderBottomColor: '#E6B43C',
-//   },
-// })

@@ -8,7 +8,7 @@ export const JoinGroupForm = props => (
         <FormContainer>
             <Picker {...props} />
             <Button onPress={props.handleSubmit} disabled={!props.isValid}>
-                <ButtonText>JOIN</ButtonText>
+                <ButtonText>Join Group</ButtonText>
             </Button>
         </FormContainer>
     </Container>
