@@ -24,11 +24,10 @@ const CreateButtonFAB = ({ refetch }) => {
     // </Fab>
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={
-        () =>
-          navigate('CreatHabit', {
-            refetch,
-          })
+      onPress={() =>
+        navigate('CreateHabit', {
+          refetch,
+        })
       }
       style={styles.fab}>
       <PlusIcon width={24} fill="white" />
