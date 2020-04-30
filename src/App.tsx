@@ -7,7 +7,7 @@ import { Loading } from '@src/components';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AuthStack, AuthLoadingScreen, BottomTabNavigator } from '@src/navigation';
-import { NavigationNativeContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 // http://10.0.2.2:3000/graphql -> for android emulator (or something similar)
 // http://localhost:3000/graphql -> what works most of the time with the local server
@@ -34,13 +34,13 @@ export default () => {
   return (
     <Suspense fallback={<Loading />}>
       <ApolloProvider client={client}>
-        <NavigationNativeContainer>
+        <NavigationContainer>
           <Navigator initialRouteName="AuthLoading" headerMode="none">
             <Screen name="AuthLoading" component={AuthLoadingScreen} />
             <Screen name="Auth" component={AuthStack} />
             <Screen name="Main" component={BottomTabNavigator} />
           </Navigator>
-        </NavigationNativeContainer>
+        </NavigationContainer>
       </ApolloProvider>
     </Suspense>
   );
