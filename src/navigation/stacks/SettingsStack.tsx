@@ -7,7 +7,7 @@ const { Navigator, Screen } = createStackNavigator();
 export const SettingsStack = () => {
   return (
     <Navigator>
-      <Screen name="" component={SettingsScreen} />
+      <Screen name=" " component={SettingsScreen} />
     </Navigator>
   );
 };
