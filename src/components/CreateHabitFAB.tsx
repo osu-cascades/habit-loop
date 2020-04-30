@@ -10,18 +10,6 @@ const CreateButtonFAB = ({ refetch }) => {
   const [active, setActive] = useState(true);
 
   return (
-    // <Fab
-    //   active={active}
-    //   direction="up"
-    //   style={styles.fab}
-    //   position="bottomRight"
-    //   onPress={() =>
-    //     navigate('CreateHabit', {
-    //       refetch,
-    //     })
-    //   }>
-    //   <PlusIcon width={24} fill="white" />
-    // </Fab>
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={() =>
