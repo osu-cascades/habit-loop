@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import { Fab } from 'native-base';
 import { useNavigation } from '@react-navigation/core';
 import { PlusIcon } from '@src/assets/svgs';
 
