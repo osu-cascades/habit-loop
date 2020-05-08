@@ -9,8 +9,4 @@ export * from './LoginScreen';
 export * from './SettingsScreen';
 export * from './SignupScreen';
 export * from './UserHabitScreen';
-
-
-
-
-
+export * from './MedalsScreen';
