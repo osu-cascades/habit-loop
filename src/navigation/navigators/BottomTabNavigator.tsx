@@ -15,10 +15,10 @@ const getIcon = route => {
       return Platform.OS === 'ios' ? ListIconIOS : 'md-list-box';
     case 'Leaderboard':
       return PodiumIcon;
-    case 'Settings':
-      return Platform.OS === 'ios' ? SettingsIconIOS : 'md-options';
     case 'Medals':
       return MedalsIcon;
+    case 'Settings':
+      return Platform.OS === 'ios' ? SettingsIconIOS : 'md-options';
     default:
       return Platform.OS === 'ios' ? HomeIconIOS : 'md-home';
   }
@@ -67,17 +67,17 @@ export const BottomTabNavigator = () => {
         }}
       />
       <Screen
-        name="Settings"
-        component={SettingsStack}
-        options={{
-          tabBarLabel: 'Settings',
-        }}
-      />
-      <Screen
         name="Medals"
         component={MedalsStack}
         options={{
           tabBarLabel: 'Medals',
+        }}
+      />
+      <Screen
+        name="Settings"
+        component={SettingsStack}
+        options={{
+          tabBarLabel: 'Settings',
         }}
       />
     </Navigator>
