@@ -2,8 +2,8 @@ import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Platform, Text } from 'react-native';
-import { HomeStack, HabitStack, LeaderboardStack, SettingsStack } from '../stacks';
-import { HomeIconIOS, PodiumIcon, ListIconIOS, SettingsIconIOS } from '@src/assets/svgs';
+import { HomeStack, HabitStack, LeaderboardStack, SettingsStack, MedalsStack } from '../stacks';
+import { HomeIconIOS, PodiumIcon, ListIconIOS, SettingsIconIOS, MedalsIcon } from '@src/assets/svgs';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -15,6 +15,8 @@ const getIcon = route => {
       return Platform.OS === 'ios' ? ListIconIOS : 'md-list-box';
     case 'Leaderboard':
       return PodiumIcon;
+    case 'Medals':
+      return MedalsIcon;
     case 'Settings':
       return Platform.OS === 'ios' ? SettingsIconIOS : 'md-options';
     default:
@@ -39,10 +41,9 @@ export const BottomTabNavigator = () => {
         inactiveTintColor: 'gray',
         activeTintColor: '#E6B43C',
         labelStyle: {
-          fontWeight: "bold",
+          fontWeight: 'bold',
           fontSize: 13,
-        }
-
+        },
       }}>
       <Screen
         name="Home"
@@ -63,6 +64,13 @@ export const BottomTabNavigator = () => {
         component={LeaderboardStack}
         options={{
           tabBarLabel: 'Leaderboard',
+        }}
+      />
+      <Screen
+        name="Medals"
+        component={MedalsStack}
+        options={{
+          tabBarLabel: 'Medals',
         }}
       />
       <Screen
