@@ -1,10 +1,15 @@
 import React, { useRef } from 'react';
 import SignupButton from '../SignupForm/SignupButton';
 import { ButtonText } from '../basic';
-import { LoginButton, LoginInput, LoginView, InvalidLoginText, SectionStyle, IconForm, TitleText } from './login_styles';
-import { FormLabel } from '../basic/form_label';
-import { Text, Icon } from 'native-base';
-import { Image, StyleSheet, View } from 'react-native';
+import {
+  LoginButton,
+  LoginInput,
+  LoginView,
+  InvalidLoginText,
+  SectionStyle,
+  IconForm,
+  TitleText,
+} from './login_styles';
 
 const setNextInput = (ref: React.MutableRefObject<TextInput | null>) => {
   return ref.current && ref.current.focus();
@@ -48,14 +53,13 @@ export default LoginForm = props => {
         />
       </SectionStyle>
       <InvalidLoginText>{props.loginError && 'Invalid username/password.'}</InvalidLoginText>
-      <SignupButton />
+      {/* <SignupButton /> */}
       <LoginButton
         onPress={props.handleSubmit}
-      // disabled={!props.isValid}
+        // disabled={!props.isValid}
       >
         <ButtonText>Log In</ButtonText>
       </LoginButton>
-
     </LoginView>
   );
 };
