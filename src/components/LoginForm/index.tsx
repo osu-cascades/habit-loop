@@ -36,7 +36,7 @@ const loginUser = async ({ values, login, navigate }) => {
     await AsyncStorage.setItem('userToken', token);
     navigate('Main');
   } catch (err) {
-    console.error('Error logging in:', JSON.stringify(err));
+    console.log('Error logging in:', JSON.stringify(err));
   }
 };
 
