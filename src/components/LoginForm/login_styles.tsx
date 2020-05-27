@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const LoginButton = styled.TouchableOpacity`
-  background-color: #E6B43C;
+  background-color: #e6b43c;
   padding-vertical: 15;
   width: 95%;
   margin: 0 auto;
@@ -11,7 +11,7 @@ export const LoginButton = styled.TouchableOpacity`
 
 export const LoginView = styled.View`
   padding: 20px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 export const TitleText = styled.Text`
@@ -51,12 +51,13 @@ export const Container = styled.KeyboardAvoidingView`
   padding: 20px;
   flex-direction: column;
   justify-content: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 export const InvalidLoginText = styled.Text`
   text-align: center;
-  color: #FFF;
+  color: red;
   opacity: 0.8;
   font-weight: bold;
+  padding-bottom: 5px;
 `;
